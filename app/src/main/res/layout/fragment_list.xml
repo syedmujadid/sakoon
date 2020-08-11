@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:clickable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="true">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/noResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/d_18dp"
+            android:layout_marginEnd="@dimen/d_18dp"
+            android:layout_marginBottom="@dimen/d_18dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="No Result Found"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_normal" />
+<RelativeLayout
+    android:id="@+id/levelLayoutParent"
+    android:layout_width="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/levelLayout"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select Level "
+            android:textColor="@color/colorBlack"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:textSize="@dimen/text_size_normal" />
+        <Spinner
+            android:id="@+id/levelType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:elevation="2dp"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_marginBottom="@dimen/d_5dp"
+            android:entries="@array/levelType"
+            android:padding="@dimen/d_5dp"></Spinner>
+
+        <TextView
+            android:id="@+id/totalCount"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Total Incident: 0"
+            android:textColor="@color/orange_dark"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_marginBottom="@dimen/d_5dp"
+            android:textSize="@dimen/text_size_small" />
+        <View
+            android:background="@color/colorGrayBorder"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/totalLayout"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorWhite"
+        android:padding="@dimen/d_10dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/t1"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_normal" />
+        <View
+            android:layout_width="1dp"
+            android:layout_marginLeft="@dimen/d_5dp"
+            android:layout_marginRight="@dimen/d_5dp"
+            android:background="@color/colorGray"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/t2"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_normal" />
+    </LinearLayout>
+</RelativeLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/pullToRefresh"
+            android:layout_width="match_parent"
+            android:layout_below="@id/levelLayoutParent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/d_5dp"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/layout_progressbar" />
+
+</FrameLayout>

@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <include
+        android:id="@+id/rl_toolbar"
+        layout="@layout/include_layout_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_toolbar"
+        android:orientation="vertical"
+        android:padding="@dimen/d_5dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/slipNumber"
+                style="@style/TextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:background="@drawable/selector_edittext_mobile_number"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Enter slip number"
+                android:imeOptions="actionSearch"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:padding="10dp"
+                android:singleLine="true"
+
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/searchSlip"
+                style="@style/TextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:background="@drawable/shape_rect_gray_fill_country_code"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_horizontal"
+
+                android:paddingLeft="@dimen/d_5dp"
+                android:paddingTop="10dp"
+                android:paddingRight="@dimen/d_5dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:text="Search"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_small" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Showing Result for"
+            android:textSize="@dimen/d_14dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/noResult"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/poppins_regular"
+        android:text="No Result Found!" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/l1"
+        android:layout_margin="10dp"
+        android:scrollbars="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/d_10dp"
+        android:backgroundTint="@color/orange_dark"
+        android:foregroundTint="@color/orange_dark"
+        android:elevation="@dimen/d_10dp"
+        app:srcCompat="@drawable/ic_add"
+        app:fabSize="mini" />
+</RelativeLayout>

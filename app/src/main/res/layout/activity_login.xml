@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/sub_text"
+        style="@style/TextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorGrayBorder"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/d_10dp"
+        android:text="@string/fotter_tag"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/sub_text">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/d_20dp">
+
+            <ImageView
+                android:id="@+id/iv_app_name"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/d_5dp"
+                app:srcCompat="@drawable/sakoonlogo" />
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Udhampur"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/loginLayout"
+                android:layout_width="match_parent"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="For Citizen"
+                    android:textSize="@dimen/text_size_normal"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/citiSearCase"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/d_10dp"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/text_size_small"
+                        android:background="@drawable/shape_rect_orange_fill"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Search Cases"
+                        android:textColor="@color/colorWhite" />
+
+                    <Button
+                        android:id="@+id/citiAddCase"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/text_size_small"
+                        android:background="@drawable/shape_rect_orange_fill"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Add Cases"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/header"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Official Sign In"
+                    android:textSize="@dimen/text_size_normal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_user_email"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Enter mobile number"
+                    android:imeOptions="actionNext"
+                    android:textSize="@dimen/text_size_normal"
+                    android:inputType="phone"
+                    android:maxLength="10" />
+
+                <RelativeLayout
+                    android:id="@+id/pwdLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp">
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        style="@style/EditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_edittext_create_account"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="@dimen/text_size_normal"
+                        android:hint="Enter Password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword" />
+
+                    <ImageView
+                        android:id="@+id/showPwd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/d_10dp"
+                        app:srcCompat="@drawable/showpassword" />
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp">
+
+
+                    <TextView
+                        android:id="@+id/forgotPasswordLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Forgot password?"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/text_size_small" />
+
+
+                </FrameLayout>
+
+                <CheckBox
+                    android:id="@+id/rememberMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-5dp"
+                    android:layout_marginLeft="-5dp"
+                    android:buttonTint="@color/orange_dark"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Remember me"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_small" />
+
+                <Button
+                    android:id="@+id/btn_sign_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/shape_rect_orange_fill"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Log in"
+                    android:textSize="@dimen/text_size_small"
+                    android:textColor="@color/colorWhite" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/forgotPwdLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Forgot Password?"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Enter your mobile number to retrive password"
+                    android:textSize="@dimen/text_size_small" />
+
+
+                <EditText
+                    android:id="@+id/forgotUsername"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Enter mobile number"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:maxLength="10" />
+
+                <TextView
+                    android:id="@+id/retrievedPassword"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/text_size_small"
+                    android:visibility="gone" />
+
+
+                <Button
+                    android:id="@+id/btn_get_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_20dp"
+                    android:background="@drawable/shape_rect_orange_fill"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="SUBMIT"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/gotBackToLogin"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="@dimen/d_10dp"
+                    android:text="Go to Login page"
+                    android:textColor="@color/orange_dark"
+                    android:textSize="@dimen/text_size_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/verifyOTPLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/verifyOTPLabel"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Forgot Password?"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Enter your mobile number"
+                    android:textSize="@dimen/text_size_small" />
+
+
+                <EditText
+                    android:id="@+id/otpMobile"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Enter mobile number"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:maxLength="10" />
+                <EditText
+                    android:id="@+id/otp"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Enter OTP"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:maxLength="4" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp">
+
+
+                    <TextView
+                        android:id="@+id/resendOTPLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Resend OTP"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/text_size_small" />
+
+
+                </FrameLayout>
+
+
+                <Button
+                    android:id="@+id/btn_get_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/shape_rect_orange_fill"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="GET OTP"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/gotBackToLogin2"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="@dimen/d_10dp"
+                    android:text="Go to Login page"
+                    android:textColor="@color/orange_dark"
+                    android:textSize="@dimen/text_size_normal" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_app_name"
+            android:orientation="vertical"
+            android:padding="@dimen/d_20dp">
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Update Slip"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+            <!--Party
+            Material
+            Quantity
+            Weight-->
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Party"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_12dp" />
+
+
+            <Spinner
+                android:id="@+id/partySpinner"
+                style="@style/TextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_small" />
+
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Material"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_12dp" />
+
+
+            <Spinner
+                android:id="@+id/materialSpinner"
+                style="@style/TextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_small" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Enter Quantity"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/d_12dp" />
+                    <EditText
+                        android:id="@+id/quantity"
+                        style="@style/EditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_edittext_create_account"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal"
+                        android:hint="Quantity"
+                        android:textSize="@dimen/d_12dp"
+                        android:imeOptions="actionNext"
+                        android:fontFamily="@font/poppins_medium"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Enter Rate"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/d_12dp" />
+
+                    <EditText
+                        android:id="@+id/rate"
+                        style="@style/EditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_edittext_create_account"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal"
+                        android:hint="Rate"
+                        android:imeOptions="actionNext"
+                        android:fontFamily="@font/poppins_medium"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Unit"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_12dp" />
+
+
+            <Spinner
+                android:id="@+id/unitSpinner"
+                style="@style/TextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_small" />
+            <TextView
+                android:id="@+id/totalAmount"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Total Amount: 0"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_16dp" />
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Enter vehicle number"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_12dp" />
+
+
+            <EditText
+                android:id="@+id/vehicleNumber"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_edittext_create_account"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
+                android:textSize="@dimen/d_12dp"
+                android:hint="Vehicle number"
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/poppins_medium"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/d_10dp"
+
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/d_12dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:background="@drawable/shape_rect_orange_fill"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="UPDATE" />
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/d_12dp"
+                    android:background="@drawable/shape_rect_orange_fill"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="CANCEL" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

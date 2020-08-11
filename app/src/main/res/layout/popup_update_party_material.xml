@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/d_10dp"
+    android:background="@drawable/shape_rect_white_fill_corners">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_app_name"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="@dimen/d_20dp">
+
+        <TextView
+            android:id="@+id/label"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Update Party"
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:background="@drawable/selector_edittext_create_account"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Enter Name"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/et_description"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:background="@drawable/selector_edittext_create_account"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="top"
+            android:hint="Enter Description"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:singleLine="true" />
+
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_20dp"
+            android:background="@drawable/shape_rect_orange_fill"
+            android:fontFamily="@font/poppins_medium"
+            android:text="UPDATE"
+            android:textColor="@color/colorWhite" />
+
+
+    </LinearLayout>
+</RelativeLayout>

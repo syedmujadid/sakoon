@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+<TextView
+    android:layout_margin="@dimen/d_20dp"
+    android:textSize="@dimen/text_size_large"
+    android:textColor="@color/colorBlack"
+    android:fontFamily="@font/poppins_semibold"
+    android:gravity="center_horizontal"
+    android:text="Choose media from where you want to pick image!"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/d_20dp"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/fromCamera"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_background_orange"
+            android:padding="@dimen/d_20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/colorWhite"
+            android:text="Camera"
+            android:drawablePadding="@dimen/d_5dp"
+            android:gravity="center_horizontal"
+           />
+        <TextView
+            android:id="@+id/fromGallery"
+            android:layout_width="@dimen/d_120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_background_orange"
+            android:padding="@dimen/d_20dp"
+            android:drawablePadding="@dimen/d_5dp"
+            android:gravity="center_horizontal"
+            android:layout_toRightOf="@id/fromCamera"
+            android:layout_marginLeft="@dimen/d_50dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/colorWhite"
+            android:text="Gallery"
+             />
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

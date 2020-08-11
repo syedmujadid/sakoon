@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/d_5dp"
+    android:layout_marginTop="@dimen/d_4dp"
+    android:layout_marginEnd="@dimen/d_5dp"
+    android:layout_marginBottom="@dimen/d_4dp"
+    android:background="@drawable/rectangle_background_curve"
+    android:padding="@dimen/d_5dp"
+    app:cardCornerRadius="@dimen/d_4dp"
+    app:cardElevation="@dimen/d_2dp">
+
+    <RelativeLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/d_5dp">
+<RelativeLayout
+    android:id="@+id/l1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:inputType="textMultiLine"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/d_12dp" />
+    <TextView
+        android:id="@+id/comment2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:inputType="textMultiLine"
+        android:visibility="gone"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/d_14dp" />
+
+</RelativeLayout>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l1"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/d_12dp" />
+
+
+        <TextView
+            android:id="@+id/mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/d_12dp" />
+
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobile"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/d_12dp" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:background="@drawable/rectangle_background_curve"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:padding="@dimen/d_10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Property Type"
+                android:textSize="@dimen/text_size_large" />
+
+            <ImageView
+                android:id="@+id/close"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/circle_shape_orange"
+                android:padding="@dimen/d_5dp"
+                app:srcCompat="@drawable/ic_close_white" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Category *"
+                android:textSize="@dimen/text_size_small" />
+            <Spinner
+                android:id="@+id/categoryType"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:background="@drawable/spinner_background"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"></Spinner>
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Type *"
+            android:textSize="@dimen/text_size_small" />
+        <Spinner
+            android:id="@+id/propertyType"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:background="@drawable/spinner_background"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"></Spinner>
+
+    </LinearLayout>
+
+
+
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Description"
+            android:textSize="@dimen/text_size_small" />
+
+        <EditText
+            android:id="@+id/damageDescription"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:background="@drawable/selector_edittext_create_account"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="top"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:maxLines="10"
+            android:textSize="@dimen/text_size_small"
+            tools:hint="Things Got Damaged" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Quantity *"
+                android:textSize="@dimen/text_size_small" />
+
+
+            <Spinner
+                android:id="@+id/quantity"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+
+                android:entries="@array/noArray"
+               ></Spinner>
+        </LinearLayout>
+
+        <Button
+            android:text="UPDATE"
+            android:visibility="gone"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_large"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:background="@drawable/rectangle_background_orange"
+            android:id="@+id/updateDamage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

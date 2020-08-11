@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/d_10dp"
+    android:background="@drawable/shape_rect_white_fill_corners"
+  >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/iv_app_name"
+        android:orientation="vertical"
+        android:padding="@dimen/d_20dp">
+
+        <TextView
+            android:id="@+id/label"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Update User"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select Location"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/d_14dp" />
+
+
+        <Spinner
+            android:id="@+id/locationSpinner"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_small" />
+
+
+        <EditText
+            android:id="@+id/et_user_name"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_edittext_create_account"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:singleLine="true"
+            android:inputType="textEmailAddress"
+            android:hint="Enter Name"
+            android:imeOptions="actionNext"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp">
+
+            <EditText
+                android:id="@+id/et_user_mobile"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Mobile"
+                android:background="@drawable/selector_edittext_create_account"
+                android:singleLine="true"
+                android:fontFamily="@font/poppins_medium"
+                android:imeOptions="actionDone"
+                android:inputType="phone" />
+            <ImageView
+                android:id="@+id/showPwd"
+                app:srcCompat="@drawable/showpassword"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/d_10dp"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_description"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:background="@drawable/selector_edittext_create_account"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="top"
+            android:visibility="gone"
+            android:hint="Enter Description"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:singleLine="true" />
+
+
+        <Button
+            android:id="@+id/btn_sign_in"
+            android:layout_width="match_parent"
+            android:background="@drawable/shape_rect_orange_fill"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginTop="@dimen/d_20dp"
+            android:text="UPDATE" />
+
+
+    </LinearLayout>
+</RelativeLayout>

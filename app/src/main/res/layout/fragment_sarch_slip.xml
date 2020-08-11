@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:padding="@dimen/d_10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Search Slip by applying different filters"
+        android:textSize="@dimen/d_16dp" />
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/slipNumber"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:background="@drawable/selector_edittext_mobile_number"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Enter slip number"
+            android:imeOptions="actionSearch"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:padding="10dp"
+            android:singleLine="true"
+
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/searchSlip"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:background="@drawable/shape_rect_gray_fill_country_code"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_horizontal"
+
+            android:paddingLeft="@dimen/d_5dp"
+            android:paddingTop="10dp"
+            android:paddingRight="@dimen/d_5dp"
+            android:paddingBottom="@dimen/d_10dp"
+            android:text="Search"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_small" />
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/locationLabel"
+        style="@style/TextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Location"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/d_12dp" />
+
+
+    <Spinner
+        android:id="@+id/locationSpinner"
+        style="@style/TextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:singleLine="true"
+        android:textSize="@dimen/text_size_small" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Party"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_12dp" />
+
+
+            <Spinner
+                android:id="@+id/partySpinner"
+                style="@style/TextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Material"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_12dp" />
+
+
+            <Spinner
+                android:id="@+id/materialSpinner"
+                style="@style/TextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_small" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_5dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Start Date"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_12dp" />
+
+            <TextView
+                android:id="@+id/startDate"
+                style="@style/TextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:background="@drawable/shape_rect_gray_stroke"
+                android:drawableRight="@drawable/date"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical"
+                android:hint="YYYY-MM-DD"
+                android:padding="10dp"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/clearStartdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_2dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Clear"
+                android:visibility="gone"
+                android:textColor="@color/colorNavyBlue"
+                android:textSize="@dimen/text_size_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="End Date"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/d_12dp" />
+
+            <TextView
+                android:id="@+id/endDate"
+                style="@style/TextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:background="@drawable/shape_rect_gray_stroke"
+                android:drawableRight="@drawable/date"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical"
+                android:hint="YYYY-MM-DD"
+                android:padding="10dp"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/clearEnddate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_2dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Clear"
+                android:visibility="gone"
+                android:textColor="@color/colorNavyBlue"
+                android:textSize="@dimen/text_size_small" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Select Slip Status"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/d_12dp" />
+
+    <RadioGroup
+        android:id="@+id/statusGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/d_5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+
+            android:paddingLeft="@dimen/d_20dp"
+            android:paddingTop="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_20dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:text="ALL"
+            android:textColor="@color/radio_text_selector"
+            android:textSize="@dimen/text_size_small" />
+
+        <RadioButton
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:paddingLeft="@dimen/d_20dp"
+            android:paddingTop="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_20dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:text="OPEN"
+            android:textColor="@color/radio_text_selector"
+            android:textSize="@dimen/text_size_small" />
+
+        <RadioButton
+            android:id="@+id/cancelled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:paddingLeft="@dimen/d_20dp"
+            android:paddingTop="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_20dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:text="CANCEL"
+            android:textColor="@color/radio_text_selector"
+            android:textSize="@dimen/text_size_small" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/applyFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_20dp"
+        android:background="@drawable/shape_rect_orange_fill"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Apply Filter"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/d_12dp" />
+</LinearLayout>

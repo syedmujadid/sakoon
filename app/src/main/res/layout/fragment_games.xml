@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:clickable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="true">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/noResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/d_18dp"
+            android:layout_marginEnd="@dimen/d_18dp"
+            android:layout_marginBottom="@dimen/d_18dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_normal"
+            android:text="No Result Found" />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/pullToRefresh"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+
+
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_10dp"
+            android:layout_marginEnd="@dimen/d_10dp"
+            android:layout_marginBottom="@dimen/d_10dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never" />
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/layout_progressbar" />
+
+</FrameLayout>

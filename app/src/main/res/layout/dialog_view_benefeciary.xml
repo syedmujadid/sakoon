@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+
+    <RelativeLayout
+        android:id="@+id/hlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/gray"
+
+        android:padding="@dimen/d_10dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_back" />
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/back"
+            android:fontFamily="@font/poppins_medium"
+            android:singleLine="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_normal" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/hlayout">
+
+        <LinearLayout
+            android:id="@+id/rl_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_background_curve"
+            android:orientation="vertical"
+            android:padding="@dimen/d_5dp">
+
+            <LinearLayout
+                android:id="@+id/mainFormlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Name of Person *"
+                    android:textSize="@dimen/text_size_small" />
+
+
+                <EditText
+                    android:id="@+id/personName"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress|textCapCharacters"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter Person Name" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Gender"
+                    android:textSize="@dimen/text_size_small" />
+
+
+                <RadioGroup
+                    android:id="@+id/genderRadioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/maleRg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:checked="true"
+                        android:drawablePadding="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/d_20dp"
+                        android:paddingTop="@dimen/d_5dp"
+                        android:paddingRight="@dimen/d_20dp"
+                        android:paddingBottom="@dimen/d_5dp"
+                        android:text="Male"
+                        android:textColor="@color/radio_text_selector"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <RadioButton
+                        android:id="@+id/femaleRg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:drawablePadding="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/d_20dp"
+                        android:paddingTop="@dimen/d_5dp"
+                        android:paddingRight="@dimen/d_20dp"
+                        android:paddingBottom="@dimen/d_5dp"
+                        android:text="Female"
+                        android:textColor="@color/radio_text_selector"
+                        android:textSize="@dimen/text_size_small" />
+
+                </RadioGroup>
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Aadhaar Number *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/adharNumber"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="12"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter Adhar Number" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Address *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/adharAddress"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="top"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress|textMultiLine|textCapWords"
+                    android:lines="3"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter Address" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Contact Number"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/contactNumber"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter Contact Number" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Pin Code *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/pinCode"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter Pin Code" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Select amount of share (in %age) *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <!-- <EditText
+                     android:id="@+id/percentageShare"
+                     style="@style/EditTextStyle"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="@dimen/d_5dp"
+                     android:background="@drawable/selector_edittext_create_account"
+                     android:fontFamily="@font/poppins_medium"
+                     android:imeOptions="actionNext"
+                     android:inputType="numberDecimal"
+                     android:textSize="@dimen/text_size_small"
+                     tools:hint="Enter Percentage Share" />-->
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_background_grey_damage">
+
+                    <Spinner
+                        android:id="@+id/percentageShare"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:elevation="2dp"
+                        android:entries="@array/shareAmntArray"
+                        android:padding="@dimen/d_5dp"></Spinner>
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@color/colorGrayBorder"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:padding="@dimen/d_5dp"
+                    android:text="Enter bank details"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Account Holder Name *"
+
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/accountHolderName"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress|textCapCharacters"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter account holder name" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Relation with Claimant  *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_background_grey_damage">
+
+                    <Spinner
+                        android:id="@+id/applicantRelation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:elevation="2dp"
+                        android:entries="@array/relationArray"
+                        android:padding="@dimen/d_5dp"></Spinner>
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Account Number  *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/accountNumber"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter account number" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Bank Name  *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/bankame"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress|textCapCharacters"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter Bank Name" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Branch Name"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/branchName"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress|textCapCharacters"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter Branch Name" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="IFSC Code *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/ifscCode"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapCharacters"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter IFSC Code" />
+
+                <TextView
+                    android:id="@+id/update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/rectangle_background_orange"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/d_10dp"
+                    android:text="UPDATE BENEFICIARY"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_size_normal" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

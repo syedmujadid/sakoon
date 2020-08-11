@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/d_10dp"
+    android:background="@drawable/rectangle_background_curve">
+
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/d_20dp"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_size_normal" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_message"
+        android:layout_marginLeft="@dimen/d_20dp"
+        android:layout_marginRight="@dimen/d_20dp">
+
+        <Button
+            android:id="@+id/tv_negative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape_rect_gray_stroke"
+            android:fontFamily="@font/poppins_regular"
+            android:text="NO"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/text_size_normal" />
+
+        <Button
+            android:id="@+id/tv_positive"
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_20dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_rect_gray_stroke"
+            android:fontFamily="@font/poppins_regular"
+            android:text="YES" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

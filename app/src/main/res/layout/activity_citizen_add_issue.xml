@@ -1,0 +1,193 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <include
+        android:id="@+id/rl_toolbar"
+        layout="@layout/include_layout_toolbar" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_toolbar">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:visibility="gone"></android.support.v7.widget.RecyclerView>
+
+        <RelativeLayout
+            android:id="@+id/addIssueLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/addIncident"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:layout_marginBottom="@dimen/d_5dp"
+                android:background="@drawable/rectangle_background_blue"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Submit for vrification"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_normal" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/addIncident"
+
+                android:layout_alignParentTop="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/d_10dp"
+                    android:paddingRight="@dimen/d_10dp"
+                    android:paddingBottom="@dimen/d_5dp">
+
+                    <TextView
+                        android:id="@+id/t1"
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Select District *"
+                        android:textSize="@dimen/text_size_small" />
+
+
+                    <Spinner
+                        android:id="@+id/districtList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:elevation="2dp"></Spinner>
+
+                    <TextView
+                        android:id="@+id/t2"
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Select Tehsil *"
+                        android:textSize="@dimen/text_size_small" />
+
+
+                    <Spinner
+                        android:id="@+id/tehsilList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:elevation="2dp"></Spinner>
+
+                    <TextView
+                        android:id="@+id/t3"
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Select Naibat *"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <Spinner
+                        android:id="@+id/naibatList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:elevation="2dp"></Spinner>
+
+                    <TextView
+                        android:id="@+id/t4"
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Select Patwari Halqa *"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <Spinner
+                        android:id="@+id/patwariHalqaList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:elevation="2dp"></Spinner>
+
+                    <TextView
+                        android:id="@+id/t5"
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Select Village *"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <Spinner
+                        android:id="@+id/villageList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:elevation="2dp"></Spinner>
+
+                    <TextView
+                        android:id="@+id/t6"
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Enter Details *"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <EditText
+                        android:id="@+id/details"
+                        style="@style/EditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:background="@drawable/selector_edittext_create_account"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="top"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPostalAddress|textMultiLine|textCapWords"
+                        android:lines="5"
+                        android:textSize="@dimen/text_size_small"
+                        tools:hint="Enter details" />
+
+                </LinearLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/noResult"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/poppins_regular"
+        android:text="No Result Found!" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/orange_dark"
+        android:visibility="gone" />
+</RelativeLayout>

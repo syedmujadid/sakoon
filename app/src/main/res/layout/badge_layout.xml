@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/badge_frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/badge_text_view"
+        android:layout_width="22dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/d_2dp"
+        android:layout_height="22dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/badge_bakground_not_selected"
+        android:fontFamily="@font/poppins_medium"
+
+        android:padding="5dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="8sp"
+        tools:text="99" />
+</RelativeLayout>

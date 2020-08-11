@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/d_5dp"
+    android:layout_marginTop="@dimen/d_4dp"
+    android:background="@drawable/rectangle_background_curve"
+    android:layout_marginEnd="@dimen/d_5dp"
+    android:layout_marginBottom="@dimen/d_4dp"
+    android:padding="@dimen/d_5dp"
+    app:cardCornerRadius="@dimen/d_4dp"
+    app:cardElevation="@dimen/d_2dp">
+    <RadioGroup
+        android:id="@+id/statusGroup"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+
+            android:paddingLeft="@dimen/d_10dp"
+            android:paddingTop="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_10dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:text="Active"
+            android:textColor="@color/radio_text_selector"
+            android:textSize="@dimen/text_size_small" />
+
+        <RadioButton
+            android:id="@+id/off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:paddingLeft="@dimen/d_10dp"
+            android:paddingTop="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_10dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:text="Inactive"
+            android:textColor="@color/radio_text_selector"
+            android:textSize="@dimen/text_size_small" />
+    </RadioGroup>
+    <RelativeLayout
+        android:id="@+id/parentLayout"
+        android:padding="@dimen/d_5dp"
+        android:layout_width="match_parent"
+        android:layout_marginRight="@dimen/d_5dp"
+        android:layout_toLeftOf="@id/statusGroup"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name"
+            android:textSize="@dimen/d_16dp"
+            android:textColor="@color/colorBlack"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/description"
+            android:layout_below="@id/name"
+            android:textSize="@dimen/d_14dp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/location"
+            android:layout_below="@id/description"
+            android:visibility="gone"
+            android:textSize="@dimen/d_14dp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</RelativeLayout>

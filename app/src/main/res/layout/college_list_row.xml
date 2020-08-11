@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/d_5dp"
+    android:layout_marginTop="@dimen/d_4dp"
+    android:layout_marginEnd="@dimen/d_5dp"
+    android:layout_marginBottom="@dimen/d_4dp"
+    android:background="@drawable/rectangle_background_curve"
+    app:cardCornerRadius="@dimen/d_4dp"
+    app:cardElevation="@dimen/d_2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/selectionTick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_check_pink_24dp" />
+
+        <TextView
+            android:id="@+id/collegeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/selectionTick"
+            android:drawableLeft="@drawable/ic_business_black_24dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="lsknfksjfs"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <include
+        android:id="@+id/rl_toolbar"
+        layout="@layout/include_layout_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@id/rl_toolbar"
+        android:elevation="@dimen/d_10dp"
+        android:padding="@dimen/d_10dp">
+
+        <TextView
+            android:id="@+id/totalAmntLabel"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="STEP 2: Damage details"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_normal" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/noResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_regular"
+            android:text="No Result found" />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/orange_dark"
+        android:visibility="gone" />
+</RelativeLayout>

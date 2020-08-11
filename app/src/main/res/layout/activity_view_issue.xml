@@ -1,0 +1,284 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <include
+        android:id="@+id/rl_toolbar"
+        layout="@layout/include_layout_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/d_10dp"
+        android:paddingTop="@dimen/d_5dp"
+        android:paddingRight="@dimen/d_10dp"
+        android:paddingBottom="@dimen/d_5dp">
+
+        <Button
+            android:id="@+id/approve"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_background_green"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="@dimen/d_5dp"
+            android:text="APPROVE"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/d_12sp" />
+
+        <Button
+            android:id="@+id/reject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_background_red"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="@dimen/d_5dp"
+            android:text="RETURN"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/d_12sp" />
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:background="@drawable/rectangle_background_grey"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="@dimen/d_5dp"
+            android:text="CANCEL"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/d_12sp" />
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/mainFormlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/rl_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/d_10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/financelabel"
+                    style="@style/TextViewStyle"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="View Finance Detail"
+                    android:textColor="@color/colorWhite"
+                    android:paddingTop="@dimen/d_5dp"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:paddingBottom="@dimen/d_5dp"
+                    android:paddingLeft="@dimen/d_10dp"
+                    android:paddingRight="@dimen/d_10dp"
+
+                    android:background="@drawable/rectangle_background_green"
+                    android:textSize="@dimen/text_size_small" />
+                <TextView
+                    android:id="@+id/step1Label"
+                    style="@style/TextViewStyle"
+                    android:layout_toLeftOf="@id/financelabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="STEP 1: Incident information:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_normal" />
+
+            </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/shape_rect_gray_stroke"
+    android:padding="@dimen/d_5dp"
+    android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/incidentDate"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Incident Date *"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/applicantName"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Applciant Name *"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/parentName"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Parent Name *"
+                android:textSize="@dimen/text_size_small" />
+
+
+            <TextView
+                android:id="@+id/naturalCalamity"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Name of Natural Calamity *"
+                android:textSize="@dimen/text_size_small" />
+
+
+            <TextView
+                android:id="@+id/beneficiaryCount"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Number of Beneficaries *"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/applicantMobile"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Relief Claimant mobile *"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/firstAid"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="First Aid"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/villageName"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Village Name *"
+                android:textSize="@dimen/text_size_small" />
+</LinearLayout>
+
+            <TextView
+                android:id="@+id/step2Label"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="STEP 2: Damage details"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_normal" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/damageDetailList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp" />
+
+            <TextView
+                android:id="@+id/totalAmntLabel"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="STEP 2: Damage details"
+                android:textColor="@color/colorBlue"
+                android:textSize="@dimen/text_size_normal"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/step3Label"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="STEP 3: List Of Beneficiaries"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_normal" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/beneficiaryList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp" />
+
+
+
+            <TextView
+                android:id="@+id/step4Label"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="STEP 4: Relevant Documents"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_normal" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/docList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10dp"></android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/orange_dark"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

@@ -1,0 +1,199 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="Widget.App.Spinner" parent="@style/Widget.AppCompat.Spinner">
+        <item name="overlapAnchor">true</item>
+        <item name="android:background">@drawable/spinner_background</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="spinnerStyle">@style/Widget.App.Spinner</item>
+        <item name="android:spinnerStyle">@style/Widget.App.Spinner</item>
+    </style>
+
+    <style name="textCollapselayout" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:shadowColor">@color/gray</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowRadius">8</item>
+        <item name="android:background">@drawable/shape_rect_gray_with_corners</item>
+        <item name="android:padding">@dimen/d_2dp</item>
+    </style>
+    <style name="AppTheme_about" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#161b2b</item>
+        <item name="colorPrimaryDark">#161b2b</item>
+        <item name="colorAccent">@color/colorBlack</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:textColorSecondary">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorBlack</item>
+
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/layer_splash</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/orange_dark</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+    <style name="DialogTheme_date" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/orange_dark</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="ToolbarTitleTextStyle">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColorHint">@color/colorHint</item>
+    </style>
+
+
+    <style name="TextViewStyle">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorHint</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <style name="EditTextStyle">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorHint</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:padding">@dimen/d_12dp</item>
+        <item name="android:background">@drawable/shape_rect_gray_with_corners</item>
+    </style>
+
+    <style name="TextViewStyle_option_header">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TextViewStyle_option_list">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="RedButtonStyle">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:padding">@dimen/d_14dp</item>
+        <item name="android:layout_marginTop">@dimen/d_5dp</item>
+        <item name="android:layout_marginStart">@dimen/d_5dp</item>
+        <item name="android:layout_marginEnd">@dimen/d_5dp</item>
+        <item name="android:layout_marginBottom">@dimen/d_5dp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:background">@drawable/shape_rect_red_with_corners</item>
+
+    </style>
+
+
+    <style name="BlackButtonStyle">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:padding">@dimen/d_14dp</item>
+        <item name="android:layout_marginTop">@dimen/d_5dp</item>
+        <item name="android:layout_marginStart">@dimen/d_5dp</item>
+        <item name="android:layout_marginEnd">@dimen/d_5dp</item>
+        <item name="android:layout_marginBottom">@dimen/d_10dp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+
+    </style>
+
+
+    <style name="DialogBounceAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_zoom_out</item>
+    </style>
+
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@drawable/selector_tab_background_drawable</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/colorWhite</item>
+    </style>
+
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/d_12sp</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="MyCustomTabLayout2" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
+    </style>
+
+    <style name="SimpleCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/SimpleCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/colorOrange</item>
+        <item name="tabTextColor">@color/colorGray</item>
+        <item name="tabIndicatorColor">@color/colorOrange</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabIndicatorHeight">@dimen/d_2dp</item>
+    </style>
+
+    <style name="SimpleCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+
+    <!--Style for bottom sheet dialog-->
+    <style name="BottomSheetDialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/BottomDialogAnimation</item>
+    </style>
+
+
+    <style name="BottomSheetDialogStyle_Article" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:statusBarColor">@color/colorWhite</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/BottomDialogAnimation</item>
+    </style>
+    <!--Animation style for bottom sheet dialog-->
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/popup_show</item>
+        <item name="android:windowExitAnimation">@anim/popup_hide</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>

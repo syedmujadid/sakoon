@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/d_10dp"
+    android:background="@drawable/rectangle_background_curve">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/d_10dp"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="App Update"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_size_large" />
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_title"
+        android:layout_marginLeft="@dimen/d_10dp"
+        android:layout_marginRight="@dimen/d_10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginBottom="@dimen/d_10dp"
+        android:gravity="center_horizontal"
+        android:text="New update available for the app. Please download the latest version."
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_size_normal" />
+
+    <TextView
+        android:id="@+id/tv_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_message"
+        android:layout_marginLeft="@dimen/d_10dp"
+        android:layout_marginRight="@dimen/d_10dp"
+        android:layout_marginBottom="@dimen/d_10dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/rectangle_background_orange"
+        android:paddingRight="@dimen/d_10dp"
+        android:paddingLeft="@dimen/d_10dp"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingBottom="@dimen/d_5dp"
+        android:paddingTop="@dimen/d_5dp"
+        android:text="Download Update"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size_normal" />
+
+</RelativeLayout>

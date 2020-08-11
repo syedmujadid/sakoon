@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/d_10dp"
+    android:background="@drawable/rectangle_background_curve">
+
+    <RelativeLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/d_10dp">
+
+        <TextView
+            android:id="@+id/reportErrorLabel"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Update Password!" />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_shape_orange"
+            android:padding="@dimen/d_2dp"
+            app:srcCompat="@drawable/ic_close_white" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/headerLayout"
+        android:background="@color/light_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view"
+        android:orientation="vertical"
+        android:padding="@dimen/d_10dp">
+
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Current Password *" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp">
+
+            <EditText
+                android:id="@+id/et_user_password"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_edittext_create_account"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="*********"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword" />
+
+            <ImageView
+                android:id="@+id/showPwd1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/d_10dp"
+                app:srcCompat="@drawable/showpassword" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="New Password *" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp">
+
+            <EditText
+                android:id="@+id/et_new_password"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:background="@drawable/selector_edittext_create_account"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="*********"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword" />
+
+            <ImageView
+                android:id="@+id/showPwd2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/d_10dp"
+                app:srcCompat="@drawable/showpassword" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Confirm new Password *" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp">
+
+            <EditText
+                android:id="@+id/et_confirm_password"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:background="@drawable/selector_edittext_create_account"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="*********"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword" />
+
+            <ImageView
+                android:id="@+id/showPwd3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/d_10dp"
+                app:srcCompat="@drawable/showpassword" />
+        </RelativeLayout>
+        <Button
+            android:id="@+id/submit"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:background="@drawable/rectangle_background_orange"
+            android:text="SUBMIT"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+</RelativeLayout>

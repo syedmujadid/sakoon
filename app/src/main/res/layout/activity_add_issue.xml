@@ -1,0 +1,450 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <include
+        android:id="@+id/rl_toolbar"
+        layout="@layout/include_layout_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/progressBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_toolbar">
+
+        <com.kofigyan.stateprogressbar.StateProgressBar
+            android:id="@+id/your_state_progress_bar_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:spb_animateToCurrentProgressState="true"
+            app:spb_animationDuration="1000"
+            app:spb_checkStateCompleted="true"
+            app:spb_currentStateDescriptionColor="@color/orange_dark"
+            app:spb_currentStateNumber="one"
+            app:spb_descriptionTopSpaceIncrementer="3dp"
+            app:spb_enableAllStatesCompleted="false"
+            app:spb_maxStateNumber="four"
+            app:spb_stateBackgroundColor="@color/colorGrayBorder"
+            app:spb_stateDescriptionColor="@color/colorGrayBorder"
+            app:spb_stateDescriptionSize="@dimen/d_12sp"
+            app:spb_stateForegroundColor="@color/orange_dark"
+            app:spb_stateNumberBackgroundColor="@color/colorBlack"
+            app:spb_stateNumberForegroundColor="#eeeeee"
+            app:spb_stateTextSize="12dp" />
+
+        <TextView
+            android:id="@+id/la1"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/your_state_progress_bar_id"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingLeft="@dimen/d_10dp"
+            android:paddingRight="@dimen/d_10dp"
+            android:text="Note: Fields marked with * are mandatory"
+            android:textColor="@color/colorRed"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/totalCost"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/la1"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingLeft="@dimen/d_10dp"
+            android:paddingRight="@dimen/d_10dp"
+            android:text=""
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_normal"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/d_10dp"
+        android:layout_marginTop="@dimen/d_5dp"
+        android:layout_marginRight="@dimen/d_10dp"
+        android:layout_marginBottom="@dimen/d_5dp"
+        android:paddingTop="@dimen/d_5dp"
+       >
+
+        <TextView
+            android:id="@+id/prev"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_background_light_grey"
+            android:paddingLeft="@dimen/d_20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_20dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:text="BACK"
+            android:textColor="@color/colorWhite" />
+        <TextView
+            android:id="@+id/next"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_background_orange"
+            android:paddingLeft="@dimen/d_20dp"
+            android:paddingTop="@dimen/d_5dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingRight="@dimen/d_20dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:text="NEXT"
+            android:textColor="@color/colorWhite" />
+        <TextView
+            android:id="@+id/submit"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_background_green"
+            android:paddingLeft="@dimen/d_20dp"
+            android:paddingTop="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_20dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:text="SUBMIT"
+            android:fontFamily="@font/poppins_semibold"
+            android:visibility="gone"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/mainFormlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/progressBarLayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/incidentDescForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_20dp"
+                android:visibility="visible">
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="STEP 1: Please enter the information of incident"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Incident Date *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/incidentDate"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="yyyy-mm-dd"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Name of Relief Claimant *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/applicantName"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress|textCapCharacters"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Relief Claimant" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Type of Natural Calamity *"
+                    android:textSize="@dimen/text_size_small" />
+
+
+                <Spinner
+                    android:id="@+id/naturalCalamity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:elevation="2dp"
+                    android:entries="@array/calamityType"
+                    android:padding="@dimen/d_5dp"></Spinner>
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Number of Beneficaries *"
+                    android:textSize="@dimen/text_size_small" />
+
+
+                <Spinner
+                    android:id="@+id/beneficiaryCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:elevation="2dp"
+                    android:entries="@array/noArray"
+                    android:padding="@dimen/d_5dp"></Spinner>
+
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Relief Claimant mobile"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/applicantMobile"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Relief Claimant Mobile" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Relief Claimant parent name *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/parentName"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Relief Claimant parent name " />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="First Aid"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/firstAid"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionDone"
+                    android:inputType="textEmailAddress"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Village Name *"
+                    android:textSize="@dimen/text_size_small" />
+
+
+                <Spinner
+                    android:id="@+id/villageName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:elevation="2dp"
+                    android:entries="@array/calamityType"></Spinner>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/damageForm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/hh"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="STEP 2: Please enter the damage details"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_normal" />
+
+
+                <TextView
+                    android:id="@+id/addDamage"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hh"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/rectangle_background_green"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:text="Add Damage"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_size_small" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/damageList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addDamage"></android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/beneficiaryForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_20dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="STEP 2: Add Beneficiary"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/text_size_normal" />
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/beneficiaryList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp" />
+
+                </LinearLayout>
+
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <LinearLayout
+                android:id="@+id/docUploadForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="STEP 3: UPLOAD RELEVANT DOCUMENTS"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Please upload the documents as per heads mentioned below:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/docList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"></android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/orange_dark"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

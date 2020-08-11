@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF">
+
+
+    <RelativeLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/d_10dp">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_shape_orange"
+            android:padding="@dimen/d_2dp"
+            app:srcCompat="@drawable/ic_close_white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottomLayout"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBlack">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="@dimen/d_10dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_large" />
+
+        <com.mobiquel.udhampur.utils.TouchImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/d_20dp"
+            android:adjustViewBounds="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/orange_dark" />
+
+
+</RelativeLayout>
