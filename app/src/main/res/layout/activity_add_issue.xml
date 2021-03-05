@@ -357,11 +357,11 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_size_small" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/damageList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/addDamage"></android.support.v7.widget.RecyclerView>
+                    android:layout_below="@id/addDamage"></androidx.recyclerview.widget.RecyclerView>
 
             </RelativeLayout>
 
@@ -389,7 +389,7 @@
                         android:textSize="@dimen/text_size_normal" />
 
 
-                    <android.support.v7.widget.RecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/beneficiaryList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -427,11 +427,11 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_size_normal" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/docList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/d_10dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginTop="@dimen/d_10dp"></androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
         </RelativeLayout>

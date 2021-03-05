@@ -7,10 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -21,18 +17,16 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.pojo.FailureResponse;
 
 import butterknife.ButterKnife;
 
-
-/**
- * Created by Navjot Singh
- * on 2/3/19.
- * this Activity class is the parent class for all the activities in the application
- * it contains methods to be used by child activities
- */
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
@@ -145,7 +139,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         if (!isFinishing() && message != null) {
             Snackbar snackbar = Snackbar.make(flBaseContainer, message, Snackbar.LENGTH_SHORT);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.colorWhite));
-            TextView textView = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+            TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
             textView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
             snackbar.show();
         }

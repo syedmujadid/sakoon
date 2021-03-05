@@ -63,9 +63,35 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/d_10dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="For Citizen"
+                    android:text="For Citizen Login"
                     android:textSize="@dimen/text_size_normal"
                     android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/sosLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:padding="10dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/shape_rect_red_with_corners"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_very_large"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="SOS"
+                        android:textColor="@color/colorWhite" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_small"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text=" (Emergency)"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -290,7 +316,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-
                     style="@style/TextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

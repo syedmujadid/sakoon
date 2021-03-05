@@ -1,8 +1,9 @@
 package com.mobiquel.udhampur;
 
 import android.app.Application;
-import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

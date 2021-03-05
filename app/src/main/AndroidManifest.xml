@@ -72,7 +72,7 @@
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait" />
 
-        <receiver android:name="com.mobiquel.udhampur.receiver.UploadOfflineDraftedIncidents" />
+        <receiver android:name=".receiver.UploadOfflineDraftedIncidents" />
 
         <service
             android:name="com.mobiquel.udhampur.services.MyFirebaseMessagingService"

@@ -22,8 +22,8 @@ android {
         applicationId "com.mobiquel.udhampur"
         minSdkVersion minSdk
         targetSdkVersion targetSdk
-        versionCode 33
-        versionName "1.0.15"
+        versionCode 35
+        versionName "1.0.17"
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
@@ -58,6 +58,10 @@ android {
     }
     lintOptions {
         checkReleaseBuilds false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 

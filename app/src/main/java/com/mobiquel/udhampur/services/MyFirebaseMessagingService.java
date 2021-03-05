@@ -12,8 +12,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -61,8 +62,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.putExtra("POS", "1");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 contentIntent = PendingIntent.getActivity(this, requestID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
             }
 
             title = object.getString("title");

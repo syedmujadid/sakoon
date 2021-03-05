@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.interfaces.DialogListener;
 import com.mobiquel.udhampur.pojo.DamageDetailModel;
-import com.mobiquel.udhampur.ui.CustomSpinnerAdapter;
+import com.mobiquel.udhampur.ui.home.listcase.CustomSpinnerAdapter;
 import com.mobiquel.udhampur.utils.Preferences;
 
 import org.json.JSONArray;

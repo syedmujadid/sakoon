@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="32dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_height="32dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ce2029"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="@dimen/d_10dp">
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center_horizontal"
+            android:text="SOS"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/text_size_very_large" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center_horizontal"
+            android:text=" (Emergency)"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/text_size_small" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/d_10dp">
+
+        <TextView
+            android:id="@+id/t1"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select District *"
+            android:textSize="@dimen/text_size_small" />
+
+
+        <Spinner
+            android:id="@+id/districtList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:elevation="2dp"></Spinner>
+
+        <TextView
+            android:id="@+id/t2"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select Tehsil *"
+            android:textSize="@dimen/text_size_small" />
+
+
+        <Spinner
+            android:id="@+id/tehsilList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:elevation="2dp"></Spinner>
+        <TextView
+            android:id="@+id/t3"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select Naibat *"
+            android:textSize="@dimen/text_size_small" />
+
+        <Spinner
+            android:id="@+id/naibatList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:elevation="2dp"></Spinner>
+
+        <TextView
+            android:id="@+id/t4"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select Patwari Halqa *"
+            android:textSize="@dimen/text_size_small" />
+
+        <Spinner
+            android:id="@+id/patwariHalqaList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:elevation="2dp"></Spinner>
+
+        <TextView
+            android:id="@+id/t5"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select Village *"
+            android:textSize="@dimen/text_size_small" />
+
+        <Spinner
+            android:id="@+id/villageList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:elevation="2dp"></Spinner>
+        <TextView
+            android:id="@+id/t6"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Your Current Location *"
+            android:textSize="@dimen/text_size_small" />
+
+        <EditText
+            android:id="@+id/address"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:background="@drawable/selector_edittext_create_account"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="top"
+            android:imeOptions="actionNext"
+            android:inputType="textPostalAddress|textMultiLine|textCapWords"
+            android:lines="5"
+            android:textSize="@dimen/text_size_small"
+            android:hint="Enter Location ..." />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/response"
+        style="@style/TextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/d_10dp"
+        android:text="REQUEST FOR HELP"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/applySOS"
+        style="@style/TextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:background="@color/colorBlack"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/d_10dp"
+        android:text="REQUEST FOR HELP"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+</RelativeLayout>

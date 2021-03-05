@@ -1,7 +1,8 @@
 package com.mobiquel.udhampur.base.dummy;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mobiquel.udhampur.base.BaseActivity;
 

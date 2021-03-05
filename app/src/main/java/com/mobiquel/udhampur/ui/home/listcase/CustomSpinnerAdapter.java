@@ -1,4 +1,4 @@
-package com.mobiquel.udhampur.ui;
+package com.mobiquel.udhampur.ui.home.listcase;
 
 import android.content.Context;
 import android.view.LayoutInflater;

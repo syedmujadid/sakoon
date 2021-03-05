@@ -1,6 +1,9 @@
 package com.mobiquel.udhampur.network;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.mobiquel.udhampur.pojo.FailureResponse;
