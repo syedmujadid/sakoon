@@ -3,10 +3,6 @@ package com.mobiquel.udhampur.ui.home.listcase;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +11,13 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -260,8 +253,9 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
     private void getUsers() {
         RequestQueue queue = VolleySingleton.getInstance(getActivity()).getRequestQueue();
         String url = "";
+        // R.string.API
         url = NetworkConstants.BASE_URL + "getIncidentListForOfficial/";
-        Log.e("URL",url);
+        Log.e("URL", url);
         StringRequest requestObject = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String responseData) {
@@ -299,6 +293,9 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
                                         model.setCitizenDescription(response.getJSONArray("incidentList").getJSONObject(i).getString("citizenDescription"));
                                         model.setVillName(response.getJSONArray("incidentList").getJSONObject(i).getString("villageName"));
                                         model.setApplicantMobile(response.getJSONArray("incidentList").getJSONObject(i).getString("mobile"));
+                                        if (response.getJSONArray("incidentList").getJSONObject(i).has("isApprovedEarlierCheck"))
+                                            model.setIsApprovedEarlierCheck(response.getJSONArray("incidentList").getJSONObject(i).getString("isApprovedEarlierCheck"));
+
                                         issueListModel_onlines.add(model);
                                     }
                                     if (issueListModel_onlines.size() > 0)

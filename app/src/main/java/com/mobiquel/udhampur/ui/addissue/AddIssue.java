@@ -1327,7 +1327,7 @@ public class AddIssue extends AppCompatActivity {
     //File Upload Code
     private void galleryIntent() {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        photoPickerIntent.setType("image/*");
+        photoPickerIntent.setType("*/*");
         startActivityForResult(photoPickerIntent, IMAGE_PICK_REQUEST_CODE);
     }
 

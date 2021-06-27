@@ -76,7 +76,14 @@ public class ListOfCaseAdapter extends RecyclerView.Adapter<ListOfCaseAdapter.Op
         }
 
         holder.createdOn.setText("Created On: " + collegeList.get(position).getCreatedOn());
-
+        if(collegeList.get(position).getIsApprovedEarlierCheck()!=null){
+            if(Integer.parseInt(Preferences.getInstance().level)>=4){
+                if(collegeList.get(position).getIsApprovedEarlierCheck().equals("T"))
+                    holder.isApprovedEarlierCheck.setVisibility(View.VISIBLE);
+                else
+                    holder.isApprovedEarlierCheck.setVisibility(View.GONE);
+            }
+        }
         if (collegeList.get(position).getStatus().equals("OTHERPENDING") && Preferences.getInstance().level.equals("7")) {
 
             if (collegeList.get(position).getPendingDays() != null) {
@@ -147,6 +154,8 @@ public class ListOfCaseAdapter extends RecyclerView.Adapter<ListOfCaseAdapter.Op
         TextView incidentDate;
         @BindView(R.id.createdOn)
         TextView createdOn;
+        @BindView(R.id.isApprovedEarlierCheck)
+        TextView isApprovedEarlierCheck;
 
         @BindView(R.id.delete2)
         TextView delete2;

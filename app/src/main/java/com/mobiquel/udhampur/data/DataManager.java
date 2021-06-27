@@ -97,9 +97,6 @@ public class DataManager {
 
 
 
-    public Call<ResponseBody> registerAppUser(Map<String, String> data) {
-        return apiManager.registerAppUser(data);
-    }
 
 
 

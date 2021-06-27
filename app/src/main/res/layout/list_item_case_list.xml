@@ -151,14 +151,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/d_5dp"
+            android:visibility="gone"
             android:orientation="horizontal"
-            android:visibility="gone">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Status:  "
+                android:visibility="gone"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/d_12dp" />
 
@@ -175,6 +177,22 @@
                 android:text="Officials on Case"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/d_10dp" />
+            <TextView
+                android:id="@+id/isApprovedEarlierCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_background_grey"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingLeft="@dimen/d_10dp"
+                android:visibility="gone"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp"
+                android:paddingBottom="2dp"
+                android:text="Possible Repeat"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/d_10dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -190,27 +208,27 @@
                 android:background="@drawable/rectangle_background_green"
                 android:fontFamily="@font/poppins_regular"
                 android:paddingLeft="@dimen/d_20dp"
-                android:paddingTop="3dp"
+                android:paddingTop="2dp"
                 android:paddingRight="@dimen/d_20dp"
-                android:paddingBottom="3dp"
+                android:paddingBottom="2dp"
                 android:text="Action Logs"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/d_12dp" />
+                android:textSize="@dimen/d_10dp" />
 
             <TextView
                 android:id="@+id/officialList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginLeft="@dimen/d_10dp"
                 android:background="@drawable/rectangle_background_blue"
                 android:fontFamily="@font/poppins_regular"
                 android:paddingLeft="@dimen/d_20dp"
-                android:paddingTop="3dp"
+                android:paddingTop="2dp"
                 android:paddingRight="@dimen/d_20dp"
-                android:paddingBottom="3dp"
+                android:paddingBottom="2dp"
                 android:text="Officials on Case"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/d_12dp" />
+                android:textSize="@dimen/d_10dp" />
 
         </LinearLayout>
 

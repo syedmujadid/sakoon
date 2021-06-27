@@ -22,8 +22,6 @@ android {
         applicationId "com.mobiquel.udhampur"
         minSdkVersion minSdk
         targetSdkVersion targetSdk
-        versionCode 35
-        versionName "1.0.17"
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
@@ -43,14 +41,28 @@ android {
 
     flavorDimensions "api"
     productFlavors {
-        live {
+        udhampur {
             dimension "api"
+            applicationId "com.mobiquel.udhampur"
+            versionCode 37
+            versionName "1.0.17"
 
-            def API_BASE_URL = '"http://206.189.142.236:8080/NotifyApp/rest/service/"'
-            def BASE_URL = '"http://206.189.142.236:8080/NotifyApp/rest/service/"'
+            def API_BASE_URL = '"http://matdaan360.in:8080/UdhampurDisasterRelief/rest/service/"'
 
             buildConfigField "String", "API_BASE_URL", API_BASE_URL
-            buildConfigField "String", "IMAGE_BASE_URL", BASE_URL
+
+            resValue "string", "API_KEY", ""
+
+        }
+        anantnag {
+            dimension "api"
+            applicationId "com.mobiquel.anantnagsakoon"
+            versionCode 4
+            versionName "1.0"
+
+            def API_BASE_URL = '"http://matdaan360.in:8080/AnantnagDisasterRelief/rest/service/"'
+
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL
 
             resValue "string", "API_KEY", ""
 

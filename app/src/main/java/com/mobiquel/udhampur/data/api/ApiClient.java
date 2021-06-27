@@ -1,8 +1,6 @@
 package com.mobiquel.udhampur.data.api;
 
 
-import com.mobiquel.udhampur.network.NetworkConstants;
-
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -19,11 +17,5 @@ interface ApiClient {
 
 
 
-    @POST(NetworkConstants.END_POINT_UPDATE_USER)
-    Call<ResponseBody> updateAppUser(@QueryMap Map<String, String> param);
-
-
-    @POST(NetworkConstants.END_POINT_ADD_USER)
-    Call<ResponseBody> registerAppUser(@QueryMap Map<String, String> param);
 
 }

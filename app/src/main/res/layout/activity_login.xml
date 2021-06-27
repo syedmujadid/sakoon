@@ -46,7 +46,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/d_5dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Udhampur"
+                android:text="@string/district"
                 android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
 

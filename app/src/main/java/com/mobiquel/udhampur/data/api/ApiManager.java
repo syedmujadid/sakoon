@@ -3,6 +3,7 @@ package com.mobiquel.udhampur.data.api;
 
 
 import com.mobiquel.udhampur.BuildConfig;
+import com.mobiquel.udhampur.network.NetworkConstants;
 
 import java.io.IOException;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class ApiManager {
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BuildConfig.API_BASE_URL)
+                .baseUrl(NetworkConstants.BASE_URL)
                 .build();
 
         return retrofit.create(ApiClient.class);
@@ -84,10 +85,6 @@ public class ApiManager {
         return httpClientBuilder.build();
     }
 
-
-    public Call<ResponseBody> registerAppUser(Map<String, String> data) {
-        return apiClient.registerAppUser(data);
-    }
 
 
 

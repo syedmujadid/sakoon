@@ -2,7 +2,15 @@ package com.mobiquel.udhampur.pojo;
 
 public class IssueListModel_Online {
 
-    private String caseId,applicantName,createdOn,incidentDate,villName,assignedTo,status,pendingDays,pendingCode,updatedBy,issueAtLevel,citizenDescription,applicantMobile;
+    private String caseId,applicantName,createdOn,incidentDate,villName,assignedTo,status,pendingDays,pendingCode,updatedBy,issueAtLevel,citizenDescription,applicantMobile,isApprovedEarlierCheck;
+
+    public String getIsApprovedEarlierCheck() {
+        return isApprovedEarlierCheck;
+    }
+
+    public void setIsApprovedEarlierCheck(String isApprovedEarlierCheck) {
+        this.isApprovedEarlierCheck = isApprovedEarlierCheck;
+    }
 
     public String getCitizenDescription() {
         return citizenDescription;

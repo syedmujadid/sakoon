@@ -19,20 +19,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -673,10 +664,12 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
         RequestQueue queue = VolleySingleton.getInstance(HomeActivity.this).getRequestQueue();
         String url = "";
         url = NetworkConstants.BASE_URL + "registerOfficialPushNotificationId/";
+        Log.e("URL_VErSION", url);
 
         StringRequest requestObject = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String responseData) {
+
                 Log.e("RESPO_NOTI", responseData);
                 try {
                     JSONObject responseObject = new JSONObject(responseData);
