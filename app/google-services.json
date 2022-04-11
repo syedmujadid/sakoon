@@ -35,10 +35,49 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604348534456:android:aea0759ca759352e912e4d",
+        "android_client_info": {
+          "package_name": "com.mobiquel.citizenfirstudn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIWvgYTYXAYkt4loSGTvnqjFfFBYnj724"
+        },
+        {
+          "current_key": "AIzaSyDNCUwekBiuh79SXrG6j0XKWGL_3U4BqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -74,10 +113,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -113,10 +152,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -125,9 +164,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:604348534456:android:dc8ffdc38f1ed7fa",
+        "mobilesdk_app_id": "1:604348534456:android:adb3d6cc76e3f6c5912e4d",
         "android_client_info": {
-          "package_name": "com.mobiquel.humsafarlite"
+          "package_name": "com.mobiquel.jammucablecar"
         }
       },
       "oauth_client": [
@@ -152,10 +191,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -164,7 +203,46 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:604348534456:android:c4cb0d9754e184ce912e4d",
+        "mobilesdk_app_id": "1:604348534456:android:5e4fc324f99a4d29912e4d",
+        "android_client_info": {
+          "package_name": "com.mobiquel.ladakheye"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIWvgYTYXAYkt4loSGTvnqjFfFBYnj724"
+        },
+        {
+          "current_key": "AIzaSyDNCUwekBiuh79SXrG6j0XKWGL_3U4BqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SmartProf-SRCC"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604348534456:android:b61623fa7faef6c0912e4d",
         "android_client_info": {
           "package_name": "com.mobiquel.lehpermit"
         }
@@ -191,10 +269,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -230,10 +308,88 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604348534456:android:aec9a879ae124c9e912e4d",
+        "android_client_info": {
+          "package_name": "com.mobiquel.lehsakoon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIWvgYTYXAYkt4loSGTvnqjFfFBYnj724"
+        },
+        {
+          "current_key": "AIzaSyDNCUwekBiuh79SXrG6j0XKWGL_3U4BqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SmartProf-SRCC"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604348534456:android:40d675d4d0cfb3c0912e4d",
+        "android_client_info": {
+          "package_name": "com.mobiquel.mdtudn112"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIWvgYTYXAYkt4loSGTvnqjFfFBYnj724"
+        },
+        {
+          "current_key": "AIzaSyDNCUwekBiuh79SXrG6j0XKWGL_3U4BqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -269,49 +425,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:604348534456:android:c48d02136914b352",
-        "android_client_info": {
-          "package_name": "com.mobiquel.notifyy"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBIWvgYTYXAYkt4loSGTvnqjFfFBYnj724"
-        },
-        {
-          "current_key": "AIzaSyDNCUwekBiuh79SXrG6j0XKWGL_3U4BqQ8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -347,10 +464,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -386,10 +503,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -425,10 +542,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -464,10 +581,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -503,10 +620,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -542,10 +659,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -581,10 +698,49 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604348534456:android:7242e77d35ed1622912e4d",
+        "android_client_info": {
+          "package_name": "com.mobiquel.socialwelfare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIWvgYTYXAYkt4loSGTvnqjFfFBYnj724"
+        },
+        {
+          "current_key": "AIzaSyDNCUwekBiuh79SXrG6j0XKWGL_3U4BqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -620,10 +776,49 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604348534456:android:dbac05cf9d68cb5f912e4d",
+        "android_client_info": {
+          "package_name": "com.mobiquel.srccapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIWvgYTYXAYkt4loSGTvnqjFfFBYnj724"
+        },
+        {
+          "current_key": "AIzaSyDNCUwekBiuh79SXrG6j0XKWGL_3U4BqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -659,10 +854,10 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]
@@ -671,9 +866,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:604348534456:android:01a720c4f20d4260912e4d",
+        "mobilesdk_app_id": "1:604348534456:android:e109eb8e46b9e0b2912e4d",
         "android_client_info": {
-          "package_name": "com.mobiquel.uttarakhand"
+          "package_name": "com.mobiquel.udnofficer"
         }
       },
       "oauth_client": [
@@ -698,10 +893,49 @@
               "client_type": 3
             },
             {
-              "client_id": "604348534456-mjn59tjss8degfeolt1rttjq88kf3dln.apps.googleusercontent.com",
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mobiquel.ridesafe"
+                "bundle_id": "com.SmartProf-SRCC"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604348534456:android:43415ba5c6eed1c4912e4d",
+        "android_client_info": {
+          "package_name": "com.mobiquel.upazfarmers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIWvgYTYXAYkt4loSGTvnqjFfFBYnj724"
+        },
+        {
+          "current_key": "AIzaSyDNCUwekBiuh79SXrG6j0XKWGL_3U4BqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604348534456-k7i246j87h1jaso59a0rcm4qivubv1ed.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "604348534456-j3td9i8r8khbdqrte2t0ekp2a29rru9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SmartProf-SRCC"
               }
             }
           ]

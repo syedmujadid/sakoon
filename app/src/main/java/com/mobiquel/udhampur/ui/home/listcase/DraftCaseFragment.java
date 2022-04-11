@@ -99,7 +99,7 @@ public class DraftCaseFragment extends BaseFragment implements ListDataView, Ani
             @Override
             public void onRecyclerItemClicked(int position) {
                 Intent intent = new Intent(getActivity(), AddIssue.class);
-                intent.putExtra("SOURCE", "UPDATE_DRAFT");
+                intent.putExtra("SOURCE", "UPDATE");
                 intent.putExtra("CASE_ID", draftedList.get(position).getCaseId());
                 intent.putExtra("DATA_MODEL", draftedList.get(position));
                 startActivity(intent);

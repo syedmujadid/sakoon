@@ -25,13 +25,12 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_background_orange"
-            android:padding="@dimen/d_20dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/colorWhite"
-            android:text="Camera"
             android:drawablePadding="@dimen/d_5dp"
+            android:fontFamily="@font/poppins_semibold"
             android:gravity="center_horizontal"
-           />
+            android:padding="@dimen/d_20dp"
+            android:text="Camera"
+            android:textColor="@color/colorWhite" />
         <TextView
             android:id="@+id/fromGallery"
             android:layout_width="@dimen/d_120dp"

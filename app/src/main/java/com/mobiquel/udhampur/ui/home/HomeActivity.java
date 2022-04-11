@@ -16,15 +16,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
@@ -39,7 +30,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -48,12 +46,17 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+/*
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+*/
+//import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.base.BaseActivity;
 import com.mobiquel.udhampur.dao.DAO;
@@ -108,7 +111,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
     @BindView(R.id.nav_view)
-    NavigationView  navView;
+    NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
     @BindView(R.id.menu)
@@ -122,11 +125,11 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
     private DAO dao;
     private String pendingCount = "-", draftCount = "-", returnCount = "-", complCount = "-", otherPendingCount = "-";
 
-    private String regid;
+    private String regid = "";
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     public static final String PROPERTY_REG_ID = "registration_id";
-    private GoogleCloudMessaging gcm;
+//    private GoogleCloudMessaging gcm;
     private Context context;
 
 
@@ -214,6 +217,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
         }
 
         showBadge();
+        getNotificationId();
         Utils.changeColorBadge(HomeActivity.this, bottomNavigation, R.id.nav_pending, pendingCount);
 
         registerReceiver(broadcastReceiver, new IntentFilter("UPLOAD"));
@@ -506,7 +510,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
     @Override
     protected void onResume() {
         super.onResume();
-        registerForGCM();
+        //registerForGCM();
     }
 
     private void logoutMethod() {
@@ -560,17 +564,18 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
     }
 
     private void registerForGCM() {
-        if (checkPlayServices()) {
+        /*if (checkPlayServices()) {
             gcm = GoogleCloudMessaging.getInstance(context);
             regid = getRegistrationId(context);
-            registerInBackground();
+            //registerInBackground();
+            registerPushNotificationid();
         } else {
             Log.e("", "No valid Google Play Services APK found.");
-        }
+        }*/
     }
 
     private boolean checkPlayServices() {
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
+     /*   int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 Activity activity = (Activity) context;
@@ -580,7 +585,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
 
             }
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -611,7 +616,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
     }
 
     private void registerInBackground() {
-        new AsyncTask<Void, Void, String>() {
+      /*  new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
                 String msg = "";
@@ -633,7 +638,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
             protected void onPostExecute(String msg) {
                 // mDisplay.append(msg + "\n");
             }
-        }.execute(null, null, null);
+        }.execute(null, null, null);*/
     }
 
     private static String getAppVersion(Context context) {
@@ -677,7 +682,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
                         //Utils.showToast(HomeActivity.this, "Note added successfully!");
                         if (responseObject.getJSONObject("responseObject").getString("appVersion").equals(getAppVersion(HomeActivity.this))) {
                         } else {
-                            mUpdateDialog.show();
+                            //   mUpdateDialog.show();
                         }
                         pendingCount = responseObject.getJSONObject("responseObject").getString("pendingCount");
                         complCount = responseObject.getJSONObject("responseObject").getString("approvedCount");
@@ -854,4 +859,26 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
             Toast.makeText(HomeActivity.this, "Please check internet connection!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    void getNotificationId() {
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                try{
+                    if (!task.isSuccessful()) {
+                        Log.e("NOTIFICATION_ID", "Fetching FCM registration token failed", task.getException());
+                    }
+                    String token = task.getResult();
+                    if (token != null) {
+                        regid = token;
+                        Log.e("NOTIFICATION_ID_VAL", regid);
+                        registerPushNotificationid();
+
+                    }
+                }catch (Exception e){}
+
+            }
+        });
+    }
+
 }

@@ -21,3 +21,6 @@
 #-renamesourcefileattribute SourceFile
 -dontwarn okio.**
 -dontwarn retrofit2.Platform$Java8
+-dontwarn com.yalantis.ucrop**
+-keep class com.yalantis.ucrop** { *; }
+-keep interface com.yalantis.ucrop** { *; }

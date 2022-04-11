@@ -1,27 +1,16 @@
-buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
 
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
-    }
-}
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
-
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
-}
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 
 android {
-    compileSdkVersion compileSdk
+    compileSdk 32
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.mobiquel.udhampur"
-        minSdkVersion minSdk
-        targetSdkVersion targetSdk
+        minSdk 21
+        targetSdk 32
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
@@ -44,7 +33,7 @@ android {
         udhampur {
             dimension "api"
             applicationId "com.mobiquel.udhampur"
-            versionCode 37
+            versionCode 39
             versionName "1.0.17"
 
             def API_BASE_URL = '"http://matdaan360.in:8080/UdhampurDisasterRelief/rest/service/"'
@@ -67,6 +56,19 @@ android {
             resValue "string", "API_KEY", ""
 
         }
+        leh {
+            dimension "api"
+            applicationId "com.mobiquel.lehsakoon"
+            versionCode 3
+            versionName "1.0"
+
+            def API_BASE_URL = '"http://139.59.81.101:8080/LehDisasterRelief/rest/service/"'
+
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL
+
+            resValue "string", "API_KEY", ""
+
+        }
     }
     lintOptions {
         checkReleaseBuilds false
@@ -83,28 +85,47 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "com.android.support:appcompat-v7:${support_lib_version}"
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation "com.android.support.constraint:constraint-layout:${constraint_layout_version}"
     implementation "com.android.support:design:${support_lib_version}"
     implementation 'com.android.volley:volley:1.1.0'
-    implementation "com.google.android.gms:play-services:${google_play_version}"
+    implementation 'com.google.android.material:material:1.5.0-alpha03'
+    implementation "com.android.support:appcompat-v7:${support_lib_version}"
+
+    //implementation "com.google.android.gms:play-services:${google_play_version}"
     implementation "com.google.firebase:firebase-messaging:${google_play_version}"
     implementation "com.google.firebase:firebase-core:${google_play_version}"
+
+    implementation platform('com.google.firebase:firebase-bom:28.1.0')
+ /*   implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+*/
+
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+
+    implementation 'com.droidninja:filepicker:2.2.5'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     //Butterknife
     implementation "com.github.bumptech.glide:glide:${glide_version}"
     implementation "com.jakewharton:butterknife:${butterknife_lib_version}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife_lib_version}"
+    implementation "com.github.yalantis:ucrop:2.2.6"
+
     implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
     //for Fresco
     implementation "com.facebook.fresco:fresco:${fresco_lib_version}"
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:${retrofit_lib_version}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit_lib_version}"
-    // pager indicator
+  /*  // pager indicator
     implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true;
-    }
+    }*/
+
     implementation files('libs/android-async-http-1.4.8.jar')
 }
+

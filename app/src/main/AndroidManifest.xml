@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -20,6 +21,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
         <uses-library
@@ -29,7 +31,8 @@
         <activity
             android:name="com.mobiquel.udhampur.ui.splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,17 +43,21 @@
         </activity>
 
         <activity
+            android:exported="true"
             android:name="com.mobiquel.udhampur.ui.home.HomeActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="portrait" />
         <activity
+            android:exported="true"
             android:name="com.mobiquel.udhampur.ui.settings.FirstAidActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:exported="true"
             android:name="com.mobiquel.udhampur.ui.addissue.AddIssue"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait" />
         <activity
+            android:exported="true"
             android:name="com.mobiquel.udhampur.ui.settings.CitizenAddIncident"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait" />
@@ -59,34 +66,57 @@
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait" />
         <activity
+            android:exported="true"
             android:name="com.mobiquel.udhampur.ui.addissue.ViewIssue"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait" />
         <activity
+            android:exported="true"
             android:name="com.mobiquel.udhampur.ui.settings.FinaceListActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait" />
 
         <activity
+            android:exported="true"
             android:name="com.mobiquel.udhampur.ui.login.LoginActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait" />
 
         <receiver android:name=".receiver.UploadOfflineDraftedIncidents" />
-
+        <activity
+            android:exported="true"
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <service
             android:name="com.mobiquel.udhampur.services.MyFirebaseMessagingService"
-            android:permission="com.google.android.c2dm.permission.SEND">
+            android:permission="com.google.android.c2dm.permission.SEND"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
-        <service android:name="com.mobiquel.udhampur.services.FirebaseIDService">
+        <!--<service android:name="com.mobiquel.udhampur.services.FirebaseIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.mobiquel.udhampur.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+            <meta-data
+                android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+                android:value="text" />
+            <!-- To use multiple models: android:value="ocr,model2,model3" -->
+        </provider>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="fa506f2d0c79bb4c344d622501053e44b4abe05d" />

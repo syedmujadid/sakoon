@@ -241,7 +241,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/d_10dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Relief Claimant mobile"
+                    android:text="Relief Claimant mobile *"
                     android:textSize="@dimen/text_size_small" />
 
                 <EditText
@@ -297,7 +297,7 @@
                     android:layout_marginTop="@dimen/d_5dp"
                     android:background="@drawable/selector_edittext_create_account"
                     android:fontFamily="@font/poppins_medium"
-                    android:imeOptions="actionDone"
+                    android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
                     android:textSize="@dimen/text_size_small" />
 
@@ -318,6 +318,30 @@
                     android:layout_marginTop="@dimen/d_5dp"
                     android:elevation="2dp"
                     android:entries="@array/calamityType"></Spinner>
+                <TextView
+                    android:id="@+id/mohallaLabel"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Mohalla"
+                    android:visibility="gone"
+                    android:textSize="@dimen/text_size_small" />
+                <EditText
+                    android:id="@+id/mohallaName"
+                    style="@style/EditTextStyle"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_5dp"
+                    android:background="@drawable/selector_edittext_create_account"
+                    android:fontFamily="@font/poppins_medium"
+                    android:imeOptions="actionDone"
+                    android:inputType="textEmailAddress"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Enter mohalla name " />
+
             </LinearLayout>
 
             <RelativeLayout

@@ -27,7 +27,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@id/bottomLayout"
         android:layout_alignParentTop="true"
         android:background="@color/colorBlack">
@@ -41,8 +41,13 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_size_large" />
 
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         <com.mobiquel.udhampur.utils.TouchImageView
             android:id="@+id/image"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/d_20dp"
             android:adjustViewBounds="true"

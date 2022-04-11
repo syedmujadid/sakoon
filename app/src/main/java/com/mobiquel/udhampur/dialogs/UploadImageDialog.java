@@ -73,7 +73,7 @@ public class UploadImageDialog extends Dialog {
     }
 
     public void setDrawableLeft(){
-        Drawable leftDrawable = AppCompatResources.getDrawable(mContext, R.drawable.ic_camera);
+        Drawable leftDrawable = AppCompatResources.getDrawable(mContext, R.drawable.ic_camera_2);
         Drawable leftDrawable2 = AppCompatResources.getDrawable(mContext, R.drawable.ic_gallery);
         fromCamera.setCompoundDrawablesWithIntrinsicBounds(null, leftDrawable, null, null);
         fromGallery.setCompoundDrawablesWithIntrinsicBounds(null, leftDrawable2, null, null);

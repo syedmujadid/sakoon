@@ -46,19 +46,20 @@
             android:text="RETURN"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/d_12sp" />
+
         <Button
             android:id="@+id/cancel"
             android:layout_width="0dp"
-            android:visibility="gone"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_weight="1"
             android:background="@drawable/rectangle_background_grey"
             android:fontFamily="@font/poppins_medium"
             android:padding="@dimen/d_5dp"
             android:text="CANCEL"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/d_12sp" />
+            android:textSize="@dimen/d_12sp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -82,124 +83,137 @@
                 <TextView
                     android:id="@+id/financelabel"
                     style="@style/TextViewStyle"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:background="@drawable/rectangle_background_green"
                     android:fontFamily="@font/poppins_semibold"
+                    android:paddingLeft="@dimen/d_10dp"
+                    android:paddingTop="@dimen/d_5dp"
+                    android:paddingRight="@dimen/d_10dp"
+                    android:paddingBottom="@dimen/d_5dp"
                     android:text="View Finance Detail"
                     android:textColor="@color/colorWhite"
-                    android:paddingTop="@dimen/d_5dp"
-                    android:layout_marginLeft="@dimen/d_10dp"
-                    android:paddingBottom="@dimen/d_5dp"
-                    android:paddingLeft="@dimen/d_10dp"
-                    android:paddingRight="@dimen/d_10dp"
 
-                    android:background="@drawable/rectangle_background_green"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_small"
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/step1Label"
                     style="@style/TextViewStyle"
-                    android:layout_toLeftOf="@id/financelabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@id/financelabel"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="STEP 1: Incident information:"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_size_normal" />
 
             </RelativeLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/shape_rect_gray_stroke"
-    android:padding="@dimen/d_5dp"
-    android:layout_height="wrap_content">
 
-
-            <TextView
-                android:id="@+id/incidentDate"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Incident Date *"
-                android:textSize="@dimen/text_size_small" />
-
-            <TextView
-                android:id="@+id/applicantName"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Applciant Name *"
-                android:textSize="@dimen/text_size_small" />
-
-            <TextView
-                android:id="@+id/parentName"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Parent Name *"
-                android:textSize="@dimen/text_size_small" />
+                android:background="@drawable/shape_rect_gray_stroke"
+                android:orientation="vertical"
+                android:padding="@dimen/d_5dp">
 
 
-            <TextView
-                android:id="@+id/naturalCalamity"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Name of Natural Calamity *"
-                android:textSize="@dimen/text_size_small" />
+                <TextView
+                    android:id="@+id/incidentDate"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Incident Date *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:id="@+id/applicantName"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Applciant Name *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:id="@+id/parentName"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Parent Name *"
+                    android:textSize="@dimen/text_size_small" />
 
 
-            <TextView
-                android:id="@+id/beneficiaryCount"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Number of Beneficaries *"
-                android:textSize="@dimen/text_size_small" />
+                <TextView
+                    android:id="@+id/naturalCalamity"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Name of Natural Calamity *"
+                    android:textSize="@dimen/text_size_small" />
 
-            <TextView
-                android:id="@+id/applicantMobile"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Relief Claimant mobile *"
-                android:textSize="@dimen/text_size_small" />
 
-            <TextView
-                android:id="@+id/firstAid"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="First Aid"
-                android:textSize="@dimen/text_size_small" />
+                <TextView
+                    android:id="@+id/beneficiaryCount"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Number of Beneficaries *"
+                    android:textSize="@dimen/text_size_small" />
 
-            <TextView
-                android:id="@+id/villageName"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Village Name *"
-                android:textSize="@dimen/text_size_small" />
-</LinearLayout>
+                <TextView
+                    android:id="@+id/applicantMobile"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Relief Claimant mobile *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:id="@+id/firstAid"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="First Aid"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:id="@+id/villageName"
+                    style="@style/TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Village Name *"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:id="@+id/mohallaName"
+                    style="@style/TextViewStyle"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Mohalla Name *"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/step2Label"
@@ -247,7 +261,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/d_5dp" />
-
 
 
             <TextView
