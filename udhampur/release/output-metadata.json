@@ -10,8 +10,8 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 39,
-      "versionName": "1.0.17",
+      "versionCode": 42,
+      "versionName": "1.0.19",
       "outputFile": "app-udhampur-release.apk"
     }
   ]

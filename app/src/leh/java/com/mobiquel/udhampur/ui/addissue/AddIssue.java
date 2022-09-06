@@ -1442,7 +1442,7 @@ public class AddIssue extends AppCompatActivity {
                         .withMaxResultSize(1000, 1000)
                         .withOptions(options)
                         .start(this);
-               // uploadImage(storeFilename);
+               // uploadImage(storeFilename.getPath());
             } else {
                 Utils.showToast(AddIssue.this, "No internet present! File is saved offline");
                 documentList.get(selePos).setFileURL(storeFilename.toString());

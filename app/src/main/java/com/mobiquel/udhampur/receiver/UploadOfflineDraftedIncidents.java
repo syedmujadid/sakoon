@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -18,7 +17,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.mobiquel.udhampur.dao.DAO;
 import com.mobiquel.udhampur.pojo.IssueListModel;
-import com.mobiquel.udhampur.ui.home.HomeActivity;
 import com.mobiquel.udhampur.utils.AppConstants;
 import com.mobiquel.udhampur.utils.Preferences;
 import com.mobiquel.udhampur.utils.Utils;

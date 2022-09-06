@@ -12,7 +12,6 @@ android {
         minSdk 21
         targetSdk 32
         multiDexEnabled true
-
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -33,8 +32,8 @@ android {
         udhampur {
             dimension "api"
             applicationId "com.mobiquel.udhampur"
-            versionCode 39
-            versionName "1.0.17"
+            versionCode 42
+            versionName "1.0.19"
 
             def API_BASE_URL = '"http://matdaan360.in:8080/UdhampurDisasterRelief/rest/service/"'
 

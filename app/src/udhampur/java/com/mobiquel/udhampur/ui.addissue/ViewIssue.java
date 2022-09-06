@@ -15,7 +15,6 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
@@ -24,12 +23,11 @@ import android.os.Environment;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import androidx.annotation.Nullable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
@@ -43,8 +41,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +68,7 @@ import com.mobiquel.udhampur.utils.AppConstants;
 import com.mobiquel.udhampur.utils.Preferences;
 import com.mobiquel.udhampur.utils.Utils;
 import com.mobiquel.udhampur.utils.VolleySingleton;
+import com.yalantis.ucrop.UCrop;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,6 +80,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -93,6 +91,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import droidninja.filepicker.utils.ContentUriUtils;
 
 public class ViewIssue extends AppCompatActivity {
 
@@ -191,7 +190,9 @@ public class ViewIssue extends AppCompatActivity {
     private boolean updateDone = false;
     private String remarkValue = "";
     private List<String> damaeType = new ArrayList<>();
-   private View_Beneficiary_Dialog mDialogViewBeneficiary;
+    private  File outputDirectory;
+
+    private View_Beneficiary_Dialog mDialogViewBeneficiary;
     @SuppressLint({"InflateParams", "RestrictedApi"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -458,8 +459,24 @@ public class ViewIssue extends AppCompatActivity {
         });
         if (Preferences.getInstance().level.equals("7"))
             cancel.setVisibility(View.VISIBLE);
+
+        check_folder();
     }
 
+    private void check_folder() {
+        //  Log.e("PATH", "=== " + path);
+        String path =
+                ViewIssue.this.getExternalFilesDir(Environment.DIRECTORY_DCIM)
+                        .toString() + File.separator + AppConstants.IMAGE_FOLDER;
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        outputDirectory= new File(
+                ViewIssue.this.getExternalFilesDir(Environment.DIRECTORY_DCIM),
+                AppConstants.IMAGE_FOLDER+File.separator+"sakoon_demo.jpg"
+        );
+    }
 
     private void setFormData(int pos) {
        /* int id = genderRadioGroup.getCheckedRadioButtonId();
@@ -699,14 +716,51 @@ public class ViewIssue extends AppCompatActivity {
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = null;
         Bitmap scaled = null;
+        File storeFilename = null;
+
+        //imageUri = data.getData();
+        //storeFilename = compressImage(imageUri.toString());
+        try {
+            thumbnail = MediaStore.Images.Media.getBitmap(ViewIssue.this.getContentResolver(), imageUri);
+            int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
+            scaled = Bitmap.createScaledBitmap(thumbnail, 512, nh, true);
+            String partFilename = currentDateFormat();
+            storeFilename = storeCameraPhotoInSDCard(scaled, partFilename);
+            //uploadImage(storeFilename);
+            /*File outputDirectory = new File(
+                    getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                    "assessment_demo.jpg"
+            );*/
+
+            if (Utils.isNetworkAvailable(ViewIssue.this)) {
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
+                UCrop.of(Uri.fromFile(storeFilename), Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
+                // uploadImage(storeFilename);
+            } else {
+                Utils.showToast(ViewIssue.this, "No internet present!");
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+      /*  Bitmap thumbnail = null;
+        Bitmap scaled = null;
         String storeFilename = null;
-       /* try {
+       *//* try {
             thumbnail = MediaStore.Images.Media.getBitmap(ViewIssue.this.getContentResolver(), imageUri);
             int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
             scaled = Bitmap.createScaledBitmap(thumbnail, 512, nh, true);
             String partFilename = currentDateFormat();
             storeCameraPhotoInSDCard(scaled, partFilename);
-            storeFilename = Environment.getExternalStorageDirectory() + "/photo_" + partFilename + ".jpg";*/
+            storeFilename = Environment.getExternalStorageDirectory() + "/photo_" + partFilename + ".jpg";*//*
         storeFilename = compressImage(imageUri.toString());
         if (Utils.isNetworkAvailable(ViewIssue.this)) {
             uploadImage(storeFilename);
@@ -715,7 +769,7 @@ public class ViewIssue extends AppCompatActivity {
 
         }
 
-        /*} catch (FileNotFoundException e) {
+        *//*} catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -730,17 +784,23 @@ public class ViewIssue extends AppCompatActivity {
         return currentTimeStamp;
     }
 
-    private void storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate) {
-        File outputFile = new File(Environment.getExternalStorageDirectory(), "photo_" + currentDate + ".jpg");
+    private File storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate) {
+        String path =
+                ViewIssue.this.getExternalFilesDir(Environment.DIRECTORY_DCIM)
+                        .toString() + File.separator + AppConstants.IMAGE_FOLDER;
+        File outputFile = new File(path, "photo_" + currentDate + ".jpeg");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 0, fileOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
-
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return outputFile;
     }
 
     @SuppressWarnings("unused")
@@ -758,17 +818,40 @@ public class ViewIssue extends AppCompatActivity {
 
     private void onSelectFromGalleryResult(Intent data) {
 
-        Bitmap thumbnail = null;
+        try {
+            Uri uri = data.getData();
+            String path = ContentUriUtils.INSTANCE.getFilePath(ViewIssue.this, uri);
+            if (Utils.isNetworkAvailable(ViewIssue.this)) {
+                // uploadImage(path);
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
+
+                UCrop.of(uri, Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
+
+
+            } else {
+                Utils.showToast(ViewIssue.this, "No internet present!");
+
+            }
+
+        } catch (URISyntaxException e) {
+
+        }
+        /*Bitmap thumbnail = null;
         Bitmap scaled = null;
         String storeFilename = null;
         //try {
         imageUri = data.getData();
-            /*thumbnail = MediaStore.Images.Media.getBitmap(ViewIssue.this.getContentResolver(), imageUri);
+            *//*thumbnail = MediaStore.Images.Media.getBitmap(ViewIssue.this.getContentResolver(), imageUri);
             int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
             scaled = decodeSampledBitmapFromUri(ViewIssue.this, imageUri, 512, nh);
             String partFilename = currentDateFormat();
             storeCameraPhotoInSDCard(scaled, partFilename);
-            String storeFilename = Environment.getExternalStorageDirectory() + "/photo_" + partFilename + ".jpg";*/
+            String storeFilename = Environment.getExternalStorageDirectory() + "/photo_" + partFilename + ".jpg";*//*
         storeFilename = compressImage(imageUri.toString());
 
         if (Utils.isNetworkAvailable(ViewIssue.this)) {
@@ -779,7 +862,7 @@ public class ViewIssue extends AppCompatActivity {
         }
 
 
-        /*} catch (FileNotFoundException e) {
+        *//*} catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -1105,6 +1188,19 @@ public class ViewIssue extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == IMAGE_PICK_REQUEST_CODE)
                 onSelectFromGalleryResult(data);
+            else if (requestCode == UCrop.REQUEST_CROP)
+            {
+                final Uri resultUri = UCrop.getOutput(data);
+                String path = null;
+                try {
+                    path = ContentUriUtils.INSTANCE.getFilePath(ViewIssue.this, resultUri);
+                    uploadImage(path);
+
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+
+            }
             else if (requestCode == REQUEST_CAMERA)
                 onCaptureImageResult(data);
         }
@@ -1112,6 +1208,7 @@ public class ViewIssue extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MY_PERMISSIONS_CAMERA: {
                 if (grantResults.length > 0

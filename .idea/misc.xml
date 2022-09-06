@@ -3,18 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ThinkPad Code/Udhampur/app/src/leh/res/layout/activity_login.xml" value="0.1796875" />
+        <entry key="..\:/ThinkPad Code/Udhampur/app/src/leh/res/layout/activity_splash.xml" value="0.1796875" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/drawable/ic_camera.xml" value="0.1" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/drawable/ic_camera_2.xml" value="0.1" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/activity_add_issue.xml" value="0.4030373831775701" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/activity_home.xml" value="0.1796875" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
-        <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/activity_splash.xml" value="0.1408514492753623" />
+        <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/activity_splash.xml" value="0.22" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/activity_view_issue.xml" value="0.1796875" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/dialog_upload_pic.xml" value="0.1796875" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/dialog_view_image.xml" value="0.1796875" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/layout/form_beneficiary.xml" value="0.1796875" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/menu/activity_home_drawer.xml" value="0.1796875" />
         <entry key="..\:/ThinkPad Code/Udhampur/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.1796875" />
+        <entry key="..\:/ThinkPad Code/Udhampur/app/src/udhampur/res/layout/activity_login.xml" value="0.1796875" />
+        <entry key="..\:/ThinkPad Code/Udhampur/app/src/udhampur/res/layout/activity_splash.xml" value="0.1796875" />
       </map>
     </option>
   </component>

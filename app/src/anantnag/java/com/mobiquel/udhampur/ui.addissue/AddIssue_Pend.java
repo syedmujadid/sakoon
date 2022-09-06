@@ -73,7 +73,6 @@ import com.mobiquel.udhampur.pojo.BeneficiaryModel;
 import com.mobiquel.udhampur.pojo.DamageDetailModel;
 import com.mobiquel.udhampur.pojo.DocListModel;
 import com.mobiquel.udhampur.pojo.IssueListModel;
-import com.mobiquel.udhampur.utils.AppConstants;
 import com.mobiquel.udhampur.utils.GPSTracker;
 import com.mobiquel.udhampur.utils.Preferences;
 import com.mobiquel.udhampur.utils.Utils;
