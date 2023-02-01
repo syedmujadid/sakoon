@@ -297,7 +297,7 @@
                     android:layout_marginTop="@dimen/d_5dp"
                     android:background="@drawable/selector_edittext_create_account"
                     android:fontFamily="@font/poppins_medium"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:inputType="textEmailAddress"
                     android:textSize="@dimen/text_size_small" />
 

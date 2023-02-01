@@ -152,7 +152,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        drawer.closeDrawer(Gravity.START);
+        drawer.closeDrawer(GravityCompat.START);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, null, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -682,7 +682,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
                         //Utils.showToast(HomeActivity.this, "Note added successfully!");
                         if (responseObject.getJSONObject("responseObject").getString("appVersion").equals(getAppVersion(HomeActivity.this))) {
                         } else {
-                            //   mUpdateDialog.show();
+                            mUpdateDialog.show();
                         }
                         pendingCount = responseObject.getJSONObject("responseObject").getString("pendingCount");
                         complCount = responseObject.getJSONObject("responseObject").getString("approvedCount");

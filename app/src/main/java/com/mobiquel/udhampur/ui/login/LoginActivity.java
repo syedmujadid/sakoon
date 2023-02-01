@@ -207,6 +207,18 @@ public class LoginActivity extends BaseActivity implements LoginView {
                             Preferences.getInstance().damageCategList = catJsonObject.toString();
 
                         }
+                        if (responseObject.getJSONObject("responseObject").isNull("olddamageList") || responseObject.getJSONObject("responseObject").getJSONArray("olddamageList").length() == 0) {
+                        } else {
+                            JSONObject jsonObject = new JSONObject();
+                            JSONObject catJsonObject = new JSONObject();
+                            jsonObject.put("data", responseObject.getJSONObject("responseObject").getJSONArray("olddamageList"));
+                            catJsonObject.put("data", responseObject.getJSONObject("responseObject").getJSONArray("oldDamageCategoryList"));
+
+                            Preferences.getInstance().oldDamageList = jsonObject.toString();
+                            Preferences.getInstance().oldDamageCategList = catJsonObject.toString();
+
+                        }
+
 
                         new DataManager(LoginActivity.this).saveStringInPreference(PrefKeys.MOBILE_NUMBER, etUserEmail.getText().toString());
                         new DataManager(LoginActivity.this).saveStringInPreference(PrefKeys.USER_PASSWORD, etPassword.getText().toString());

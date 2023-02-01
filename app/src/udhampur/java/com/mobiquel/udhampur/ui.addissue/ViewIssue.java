@@ -81,6 +81,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -318,8 +319,18 @@ public class ViewIssue extends AppCompatActivity {
             }
             beneficaryAapter.notifyDataSetChanged();
             JSONArray damaTypeArray;
-            JSONObject damaJSON = new JSONObject(Preferences.getInstance().damageList);
-            damaTypeArray = damaJSON.getJSONArray("data");
+            SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
+            Date d1 = sdformat.parse(dataJSON.getString("incidentDate"));
+            Date d2 = sdformat.parse("10-10-2022");
+            if(d1.compareTo(d2) > 0) {
+                JSONObject damaJSON = new JSONObject(Preferences.getInstance().damageList);
+                damaTypeArray = damaJSON.getJSONArray("data");
+            }
+            else{
+                JSONObject damaJSON = new JSONObject(Preferences.getInstance().oldDamageList);
+                damaTypeArray = damaJSON.getJSONArray("data");
+
+            }
 
             for (int i = 0; i < damageArray.length(); i++) {
                 JSONObject jsonObject = damageArray.getJSONObject(i);
@@ -374,7 +385,7 @@ public class ViewIssue extends AppCompatActivity {
 
 
 
-        } catch (JSONException e) {
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
 

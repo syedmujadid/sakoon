@@ -1,8 +1,10 @@
 package com.mobiquel.udhampur.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +20,8 @@ import android.widget.TextView;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.interfaces.DialogListener;
 import com.mobiquel.udhampur.pojo.DamageDetailModel;
+import com.mobiquel.udhampur.ui.addissue.AddIssue;
+import com.mobiquel.udhampur.ui.addissue.AddIssue_Pend;
 import com.mobiquel.udhampur.ui.home.listcase.CustomSpinnerAdapter;
 import com.mobiquel.udhampur.utils.Preferences;
 
@@ -25,7 +29,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,17 +88,84 @@ public class UpdateDamageDialog extends Dialog {
         getWindow().setGravity(Gravity.CENTER);
         //setCancelable(false);
         try {
-            JSONObject damaJSON = new JSONObject(Preferences.getInstance().damageList);
-            damaArray = damaJSON.getJSONArray("data");
-            JSONObject damaCategoryJSON = new JSONObject(Preferences.getInstance().damageCategList);
-            damaCategoryJSONArray = damaCategoryJSON.getJSONArray("data");
+            //10/10/2022
+            Activity activity = (Activity) mContext;
+
+            if(activity instanceof AddIssue){
+                Log.e("INC DATE",((AddIssue) activity).incDate);
+
+                if(((AddIssue) activity).incDate.equals("")){
+                    JSONObject damaJSON = new JSONObject(Preferences.getInstance().damageList);
+                    damaArray = damaJSON.getJSONArray("data");
+                    JSONObject damaCategoryJSON = new JSONObject(Preferences.getInstance().damageCategList);
+                    damaCategoryJSONArray = damaCategoryJSON.getJSONArray("data");
+
+                }
+                else
+                {
+                    SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
+                    Date d1 = sdformat.parse(((AddIssue) activity).incDate);
+                    Date d2 = sdformat.parse("10-10-2022");
+                    if(d1.compareTo(d2) > 0) {
+                        Log.e("OLD DAMAGE","10-10-2022");
+                        JSONObject damaJSON = new JSONObject(Preferences.getInstance().damageList);
+                        damaArray = damaJSON.getJSONArray("data");
+                        JSONObject damaCategoryJSON = new JSONObject(Preferences.getInstance().damageCategList);
+                        damaCategoryJSONArray = damaCategoryJSON.getJSONArray("data");
+                    }
+                    else
+                    {
+                        Log.e("NEW DAMAGE","10-10-2022");
+                        JSONObject damaJSON = new JSONObject(Preferences.getInstance().oldDamageList);
+                        damaArray = damaJSON.getJSONArray("data");
+                        JSONObject damaCategoryJSON = new JSONObject(Preferences.getInstance().oldDamageCategList);
+                        damaCategoryJSONArray = damaCategoryJSON.getJSONArray("data");
+                    }
+                    //if()
+
+
+                }
+            }
+            else if(activity instanceof AddIssue_Pend){
+                Log.e("INC DATE",((AddIssue_Pend) activity).incDate);
+                if(((AddIssue_Pend) activity).incDate.equals("")){
+                    JSONObject damaJSON = new JSONObject(Preferences.getInstance().damageList);
+                    damaArray = damaJSON.getJSONArray("data");
+                    JSONObject damaCategoryJSON = new JSONObject(Preferences.getInstance().damageCategList);
+                    damaCategoryJSONArray = damaCategoryJSON.getJSONArray("data");
+
+                }
+                else
+                {
+                    SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
+                    Date d1 = sdformat.parse(((AddIssue_Pend) activity).incDate);
+                    Date d2 = sdformat.parse("10-10-2022");
+                    if(d1.compareTo(d2) > 0) {
+                        Log.e("OLD DAMAGE","10-10-2022");
+                        JSONObject damaJSON = new JSONObject(Preferences.getInstance().damageList);
+                        damaArray = damaJSON.getJSONArray("data");
+                        JSONObject damaCategoryJSON = new JSONObject(Preferences.getInstance().damageCategList);
+                        damaCategoryJSONArray = damaCategoryJSON.getJSONArray("data");
+                    }
+                    else
+                    {
+                        Log.e("NEW DAMAGE","10-10-2022");
+                        JSONObject damaJSON = new JSONObject(Preferences.getInstance().oldDamageList);
+                        damaArray = damaJSON.getJSONArray("data");
+                        JSONObject damaCategoryJSON = new JSONObject(Preferences.getInstance().oldDamageCategList);
+                        damaCategoryJSONArray = damaCategoryJSON.getJSONArray("data");
+                    }
+
+
+                }
+            }
 
             for (int i = 0; i < damaCategoryJSONArray.length(); i++) {
                 damageCatArray.add(damaCategoryJSONArray.getJSONObject(i).getString("name"));
             }
 
 
-        } catch (JSONException e) {
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
         updateDamage.setVisibility(View.VISIBLE);

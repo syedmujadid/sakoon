@@ -12,7 +12,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_app_name"
         android:orientation="vertical"
         android:padding="@dimen/d_20dp">
 

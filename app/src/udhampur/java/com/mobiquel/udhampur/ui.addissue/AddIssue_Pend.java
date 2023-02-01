@@ -214,6 +214,7 @@ public class AddIssue_Pend extends AppCompatActivity {
     private GPSTracker gpsTracker;
     private String lat = "", lon = "", address = "";
     private  File outputDirectory;
+    public String incDate="";
 
     @SuppressLint("InflateParams")
     @Override
@@ -424,6 +425,7 @@ public class AddIssue_Pend extends AppCompatActivity {
                 tabName.setText("Update Case #" + incidentId);
 
                 incidentDate.setText(dataJSON.getString("incidentDate"));
+                incDate=dataJSON.getString("incidentDate");
                 applicantName.setText(dataJSON.getString("applicantName"));
                 parentName.setText(dataJSON.getString("parentName"));
                 String[] naturalCalamityArray = getResources().getStringArray(R.array.calamityType);
@@ -873,6 +875,7 @@ public class AddIssue_Pend extends AppCompatActivity {
             Utils.showSnackBar(view, "Please enter claimant's parent name");
             parentName.requestFocus();
         } else {
+            incDate=incidentDate.getText().toString();
             incidentDescForm.setVisibility(View.GONE);
             damageForm.setVisibility(View.VISIBLE);
             totalCost.setVisibility(View.VISIBLE);

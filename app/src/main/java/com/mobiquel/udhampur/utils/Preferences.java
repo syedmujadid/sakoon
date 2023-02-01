@@ -27,8 +27,10 @@ public class Preferences {
     private String KEY_AREA = "AREA";
     private String KEY_LEVEL = "LEVEL";
     private String DAMAGE_LIST = "DAMAGE_LIST";
+    private String OLD_DAMAGE_LIST = "OLD_DAMAGE_LIST";
     private String DAMAGE_CATEG_LIST = "DAMAGE_CATEG_LIST";
-    public String randomNumber, officialId, token,name,mobile,designation,districtId,tehsilId,villageId,area,level,tehsilName,villageName,districtName,damageList,damageCategList;
+    private String OLD_DAMAGE_CATEG_LIST = "OLD_DAMAGE_CATEG_LIST";
+    public String randomNumber, officialId, token,name,mobile,designation,districtId,tehsilId,villageId,area,level,tehsilName,villageName,districtName,damageList,oldDamageList,damageCategList,oldDamageCategList;
 
     private Preferences() {
 
@@ -58,8 +60,9 @@ public class Preferences {
         area = preferences.getString(KEY_AREA, "");
         level = preferences.getString(KEY_LEVEL, "");
         damageList = preferences.getString(DAMAGE_LIST, "");
+        oldDamageList = preferences.getString(OLD_DAMAGE_LIST, "");
         damageCategList = preferences.getString(DAMAGE_CATEG_LIST, "");
-
+        oldDamageCategList = preferences.getString(OLD_DAMAGE_CATEG_LIST, "");
 
     }
 
@@ -81,7 +84,9 @@ public class Preferences {
         editor.putString(KEY_AREA, area);
         editor.putString(KEY_LEVEL, level);
         editor.putString(DAMAGE_LIST, damageList);
+        editor.putString(OLD_DAMAGE_LIST, oldDamageList);
         editor.putString(DAMAGE_CATEG_LIST, damageCategList);
+        editor.putString(OLD_DAMAGE_CATEG_LIST, oldDamageCategList);
         editor.commit();
     }
 }

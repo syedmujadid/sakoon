@@ -183,7 +183,7 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
                 if (Preferences.getInstance().level.equals("7"))
                     getLevel7();
                 else
-                    getUsers();
+                    getIncidentListForOfficial();
                 ((HomeActivity) getActivity()).updatePendingCase(String.valueOf(issueListModel_onlines.size()));
                 pullToRefresh.setRefreshing(false);
             }
@@ -247,10 +247,10 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
         if (Preferences.getInstance().level.equals("7"))
             getLevel7();
         else
-            getUsers();
+            getIncidentListForOfficial();
     }
 
-    private void getUsers() {
+    private void getIncidentListForOfficial() {
         RequestQueue queue = VolleySingleton.getInstance(getActivity()).getRequestQueue();
         String url = "";
         // R.string.API

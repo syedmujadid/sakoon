@@ -214,6 +214,7 @@ public class AddIssue extends AppCompatActivity {
     private GPSTracker gpsTracker;
     private String lat = "", lon = "", address = "";
     private  File outputDirectory;
+    public String incDate="";
 
     @SuppressLint("InflateParams")
     @Override
@@ -408,7 +409,7 @@ public class AddIssue extends AppCompatActivity {
                 JSONObject damageDetail = new JSONObject(getIssuesListModel.getDamageDetails());
                 JSONObject beneficDetail = new JSONObject(getIssuesListModel.getBenefeciaryDetails());
                 JSONObject docDetail = new JSONObject(getIssuesListModel.getDocDetails());
-
+                incDate=issueDetail.getString("incidentDate");
                 incidentDate.setText(issueDetail.getString("incidentDate"));
                 applicantName.setText(issueDetail.getString("applicantName"));
                 parentName.setText(issueDetail.getString("parentName"));
@@ -860,6 +861,7 @@ public class AddIssue extends AppCompatActivity {
             Utils.showSnackBar(view, "Please enter claimant's parent name");
             parentName.requestFocus();
         } else {
+            incDate=incidentDate.getText().toString();
             incidentDescForm.setVisibility(View.GONE);
             damageForm.setVisibility(View.VISIBLE);
             totalCost.setVisibility(View.VISIBLE);

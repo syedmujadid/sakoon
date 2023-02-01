@@ -73,6 +73,7 @@ import com.mobiquel.udhampur.pojo.BeneficiaryModel;
 import com.mobiquel.udhampur.pojo.DamageDetailModel;
 import com.mobiquel.udhampur.pojo.DocListModel;
 import com.mobiquel.udhampur.pojo.IssueListModel;
+import com.mobiquel.udhampur.utils.AppConstants;
 import com.mobiquel.udhampur.utils.GPSTracker;
 import com.mobiquel.udhampur.utils.Preferences;
 import com.mobiquel.udhampur.utils.Utils;
@@ -209,6 +210,7 @@ public class AddIssue_Pend extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_GPS = 4;
     private GPSTracker gpsTracker;
     private String lat = "", lon = "", address = "";
+    public String incDate="";
 
     @SuppressLint("InflateParams")
     @Override
@@ -419,6 +421,7 @@ public class AddIssue_Pend extends AppCompatActivity {
                 tabName.setText("Update Case #" + incidentId);
 
                 incidentDate.setText(dataJSON.getString("incidentDate"));
+                incDate=dataJSON.getString("incidentDate");
                 applicantName.setText(dataJSON.getString("applicantName"));
                 parentName.setText(dataJSON.getString("parentName"));
                 String[] naturalCalamityArray = getResources().getStringArray(R.array.calamityType);
@@ -848,6 +851,8 @@ public class AddIssue_Pend extends AppCompatActivity {
             Utils.showSnackBar(view, "Please enter claimant's parent name");
             parentName.requestFocus();
         } else {
+            incDate=incidentDate.getText().toString();
+
             incidentDescForm.setVisibility(View.GONE);
             damageForm.setVisibility(View.VISIBLE);
             totalCost.setVisibility(View.VISIBLE);
