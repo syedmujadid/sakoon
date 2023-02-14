@@ -45,7 +45,7 @@ android {
         anantnag {
             dimension "api"
             applicationId "com.mobiquel.anantnagsakoon"
-            versionCode 15
+            versionCode 16
             versionName "1.0.20"
 
             def API_BASE_URL = '"http://matdaan360.in:8080/AnantnagDisasterRelief/rest/service/"'
@@ -96,6 +96,8 @@ dependencies {
     implementation "com.google.firebase:firebase-core:${google_play_version}"
 
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
  /*   implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx'
@@ -115,8 +117,7 @@ dependencies {
     implementation "com.github.yalantis:ucrop:2.2.6"
 
     implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
-    //for Fresco
-    implementation "com.facebook.fresco:fresco:${fresco_lib_version}"
+
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:${retrofit_lib_version}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit_lib_version}"

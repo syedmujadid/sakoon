@@ -9,11 +9,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Volley;
-//import com.crashlytics.android.Crashlytics;
-import com.facebook.drawee.backends.pipeline.Fresco;
+
 import com.mobiquel.udhampur.data.DataManager;
 
-//import io.fabric.sdk.android.Fabric;
 
 import static com.android.volley.VolleyLog.TAG;
 
@@ -33,7 +31,6 @@ public class BaseApplication extends Application {
         instance = this;
 
         DataManager.init(instance);
-        Fresco.initialize(this);
 
     }
     static {

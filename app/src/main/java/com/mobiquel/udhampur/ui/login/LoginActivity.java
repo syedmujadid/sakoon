@@ -9,6 +9,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -129,6 +130,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         super.onCreate(savedInstanceState);
         mPresenter = new LoginPresenter(this);
         gpsTracker = new GPSTracker(LoginActivity.this);
+
 
         rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
