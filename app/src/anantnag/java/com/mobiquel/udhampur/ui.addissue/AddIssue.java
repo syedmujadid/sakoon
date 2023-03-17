@@ -79,6 +79,7 @@ import com.mobiquel.udhampur.utils.Preferences;
 import com.mobiquel.udhampur.utils.Utils;
 import com.mobiquel.udhampur.utils.VolleySingleton;
 import com.mobiquel.udhampur.utils.AppConstants;
+import com.yalantis.ucrop.UCrop;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -213,6 +214,8 @@ public class AddIssue extends AppCompatActivity {
     private GPSTracker gpsTracker;
     private String lat = "", lon = "", address = "";
     public String incDate="";
+    private  File outputDirectory;
+
 
     @SuppressLint("InflateParams")
     @Override
@@ -560,6 +563,10 @@ public class AddIssue extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdir();
         }
+        outputDirectory= new File(
+                AddIssue.this.getExternalFilesDir(Environment.DIRECTORY_DCIM),
+                AppConstants.IMAGE_FOLDER+File.separator+"sakoon_demo.jpg"
+        );
     }
 
     private void updateToatlCost() {
@@ -1179,6 +1186,20 @@ public class AddIssue extends AppCompatActivity {
                 onSelectFromGalleryResult(data);
             else if (requestCode == REQUEST_CAMERA)
                 onCaptureImageResult(data);
+            else if (requestCode == UCrop.REQUEST_CROP)
+            {
+                final Uri resultUri = UCrop.getOutput(data);
+                String path = null;
+                try {
+                    path = ContentUriUtils.INSTANCE.getFilePath(AddIssue.this, resultUri);
+                    uploadImage(path);
+
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
             else if (requestCode == 3) {
                 IntentResult scanningResult = IntentIntegrator.parseActivityResult(resultCode, data);
                 if (scanningResult != null) {
@@ -1374,10 +1395,10 @@ public class AddIssue extends AppCompatActivity {
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = null;
         Bitmap scaled = null;
-        String storeFilename = null;
+        File storeFilename = null;
 
         //imageUri = data.getData();
-        storeFilename = compressImage(imageUri.toString());
+        //storeFilename = compressImage(imageUri.toString());
         try {
             thumbnail = MediaStore.Images.Media.getBitmap(AddIssue.this.getContentResolver(), imageUri);
             int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
@@ -1385,11 +1406,23 @@ public class AddIssue extends AppCompatActivity {
             String partFilename = currentDateFormat();
             storeFilename = storeCameraPhotoInSDCard(scaled, partFilename);
             //uploadImage(storeFilename);
+            /*File outputDirectory = new File(
+                    getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                    "assessment_demo.jpg"
+            );*/
+
             if (Utils.isNetworkAvailable(AddIssue.this)) {
-                uploadImage(storeFilename);
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
+                UCrop.of(Uri.fromFile(storeFilename), Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
+                // uploadImage(storeFilename);
             } else {
                 Utils.showToast(AddIssue.this, "No internet present! File is saved offline");
-                documentList.get(selePos).setFileURL(storeFilename);
+                documentList.get(selePos).setFileURL(storeFilename.toString());
                 documentList.get(selePos).setUploadStatus(false);
                 mAdapter.notifyDataSetChanged();
             }
@@ -1402,6 +1435,7 @@ public class AddIssue extends AppCompatActivity {
     }
 
 
+
     @SuppressLint("SimpleDateFormat")
     private String currentDateFormat() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
@@ -1409,14 +1443,14 @@ public class AddIssue extends AppCompatActivity {
         return currentTimeStamp;
     }
 
-    private String storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate) {
+    private File storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate) {
         String path =
                 AddIssue.this.getExternalFilesDir(Environment.DIRECTORY_DCIM)
                         .toString() + File.separator + AppConstants.IMAGE_FOLDER;
         File outputFile = new File(path, "photo_" + currentDate + ".jpeg");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 0, fileOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
         } catch (FileNotFoundException e) {
@@ -1425,7 +1459,7 @@ public class AddIssue extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        return outputFile.toString();
+        return outputFile;
     }
 
     @SuppressWarnings("unused")
@@ -1446,7 +1480,15 @@ public class AddIssue extends AppCompatActivity {
             Uri uri = data.getData();
             String path = ContentUriUtils.INSTANCE.getFilePath(AddIssue.this, uri);
             if (Utils.isNetworkAvailable(AddIssue.this)) {
-                uploadImage(path);
+                // uploadImage(path);
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
+
+                UCrop.of(uri, Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
 
 
             } else {
@@ -1459,7 +1501,6 @@ public class AddIssue extends AppCompatActivity {
         } catch (URISyntaxException e) {
 
         }
-
 
     }
 
@@ -1622,124 +1663,7 @@ public class AddIssue extends AppCompatActivity {
         }
     }
 
-    public String compressImage(String imageUri) {
 
-        String filePath = getRealPathFromURI(imageUri);
-        Bitmap scaledBitmap = null;
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-
-//      by setting this field as true, the actual bitmap pixels are not loaded in the memory. Just the bounds are loaded. If
-//      you try the use the bitmap here, you will get null.
-        options.inJustDecodeBounds = true;
-        Bitmap bmp = BitmapFactory.decodeFile(filePath, options);
-
-        int actualHeight = options.outHeight;
-        int actualWidth = options.outWidth;
-
-//      max Height and width values of the compressed image is taken as 816x612
-
-        float maxHeight = 816.0f;
-        float maxWidth = 612.0f;
-        float imgRatio = actualWidth / actualHeight;
-        float maxRatio = maxWidth / maxHeight;
-
-//      width and height values are set maintaining the aspect ratio of the image
-
-        if (actualHeight > maxHeight || actualWidth > maxWidth) {
-            if (imgRatio < maxRatio) {
-                imgRatio = maxHeight / actualHeight;
-                actualWidth = (int) (imgRatio * actualWidth);
-                actualHeight = (int) maxHeight;
-            } else if (imgRatio > maxRatio) {
-                imgRatio = maxWidth / actualWidth;
-                actualHeight = (int) (imgRatio * actualHeight);
-                actualWidth = (int) maxWidth;
-            } else {
-                actualHeight = (int) maxHeight;
-                actualWidth = (int) maxWidth;
-
-            }
-        }
-
-//      setting inSampleSize value allows to load a scaled down version of the original image
-
-        options.inSampleSize = calculateInSampleSize(options, actualWidth, actualHeight);
-
-//      inJustDecodeBounds set to false to load the actual bitmap
-        options.inJustDecodeBounds = false;
-
-//      this options allow android to claim the bitmap memory if it runs low on memory
-        options.inPurgeable = true;
-        options.inInputShareable = true;
-        options.inTempStorage = new byte[16 * 1024];
-
-        try {
-//          load the bitmap from its path
-            bmp = BitmapFactory.decodeFile(filePath, options);
-        } catch (OutOfMemoryError exception) {
-            exception.printStackTrace();
-
-        }
-        try {
-            scaledBitmap = Bitmap.createBitmap(actualWidth, actualHeight, Bitmap.Config.ARGB_8888);
-        } catch (OutOfMemoryError exception) {
-            exception.printStackTrace();
-        }
-
-        float ratioX = actualWidth / (float) options.outWidth;
-        float ratioY = actualHeight / (float) options.outHeight;
-        float middleX = actualWidth / 2.0f;
-        float middleY = actualHeight / 2.0f;
-
-        Matrix scaleMatrix = new Matrix();
-        scaleMatrix.setScale(ratioX, ratioY, middleX, middleY);
-
-        Canvas canvas = new Canvas(scaledBitmap);
-        canvas.setMatrix(scaleMatrix);
-        canvas.drawBitmap(bmp, middleX - bmp.getWidth() / 2, middleY - bmp.getHeight() / 2, new Paint(Paint.FILTER_BITMAP_FLAG));
-
-//      check the rotation of the image and display it properly
-        ExifInterface exif;
-        try {
-            exif = new ExifInterface(filePath);
-
-            int orientation = exif.getAttributeInt(
-                    ExifInterface.TAG_ORIENTATION, 0);
-            Log.d("EXIF", "Exif: " + orientation);
-            Matrix matrix = new Matrix();
-            if (orientation == 6) {
-                matrix.postRotate(90);
-                Log.d("EXIF", "Exif: " + orientation);
-            } else if (orientation == 3) {
-                matrix.postRotate(180);
-                Log.d("EXIF", "Exif: " + orientation);
-            } else if (orientation == 8) {
-                matrix.postRotate(270);
-                Log.d("EXIF", "Exif: " + orientation);
-            }
-            scaledBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0,
-                    scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix,
-                    true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        FileOutputStream out = null;
-        String filename = getFilename();
-        try {
-            out = new FileOutputStream(filename);
-
-//          write the compressed bitmap at the destination specified by filename.
-            scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 80, out);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return filename;
-
-    }
 
     public String getFilename() {
         File file = new File(Environment.getExternalStorageDirectory().getPath(), "Sakoon/Images");

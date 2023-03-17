@@ -78,6 +78,7 @@ import com.mobiquel.udhampur.utils.GPSTracker;
 import com.mobiquel.udhampur.utils.Preferences;
 import com.mobiquel.udhampur.utils.Utils;
 import com.mobiquel.udhampur.utils.VolleySingleton;
+import com.yalantis.ucrop.UCrop;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +93,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -103,6 +105,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import droidninja.filepicker.utils.ContentUriUtils;
 
 public class AddIssue_Pend extends AppCompatActivity {
 
@@ -211,6 +214,7 @@ public class AddIssue_Pend extends AppCompatActivity {
     private GPSTracker gpsTracker;
     private String lat = "", lon = "", address = "";
     public String incDate="";
+    private  File outputDirectory;
 
     @SuppressLint("InflateParams")
     @Override
@@ -560,7 +564,22 @@ public class AddIssue_Pend extends AppCompatActivity {
 
         }
 
+        check_folder();
+    }
 
+    private void check_folder() {
+        //  Log.e("PATH", "=== " + path);
+        String path =
+                AddIssue_Pend.this.getExternalFilesDir(Environment.DIRECTORY_DCIM)
+                        .toString() + File.separator + AppConstants.IMAGE_FOLDER;
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        outputDirectory= new File(
+                AddIssue_Pend.this.getExternalFilesDir(Environment.DIRECTORY_DCIM),
+                AppConstants.IMAGE_FOLDER+File.separator+"sakoon_demo.jpg"
+        );
     }
 
     private void updateToatlCost() {
@@ -1181,6 +1200,20 @@ public class AddIssue_Pend extends AppCompatActivity {
                 onSelectFromGalleryResult(data);
             else if (requestCode == REQUEST_CAMERA)
                 onCaptureImageResult(data);
+            else if (requestCode == UCrop.REQUEST_CROP)
+            {
+                final Uri resultUri = UCrop.getOutput(data);
+                String path = null;
+                try {
+                    path = ContentUriUtils.INSTANCE.getFilePath(AddIssue_Pend.this, resultUri);
+                    uploadImage(path);
+
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
             else if (requestCode == 3) {
                 IntentResult scanningResult = IntentIntegrator.parseActivityResult(resultCode, data);
                 if (scanningResult != null) {
@@ -1373,23 +1406,43 @@ public class AddIssue_Pend extends AppCompatActivity {
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = null;
         Bitmap scaled = null;
-        String storeFilename = null;
-        //  try {
-            /*thumbnail = MediaStore.Images.Media.getBitmap(AddIssue.this.getContentResolver(), imageUri);
+        File storeFilename = null;
+
+        //imageUri = data.getData();
+        //storeFilename = compressImage(imageUri.toString());
+        try {
+            thumbnail = MediaStore.Images.Media.getBitmap(AddIssue_Pend.this.getContentResolver(), imageUri);
             int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
             scaled = Bitmap.createScaledBitmap(thumbnail, 512, nh, true);
             String partFilename = currentDateFormat();
-            storeCameraPhotoInSDCard(scaled, partFilename);*/
-        storeFilename = compressImage(imageUri.toString());
-        if (Utils.isNetworkAvailable(AddIssue_Pend.this)) {
-            uploadImage(storeFilename);
-        } else {
-            Utils.showToast(AddIssue_Pend.this, "No internet present! File is saved offline");
-            documentList.get(selePos).setFileURL(storeFilename);
-            documentList.get(selePos).setUploadStatus(false);
-            mAdapter.notifyDataSetChanged();
-        }
+            storeFilename = storeCameraPhotoInSDCard(scaled, partFilename);
+            //uploadImage(storeFilename);
+            /*File outputDirectory = new File(
+                    getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                    "assessment_demo.jpg"
+            );*/
 
+            if (Utils.isNetworkAvailable(AddIssue_Pend.this)) {
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
+                UCrop.of(Uri.fromFile(storeFilename), Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
+                // uploadImage(storeFilename);
+            } else {
+                Utils.showToast(AddIssue_Pend.this, "No internet present! File is saved offline");
+                documentList.get(selePos).setFileURL(storeFilename.toString());
+                documentList.get(selePos).setUploadStatus(false);
+                mAdapter.notifyDataSetChanged();
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -1400,11 +1453,14 @@ public class AddIssue_Pend extends AppCompatActivity {
         return currentTimeStamp;
     }
 
-    private void storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate) {
-        File outputFile = new File(Environment.getExternalStorageDirectory(), "photo_" + currentDate + ".jpg");
+    private File storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate) {
+        String path =
+                AddIssue_Pend.this.getExternalFilesDir(Environment.DIRECTORY_DCIM)
+                        .toString() + File.separator + AppConstants.IMAGE_FOLDER;
+        File outputFile = new File(path, "photo_" + currentDate + ".jpeg");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 0, fileOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
         } catch (FileNotFoundException e) {
@@ -1412,6 +1468,8 @@ public class AddIssue_Pend extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return outputFile;
     }
 
     @SuppressWarnings("unused")
@@ -1429,19 +1487,30 @@ public class AddIssue_Pend extends AppCompatActivity {
 
     private void onSelectFromGalleryResult(Intent data) {
 
-        Bitmap thumbnail = null;
-        Bitmap scaled = null;
-        String storeFilename = null;
+        try {
+            Uri uri = data.getData();
+            String path = ContentUriUtils.INSTANCE.getFilePath(AddIssue_Pend.this, uri);
+            if (Utils.isNetworkAvailable(AddIssue_Pend.this)) {
+                // uploadImage(path);
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
 
-        imageUri = data.getData();
-        storeFilename = compressImage(imageUri.toString());
-        if (Utils.isNetworkAvailable(AddIssue_Pend.this)) {
-            uploadImage(storeFilename);
-        } else {
-            Utils.showToast(AddIssue_Pend.this, "No internet present! File is saved offline");
-            documentList.get(selePos).setFileURL(storeFilename);
-            documentList.get(selePos).setUploadStatus(false);
-            mAdapter.notifyDataSetChanged();
+                UCrop.of(uri, Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
+
+
+            } else {
+                Utils.showToast(AddIssue_Pend.this, "No internet present! File is saved offline");
+                documentList.get(selePos).setFileURL(path);
+                documentList.get(selePos).setUploadStatus(false);
+                mAdapter.notifyDataSetChanged();
+            }
+
+        } catch (URISyntaxException e) {
+
         }
 
 

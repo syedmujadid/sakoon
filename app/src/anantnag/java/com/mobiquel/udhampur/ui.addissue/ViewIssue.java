@@ -72,6 +72,7 @@ import com.mobiquel.udhampur.utils.AppConstants;
 import com.mobiquel.udhampur.utils.Preferences;
 import com.mobiquel.udhampur.utils.Utils;
 import com.mobiquel.udhampur.utils.VolleySingleton;
+import com.yalantis.ucrop.UCrop;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,6 +84,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -93,6 +95,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import droidninja.filepicker.utils.ContentUriUtils;
 
 public class ViewIssue extends AppCompatActivity {
 
@@ -192,6 +195,8 @@ public class ViewIssue extends AppCompatActivity {
     private String remarkValue = "";
     private List<String> damaeType = new ArrayList<>();
    private View_Beneficiary_Dialog mDialogViewBeneficiary;
+    private  File outputDirectory;
+
     @SuppressLint({"InflateParams", "RestrictedApi"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -342,7 +347,7 @@ public class ViewIssue extends AppCompatActivity {
             }
             damageListAapter.notifyDataSetChanged();
 
-            if (Preferences.getInstance().level.equals("1") || Preferences.getInstance().level.equals("4") || Preferences.getInstance().level.equals("5")) {
+            if (Preferences.getInstance().level.equals("1") || Preferences.getInstance().level.equals("4")) {
                 prepareDocData();
                 for (int i = 0; i < docArray.length(); i++) {
                     JSONObject jsonObject = docArray.getJSONObject(i);
@@ -458,8 +463,23 @@ public class ViewIssue extends AppCompatActivity {
         });
         if (Preferences.getInstance().level.equals("7"))
             cancel.setVisibility(View.VISIBLE);
-    }
 
+        check_folder();
+    }
+    private void check_folder() {
+        //  Log.e("PATH", "=== " + path);
+        String path =
+                ViewIssue.this.getExternalFilesDir(Environment.DIRECTORY_DCIM)
+                        .toString() + File.separator + AppConstants.IMAGE_FOLDER;
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        outputDirectory= new File(
+                ViewIssue.this.getExternalFilesDir(Environment.DIRECTORY_DCIM),
+                AppConstants.IMAGE_FOLDER+File.separator+"sakoon_anantnag.jpg"
+        );
+    }
 
     private void setFormData(int pos) {
        /* int id = genderRadioGroup.getCheckedRadioButtonId();
@@ -699,14 +719,46 @@ public class ViewIssue extends AppCompatActivity {
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = null;
         Bitmap scaled = null;
+        File storeFilename = null;
+
+        //imageUri = data.getData();
+        //storeFilename = compressImage(imageUri.toString());
+        try {
+            thumbnail = MediaStore.Images.Media.getBitmap(ViewIssue.this.getContentResolver(), imageUri);
+            int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
+            scaled = Bitmap.createScaledBitmap(thumbnail, 512, nh, true);
+            String partFilename = currentDateFormat();
+            storeFilename = storeCameraPhotoInSDCard(scaled, partFilename);
+
+            if (Utils.isNetworkAvailable(ViewIssue.this)) {
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
+                UCrop.of(Uri.fromFile(storeFilename), Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
+                // uploadImage(storeFilename);
+            } else {
+                Utils.showToast(ViewIssue.this, "No internet present!");
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+      /*  Bitmap thumbnail = null;
+        Bitmap scaled = null;
         String storeFilename = null;
-       /* try {
+       *//* try {
             thumbnail = MediaStore.Images.Media.getBitmap(ViewIssue.this.getContentResolver(), imageUri);
             int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
             scaled = Bitmap.createScaledBitmap(thumbnail, 512, nh, true);
             String partFilename = currentDateFormat();
             storeCameraPhotoInSDCard(scaled, partFilename);
-            storeFilename = Environment.getExternalStorageDirectory() + "/photo_" + partFilename + ".jpg";*/
+            storeFilename = Environment.getExternalStorageDirectory() + "/photo_" + partFilename + ".jpg";*//*
         storeFilename = compressImage(imageUri.toString());
         if (Utils.isNetworkAvailable(ViewIssue.this)) {
             uploadImage(storeFilename);
@@ -715,7 +767,7 @@ public class ViewIssue extends AppCompatActivity {
 
         }
 
-        /*} catch (FileNotFoundException e) {
+        *//*} catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -730,17 +782,23 @@ public class ViewIssue extends AppCompatActivity {
         return currentTimeStamp;
     }
 
-    private void storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate) {
-        File outputFile = new File(Environment.getExternalStorageDirectory(), "photo_" + currentDate + ".jpg");
+    private File storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate) {
+        String path =
+                ViewIssue.this.getExternalFilesDir(Environment.DIRECTORY_DCIM)
+                        .toString() + File.separator + AppConstants.IMAGE_FOLDER;
+        File outputFile = new File(path, "photo_" + currentDate + ".jpeg");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 0, fileOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
-
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return outputFile;
     }
 
     @SuppressWarnings("unused")
@@ -758,17 +816,40 @@ public class ViewIssue extends AppCompatActivity {
 
     private void onSelectFromGalleryResult(Intent data) {
 
-        Bitmap thumbnail = null;
+        try {
+            Uri uri = data.getData();
+            String path = ContentUriUtils.INSTANCE.getFilePath(ViewIssue.this, uri);
+            if (Utils.isNetworkAvailable(ViewIssue.this)) {
+                // uploadImage(path);
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
+
+                UCrop.of(uri, Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
+
+
+            } else {
+                Utils.showToast(ViewIssue.this, "No internet present!");
+
+            }
+
+        } catch (URISyntaxException e) {
+
+        }
+        /*Bitmap thumbnail = null;
         Bitmap scaled = null;
         String storeFilename = null;
         //try {
         imageUri = data.getData();
-            /*thumbnail = MediaStore.Images.Media.getBitmap(ViewIssue.this.getContentResolver(), imageUri);
+            *//*thumbnail = MediaStore.Images.Media.getBitmap(ViewIssue.this.getContentResolver(), imageUri);
             int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
             scaled = decodeSampledBitmapFromUri(ViewIssue.this, imageUri, 512, nh);
             String partFilename = currentDateFormat();
             storeCameraPhotoInSDCard(scaled, partFilename);
-            String storeFilename = Environment.getExternalStorageDirectory() + "/photo_" + partFilename + ".jpg";*/
+            String storeFilename = Environment.getExternalStorageDirectory() + "/photo_" + partFilename + ".jpg";*//*
         storeFilename = compressImage(imageUri.toString());
 
         if (Utils.isNetworkAvailable(ViewIssue.this)) {
@@ -779,7 +860,7 @@ public class ViewIssue extends AppCompatActivity {
         }
 
 
-        /*} catch (FileNotFoundException e) {
+        *//*} catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -894,8 +975,10 @@ public class ViewIssue extends AppCompatActivity {
             for (int i = 0; i < damageDetailModelList.size(); i++) {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("type", damageDetailModelList.get(i).getPropertyType());
+                jsonObject.put("categoryName", damageDetailModelList.get(i).getCategory());
                 jsonObject.put("description", damageDetailModelList.get(i).getDamageDetail());
                 jsonObject.put("quantity", damageDetailModelList.get(i).getQuantity());
+                jsonObject.put("amount", damageDetailModelList.get(i).getTotalAmnt());
 
                 damageJSONArray.put(jsonObject);
             }
@@ -1107,6 +1190,19 @@ public class ViewIssue extends AppCompatActivity {
                 onSelectFromGalleryResult(data);
             else if (requestCode == REQUEST_CAMERA)
                 onCaptureImageResult(data);
+            else if (requestCode == UCrop.REQUEST_CROP)
+            {
+                final Uri resultUri = UCrop.getOutput(data);
+                String path = null;
+                try {
+                    path = ContentUriUtils.INSTANCE.getFilePath(ViewIssue.this, resultUri);
+                    uploadImage(path);
+
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
     }
 

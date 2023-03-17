@@ -381,19 +381,20 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
                                             pen++;
                                         else
                                             pro++;
+
                                         IssueListModel_Online model = new IssueListModel_Online();
                                         model.setCaseId(response.getJSONArray("incidentList").getJSONObject(i).getString("incidentId"));
                                         model.setApplicantName(response.getJSONArray("incidentList").getJSONObject(i).getString("applicantName"));
-                                        //model.setAssignedTo(response.getJSONArray("incidentList").getJSONObject(i).getString("role"));
                                         model.setIncidentDate(response.getJSONArray("incidentList").getJSONObject(i).getString("incidentDate"));
                                         model.setCreatedOn(response.getJSONArray("incidentList").getJSONObject(i).getString("createdOn"));
+                                        model.setUpdatedBy(response.getJSONArray("incidentList").getJSONObject(i).getString("updatedBy"));
+                                        model.setIssueAtLevel(response.getJSONArray("incidentList").getJSONObject(i).getString("issueAtLevel"));
                                         model.setStatus("PENDING");
-
-                                        if (response.getJSONArray("incidentList").getJSONObject(i).has("pendingDays")) {
-                                            model.setPendingDays(response.getJSONArray("incidentList").getJSONObject(i).getString("pendingDays"));
-                                            model.setPendingCode(response.getJSONArray("incidentList").getJSONObject(i).getString("pendingCode"));
-
-                                        }
+                                        model.setCitizenDescription(response.getJSONArray("incidentList").getJSONObject(i).getString("citizenDescription"));
+                                        model.setVillName(response.getJSONArray("incidentList").getJSONObject(i).getString("villageName"));
+                                        model.setApplicantMobile(response.getJSONArray("incidentList").getJSONObject(i).getString("mobile"));
+                                        if (response.getJSONArray("incidentList").getJSONObject(i).has("isApprovedEarlierCheck"))
+                                            model.setIsApprovedEarlierCheck(response.getJSONArray("incidentList").getJSONObject(i).getString("isApprovedEarlierCheck"));
 
                                         issueListModel_onlines.add(model);
                                     }
@@ -405,7 +406,6 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
                                     t1.setText("Total Pending: " + pen);
                                     t2.setText("Total Processed: " + pro);
                                 }
-
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

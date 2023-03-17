@@ -32,8 +32,8 @@ android {
         udhampur {
             dimension "api"
             applicationId "com.mobiquel.udhampur"
-            versionCode 46
-            versionName "1.0.20"
+            versionCode 48
+            versionName "1.0.21"
 
             def API_BASE_URL = '"http://matdaan360.in:8080/UdhampurDisasterRelief/rest/service/"'
 
@@ -45,8 +45,8 @@ android {
         anantnag {
             dimension "api"
             applicationId "com.mobiquel.anantnagsakoon"
-            versionCode 16
-            versionName "1.0.20"
+            versionCode 23
+            versionName "1.0.22"
 
             def API_BASE_URL = '"http://matdaan360.in:8080/AnantnagDisasterRelief/rest/service/"'
 
