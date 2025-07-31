@@ -13,7 +13,7 @@ import com.mobiquel.udhampur.base.BaseFragment;
 
 public class DummyFragment extends BaseFragment implements DummyView {
 
-    private private DummyPresenter mPresenter;
+    private DummyPresenter mPresenter;
 
     @Nullable
     @Override
