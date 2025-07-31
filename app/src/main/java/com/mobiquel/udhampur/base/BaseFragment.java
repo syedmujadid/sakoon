@@ -1,6 +1,5 @@
 package com.mobiquel.udhampur.base;
 
-
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 
 /**
  * Created by Navjot Singh
@@ -27,23 +25,19 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         initVariables();
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setListeners();
     }
 
-
     public abstract void initVariables();
 
     public abstract void setListeners();
 
-
     public boolean isFragmentAdded() {
         return (getActivity() != null && !getActivity().isFinishing() && isAdded());
     }
-
 
     @Override
     public void showNoNetworkError() {
@@ -51,13 +45,11 @@ public abstract class BaseFragment extends Fragment implements BaseView {
             ((BaseActivity) getActivity()).showNoNetworkError();
     }
 
-
     @Override
     public void showSnackBar(String message) {
         if (isFragmentAdded())
             ((BaseActivity) getActivity()).showSnackBar(message);
     }
-
 
     @Override
     public void showProgressBar() {
@@ -65,14 +57,12 @@ public abstract class BaseFragment extends Fragment implements BaseView {
             ((BaseActivity) getActivity()).showProgressBar();
     }
 
-
     @Override
     public void hideProgressBar() {
         if (isFragmentAdded()) {
             ((BaseActivity) getActivity()).hideProgressBar();
         }
     }
-
 
     @Override
     public void showSpecificError(FailureResponse failureResponse) {

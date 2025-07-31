@@ -15,12 +15,7 @@ import com.mobiquel.udhampur.pojo.LogsListModel;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ListOfLogsAdapter extends RecyclerView.Adapter<ListOfLogsAdapter.OptionsViewHolder> {
-
-
 
     private Context context;
     private List<LogsListModel> collegeList;
@@ -50,22 +45,11 @@ public class ListOfLogsAdapter extends RecyclerView.Adapter<ListOfLogsAdapter.Op
         return collegeList != null ? collegeList.size() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.name)
-        TextView name;
-        @BindView(R.id.comment)
-        TextView comment;
-        @BindView(R.id.mobile)
-        TextView mobile;
-        @BindView(R.id.level)
-        TextView level;
 
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
+            }
 
     }
 

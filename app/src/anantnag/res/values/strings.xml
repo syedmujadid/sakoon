@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sakoon Anantnag</string>
+    <string name="app_name">Sakoon J&amp;K</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="msg_check_internet_connection">Please check your internet connection!</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -7,7 +7,7 @@
     <string name="hi_hindi">हिंदीं</string>
     <string name="channel_name">notifyy cannel</string>
     <string name="add_user_tab">Add Users</string>
-    <string name="district">Anantnag</string>
+    <string name="district">Sakoon J&amp;K</string>
 
     <string name="users_tab">User Management</string>
     <string name="help_tab">Helplines</string>
@@ -15,7 +15,7 @@
     <string name="app_url">https://play.google.com/store/apps/details?id=com.mobiquel.notifyy</string>
     <string name="print_slip_tab">Print Slip</string>
     <string name="search_tab">Search</string>
-    <string name="fotter_tag">An initiative of District Anantnag</string>
+    <string name="fotter_tag">An initiative of Govt. of J&amp;K</string>
 
 
     <string-array name="calamityType">

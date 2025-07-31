@@ -18,28 +18,11 @@ import com.mobiquel.udhampur.pojo.PartyListModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class UpdatePartyMaterialDalog extends Dialog {
-
-
-    @BindView(R.id.et_name)
-    EditText et_name;
-    @BindView(R.id.label)
-    TextView label;
-
-    @BindView(R.id.et_description)
-    EditText et_description;
-    @BindView(R.id.btnUpdate)
-    Button btnUpdate;
-
 
     private Context mContext;
     private DialogListener dialogListener;
     private PartyListModel model;
-
 
     public UpdatePartyMaterialDalog(Context context, DialogListener dialogListener) {
         super(context);
@@ -52,7 +35,6 @@ public class UpdatePartyMaterialDalog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.popup_update_party_material);
-        ButterKnife.bind(this);
         getWindow().setDimAmount(0.5f);
         getWindow().setBackgroundDrawable(null);
         getWindow().getAttributes().windowAnimations = R.style.DialogBounceAnimation;
@@ -62,15 +44,13 @@ public class UpdatePartyMaterialDalog extends Dialog {
         setCanceledOnTouchOutside(true);
     }
 
-    @OnClick({R.id.btnUpdate})
-    public void onViewClicked(View view) {
+    R.id.btnUpdate
+    private void onViewClicked(View view) {
 
         switch (view.getId()) {
             case R.id.btnUpdate:
                 dialogListener.onPositiveButtonClick();
                 break;
-
-
 
         }
     }

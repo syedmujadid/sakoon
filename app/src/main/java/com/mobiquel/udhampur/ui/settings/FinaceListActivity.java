@@ -38,27 +38,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class FinaceListActivity extends AppCompatActivity {
 
-
-
-    @BindView(R.id.menu)
-    ImageView menu;
-    @BindView(R.id.tab_name)
-    TextView tabName;
-    @BindView(R.id.list)
-    RecyclerView list;
-    @BindView(R.id.noResult)
-    TextView noResult;
-    @BindView(R.id.progress_bar)
-    ProgressBar progress_bar;
-    @BindView(R.id.totalAmntLabel)
-    TextView totalAmntLabel;
-    @BindView(R.id.header)
-    RelativeLayout header;
     private List<DamageDetailModel> damageDetailModelList=new ArrayList<>();
 
     @SuppressLint({"InflateParams", "RestrictedApi"})
@@ -66,7 +47,6 @@ public class FinaceListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        ButterKnife.bind(this);
         tabName.setText("Finance Detail for Incident #" + getIntent().getExtras().getString("ID"));
         Preferences.getInstance().loadPreferences(FinaceListActivity.this);
        list.setPadding(15,15,15,15);
@@ -180,6 +160,5 @@ public class FinaceListActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.right_out, R.anim.left_in);
 
     }
-
 
 }

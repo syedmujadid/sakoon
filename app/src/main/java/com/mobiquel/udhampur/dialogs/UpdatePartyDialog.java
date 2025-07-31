@@ -20,25 +20,8 @@ import com.mobiquel.udhampur.ui.CustomSpinnerAdapter_Model;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class UpdatePartyDialog extends Dialog {
 
-
-    @BindView(R.id.et_user_name)
-    EditText etUserName;
-    @BindView(R.id.et_user_mobile)
-    EditText etUserMobile;
-    @BindView(R.id.et_description)
-    EditText etDescription;
-    @BindView(R.id.label)
-    TextView label;
-    @BindView(R.id.btn_sign_in)
-    Button btnSignIn;
-    @BindView(R.id.locationSpinner)
-    Spinner locationSpinner;
     private Context mContext;
     private DialogListener dialogListener;
     private List<LocationListModel> mLocationList;
@@ -54,7 +37,6 @@ public class UpdatePartyDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.popup_update_user);
-        ButterKnife.bind(this);
         getWindow().setDimAmount(0.5f);
         getWindow().setBackgroundDrawable(null);
         getWindow().getAttributes().windowAnimations = R.style.DialogBounceAnimation;
@@ -64,14 +46,13 @@ public class UpdatePartyDialog extends Dialog {
         setCanceledOnTouchOutside(true);
     }
 
-    @OnClick({R.id.btn_sign_in})
-    public void onViewClicked(View view) {
+    R.id.btn_sign_in
+    private void onViewClicked(View view) {
 
         switch (view.getId()) {
             case R.id.btn_sign_in:
                 dialogListener.onPositiveButtonClick();
                 break;
-
 
         }
     }

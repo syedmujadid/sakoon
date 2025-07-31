@@ -21,11 +21,7 @@ import com.mobiquel.udhampur.pojo.DocListModel;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class DocumentListAdapter_Update extends RecyclerView.Adapter<DocumentListAdapter_Update.OptionsViewHolder> {
-
 
     private Context context;
     private List<DocListModel> collegeList;
@@ -93,25 +89,11 @@ public class DocumentListAdapter_Update extends RecyclerView.Adapter<DocumentLis
         return collegeList != null ? collegeList.size() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.fileName)
-        TextView fileName;
-        @BindView(R.id.optionalStatus)
-        TextView optionalStatus;
-        @BindView(R.id.upload)
-        TextView upload;
-        @BindView(R.id.view)
-        TextView view;
-        @BindView(R.id.edit)
-        TextView edit;
 
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-
+            }
 
     }
 

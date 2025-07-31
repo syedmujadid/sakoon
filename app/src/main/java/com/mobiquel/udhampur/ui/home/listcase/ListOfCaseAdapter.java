@@ -28,12 +28,7 @@ import com.mobiquel.udhampur.utils.Preferences;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class ListOfCaseAdapter extends RecyclerView.Adapter<ListOfCaseAdapter.OptionsViewHolder> {
-
 
     private Context context;
     private List<IssueListModel_Online> collegeList;
@@ -137,53 +132,16 @@ public class ListOfCaseAdapter extends RecyclerView.Adapter<ListOfCaseAdapter.Op
         return collegeList != null ? collegeList.size() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.caseId)
-        TextView caseId;
-        @BindView(R.id.seeLogs)
-        TextView seeLogs;
-        @BindView(R.id.reportedByCitizen)
-        TextView reportedByCitizen;
-        @BindView(R.id.officialList)
-        TextView officialList;
-        @BindView(R.id.name)
-        TextView name;
-        @BindView(R.id.incidentDate)
-        TextView incidentDate;
-        @BindView(R.id.createdOn)
-        TextView createdOn;
-        @BindView(R.id.isApprovedEarlierCheck)
-        TextView isApprovedEarlierCheck;
-
-        @BindView(R.id.delete2)
-        TextView delete2;
-
-        @BindView(R.id.status)
-        TextView status;
-        @BindView(R.id.currentLevel)
-        TextView currentLevel;
-
-        @BindView(R.id.statusLayout)
-        LinearLayout statusLayout;
-        @BindView(R.id.levelLayout)
-        LinearLayout levelLayout;
-
-        @BindView(R.id.daysCount)
-        TextView daysCount;
-        @BindView(R.id.rl_main)
-        RelativeLayout rlMain;
 
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
             Preferences.getInstance().loadPreferences(context);
 
         }
 
-        @OnClick({R.id.rl_main, R.id.seeLogs, R.id.officialList, R.id.delete2})
-        public void onViewClicked(View view) {
+        R.id.rl_main, R.id.seeLogs, R.id.officialList, R.id.delete2
+        private void onViewClicked(View view) {
             switch (view.getId()) {
                 case R.id.rl_main:
                     if (clickListener != null)

@@ -1,6 +1,5 @@
 package com.mobiquel.udhampur.data.api;
 
-
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -14,8 +13,5 @@ import retrofit2.http.QueryMap;
  */
 
 interface ApiClient {
-
-
-
 
 }

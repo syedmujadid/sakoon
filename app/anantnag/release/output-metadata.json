@@ -10,8 +10,8 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 16,
-      "versionName": "1.0.20",
+      "versionCode": 23,
+      "versionName": "1.0.22",
       "outputFile": "app-anantnag-release.apk"
     }
   ]

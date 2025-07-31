@@ -49,5 +49,4 @@ public class LoginPresenter extends BasePresenter<LoginView> implements LoginAPI
         }
     }
 
-
 }

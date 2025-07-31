@@ -1,6 +1,5 @@
 package com.mobiquel.udhampur.ui.home;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -88,34 +87,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-
 public class HomeActivity extends BaseActivity implements HomeView, BottomNavigationView.OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
-
-    @BindView(R.id.fl_container_home)
-    FrameLayout flContainerHome;
-    @BindView(R.id.bottom_navigation)
-    BottomNavigationView bottomNavigation;
-    @BindView(R.id.tab_name)
-    TextView tabName;
-    @BindView(R.id.appVersion)
-    TextView appVersion;
-    @BindView(R.id.addIssue)
-    FloatingActionButton addIssue;
-    @BindView(R.id.notfication)
-    FloatingActionButton notfication;
-
-    @BindView(R.id.rl_toolbar)
-    RelativeLayout rlToolbar;
-    @BindView(R.id.relativeLayout)
-    RelativeLayout relativeLayout;
-    @BindView(R.id.nav_view)
-    NavigationView navView;
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
-    @BindView(R.id.menu)
-    ImageView menu;
 
     private UpdatePasswordDialog mUpdatePwdDialog;
     private UpdateAppDialog mUpdateDialog;
@@ -132,12 +104,10 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
 //    private GoogleCloudMessaging gcm;
     private Context context;
 
-
     @Override
     protected int getResourceId() {
         return R.layout.activity_home;
     }
-
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -224,7 +194,6 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
 
     }
 
-
     private void applyFontToMenuItem(MenuItem mi) {
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Poppins-SemiBold.ttf");
         SpannableString mNewTitle = new SpannableString(mi.getTitle());
@@ -294,14 +263,12 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
             Utils.showBadge(HomeActivity.this, bottomNavigation, R.id.nav_returned, returnCount);
         }
 
-
     }
 
     @Override
     public void setListeners() {
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
 
     @Override
     public void setUpBottomNavigationView() {
@@ -322,7 +289,6 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
             mFragmentList.add(new ReturnedFragment());
         }
 
-
         for (Fragment fragment : mFragmentList) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.fl_container_home, fragment, fragment.getClass().getName());
@@ -331,9 +297,7 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
         }
         bottomNavigation.setSelectedItemId(R.id.nav_pending);
 
-
     }
-
 
     @Override
     protected void onDestroy() {
@@ -354,7 +318,6 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
             FragmentTransaction fragmentTransaction;
 
             switch (menuItem.getItemId()) {
-
 
                 case R.id.nav_pending:
                     fragment = mFragmentList.get(0);
@@ -464,16 +427,14 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
                 menuItem.setCheckable(false);
                 return true;
 
-
             default:
                 return false;
         }
 
     }
 
-
-    @OnClick({R.id.menu, R.id.addIssue, R.id.notfication})
-    public void onViewClicked(View view) {
+    R.id.menu, R.id.addIssue, R.id.notfication
+    private void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.menu:
@@ -495,7 +456,6 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
                 break;
         }
     }
-
 
     @Override
     public void onBackPressed() {
@@ -598,7 +558,6 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
         editor.commit();
     }
 
-
     private String getRegistrationId(Context context) {
         final SharedPreferences prefs = getGcmPreferences(context);
         String registrationId = prefs.getString(PROPERTY_REG_ID, "");
@@ -663,7 +622,6 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
 
         return context.getSharedPreferences(context.getClass().getSimpleName(), Context.MODE_PRIVATE);
     }
-
 
     private void registerPushNotificationid() {
         RequestQueue queue = VolleySingleton.getInstance(HomeActivity.this).getRequestQueue();
@@ -783,7 +741,6 @@ public class HomeActivity extends BaseActivity implements HomeView, BottomNaviga
         Utils.changeColorBadge(HomeActivity.this, bottomNavigation, R.id.nav_returned, cnt);
 
     }
-
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override

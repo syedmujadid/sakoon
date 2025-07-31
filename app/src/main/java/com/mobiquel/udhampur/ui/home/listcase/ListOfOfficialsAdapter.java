@@ -14,11 +14,7 @@ import com.mobiquel.udhampur.pojo.OfficialsListModel;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ListOfOfficialsAdapter extends RecyclerView.Adapter<ListOfOfficialsAdapter.OptionsViewHolder> {
-
 
     private Context context;
     private List<OfficialsListModel> collegeList;
@@ -51,23 +47,10 @@ public class ListOfOfficialsAdapter extends RecyclerView.Adapter<ListOfOfficials
         return collegeList != null ? collegeList.size() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.name)
-        TextView name;
-        @BindView(R.id.comment)
-        TextView comment;
-        @BindView(R.id.comment2)
-        TextView comment2;
-        @BindView(R.id.mobile)
-        TextView mobile;
-        @BindView(R.id.level)
-        TextView level;
 
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
             comment.setVisibility(View.GONE);
             comment2.setVisibility(View.VISIBLE);
 

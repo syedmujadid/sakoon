@@ -1,7 +1,5 @@
 package com.mobiquel.udhampur.data.api;
 
-
-
 import com.mobiquel.udhampur.BuildConfig;
 import com.mobiquel.udhampur.network.NetworkConstants;
 
@@ -18,7 +16,6 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 /**
  * Created by Navjot Singh
  * on 2/3/19.
@@ -28,7 +25,6 @@ public class ApiManager {
 
     private static ApiManager instance;
     private final ApiClient apiClient;
-
 
     private ApiManager() {
         apiClient = getRetrofitService();
@@ -84,9 +80,5 @@ public class ApiManager {
 
         return httpClientBuilder.build();
     }
-
-
-
-
 
 }

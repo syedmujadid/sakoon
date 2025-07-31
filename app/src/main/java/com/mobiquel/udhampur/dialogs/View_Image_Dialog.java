@@ -23,25 +23,9 @@ import com.bumptech.glide.request.target.Target;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.utils.TouchImageView;
 
-import butterknife.BindView;
-
-
 public class View_Image_Dialog extends Dialog implements View.OnClickListener {
 
     private final Context context;
-    @BindView(R.id.close)
-    ImageView close;
-    @BindView(R.id.bottomLayout)
-    RelativeLayout bottomLayout;
-    @BindView(R.id.image)
-    TouchImageView ivIcon;
-    @BindView(R.id.title)
-    TextView header;
-    @BindView(R.id.progress_bar)
-    ProgressBar progress_bar;
-    @BindView(R.id.webView)
-    WebView webView;
-
     public View_Image_Dialog(Context context) {
         super(context, R.style.BottomSheetDialogStyle_Article);
         this.context = context;
@@ -64,7 +48,6 @@ public class View_Image_Dialog extends Dialog implements View.OnClickListener {
     private void setListeners() {
         bottomLayout.setOnClickListener(this);
     }
-
 
     public void setData(String url, String title) {
         //context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));

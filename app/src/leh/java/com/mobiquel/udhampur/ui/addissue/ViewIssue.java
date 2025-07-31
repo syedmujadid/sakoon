@@ -86,83 +86,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class ViewIssue extends AppCompatActivity {
 
-
-    @BindView(R.id.menu)
-    ImageView menu;
-    @BindView(R.id.tab_name)
-    TextView tabName;
-
-    @BindView(R.id.step1Label)
-    TextView step1Label;
-    @BindView(R.id.step2Label)
-    TextView step2Label;
-    @BindView(R.id.step3Label)
-    TextView step3Label;
-    @BindView(R.id.step4Label)
-    TextView step4Label;
-
-    @BindView(R.id.mainFormlayout)
-    NestedScrollView parentLayout;
-    @BindView(R.id.incidentDate)
-    TextView incidentDate;
-    @BindView(R.id.applicantName)
-    TextView applicantName;
-    @BindView(R.id.parentName)
-    TextView parentName;
-    @BindView(R.id.applicantMobile)
-    TextView applicantMobile;
-    @BindView(R.id.naturalCalamity)
-    TextView naturalCalamity;
-    @BindView(R.id.firstAid)
-    TextView firstAid;
-    @BindView(R.id.villageName)
-    TextView villageName;
-    @BindView(R.id.mohallaName)
-    TextView mohallaName;
-    @BindView(R.id.beneficiaryCount)
-    TextView beneficiaryCount;
-
     private String clickSource = "";
-    @BindView(R.id.docList)
-    RecyclerView docRecylerView;
-    @BindView(R.id.beneficiaryList)
-    RecyclerView beneficiaryList;
-    @BindView(R.id.damageDetailList)
-    RecyclerView damageDetailList;
-
-    @BindView(R.id.financelabel)
-    TextView financelabel;
-    @BindView(R.id.totalAmntLabel)
-    TextView totalAmntLabel;
-
-    @BindView(R.id.footer)
-    LinearLayout footerLayout;
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-/*
-    @BindView(R.id.prev)
-    FloatingActionButton prev;
-    @BindView(R.id.next)
-    FloatingActionButton next;
-*/
+    /*
+    */
     private static final int MY_PERMISSIONS_CAMERA = 120;
     private final int PERMISSION_REQUEST = 0;
     private int IMAGE_PICK_REQUEST_CODE = 2;
     private Uri imageUri;
     private String uploadedFilePath;
     private int REQUEST_CAMERA = 0;
-    @BindView(R.id.approve)
-    Button approve;
-    @BindView(R.id.reject)
-    Button reject;
-    @BindView(R.id.cancel)
-    Button cancel;
     private int curretBeneficiaryPos = 0;
 
     private DocumentListAdapter_View mAdapter;
@@ -195,7 +129,6 @@ public class ViewIssue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_issue);
-        ButterKnife.bind(this);
         mAdapter = new DocumentListAdapter_View(documentList);
         docRecylerView.setLayoutManager(new LinearLayoutManager(ViewIssue.this));
         docRecylerView.setAdapter(mAdapter);
@@ -294,7 +227,6 @@ public class ViewIssue extends AppCompatActivity {
                 mohallaName.setVisibility(View.VISIBLE);
             }
 
-
             JSONArray damageArray = dataJSON.getJSONArray("damageItemList");
             JSONArray docArray = dataJSON.getJSONArray("indicentDocList");
             JSONArray beneficiaryArray = dataJSON.getJSONArray("beneficiaryList");
@@ -375,12 +307,9 @@ public class ViewIssue extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
             }
 
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         enterRemarksDialog = new EnterRemarksDialog(ViewIssue.this, new DialogListener() {
             @Override
@@ -464,7 +393,6 @@ public class ViewIssue extends AppCompatActivity {
             cancel.setVisibility(View.VISIBLE);
     }
 
-
     private void setFormData(int pos) {
        /* int id = genderRadioGroup.getCheckedRadioButtonId();
         personName.setText("Name: " + listOfBeneficiary.get(pos).getName());
@@ -491,7 +419,6 @@ public class ViewIssue extends AppCompatActivity {
         ifscCode.setText("IFSC Code: " + listOfBeneficiary.get(pos).getIfscCode());
 */
     }
-
 
     public void showImage(String url, String title) {
         mDialog.show();
@@ -530,11 +457,10 @@ public class ViewIssue extends AppCompatActivity {
             finish();
     }
 
-
     @SuppressLint("RestrictedApi")
     @RequiresApi(api = Build.VERSION_CODES.M)
-    @OnClick({R.id.menu, R.id.approve, R.id.reject, R.id.cancel})
-    public void onViewClicked(View view) {
+    R.id.menu, R.id.approve, R.id.reject, R.id.cancel
+    private void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.menu:
                 if (updateDone == true)
@@ -579,7 +505,6 @@ public class ViewIssue extends AppCompatActivity {
 
         }
     }
-
 
     private void approveRejectCase(final String remark) {
         RequestQueue queue = VolleySingleton.getInstance(ViewIssue.this).getRequestQueue();
@@ -663,7 +588,6 @@ public class ViewIssue extends AppCompatActivity {
         }
     }
 
-
     private void scrollToView(final NestedScrollView scrollViewParent, final View view) {
         // Get deepChild Offset
         Point childOffset = new Point();
@@ -671,7 +595,6 @@ public class ViewIssue extends AppCompatActivity {
         // Scroll to child.
         scrollViewParent.smoothScrollTo(0, childOffset.y);
     }
-
 
     private void getDeepChildOffset(final ViewGroup mainParent, final ViewParent parent, final View child, final Point accumulatedOffset) {
         ViewGroup parentGroup = (ViewGroup) parent;
@@ -682,7 +605,6 @@ public class ViewIssue extends AppCompatActivity {
         }
         getDeepChildOffset(mainParent, parentGroup.getParent(), parentGroup, accumulatedOffset);
     }
-
 
     //File Upload Code
     private void galleryIntent() {
@@ -698,7 +620,6 @@ public class ViewIssue extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_CAMERA);
 
     }
-
 
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = null;
@@ -725,7 +646,6 @@ public class ViewIssue extends AppCompatActivity {
             e.printStackTrace();
         }*/
     }
-
 
     @SuppressLint("SimpleDateFormat")
     private String currentDateFormat() {
@@ -781,7 +701,6 @@ public class ViewIssue extends AppCompatActivity {
             Utils.showToast(ViewIssue.this, "No internet present!");
 
         }
-
 
         /*} catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -862,10 +781,8 @@ public class ViewIssue extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                     }
 
-
                 });
     }
-
 
     private void setUPData() {
         try {
@@ -891,7 +808,6 @@ public class ViewIssue extends AppCompatActivity {
 
                     docFileJSONArray.put(jsonObject);
                 }
-
 
             }
             docUploadJSON.put("data", docFileJSONArray);
@@ -975,7 +891,6 @@ public class ViewIssue extends AppCompatActivity {
         }
     }
 
-
     private void prepareDocData() {
         DocListModel model = new DocListModel();
         model.setName("Incident Photo 1");
@@ -1012,7 +927,6 @@ public class ViewIssue extends AppCompatActivity {
         model6.setName("DD Report");
         model6.setOptionalStatus(false);
         model6.setUploadStatus(false);
-
 
         documentList.add(model);
         documentList.add(model2);
@@ -1076,7 +990,6 @@ public class ViewIssue extends AppCompatActivity {
         DocListModel model8 = new DocListModel();
         DocListModel model9 = new DocListModel();
 
-
         model7.setName("Extra document 1");
         model7.setOptionalStatus(true);
         model7.setUploadStatus(false);
@@ -1088,7 +1001,6 @@ public class ViewIssue extends AppCompatActivity {
         model9.setName("Extra document 3");
         model9.setOptionalStatus(true);
         model9.setUploadStatus(false);
-
 
         DocListModel model10 = new DocListModel();
         model10.setName("Extra document 4");
@@ -1153,7 +1065,6 @@ public class ViewIssue extends AppCompatActivity {
                 break;
         }
     }
-
 
     public String compressImage(String imageUri) {
 

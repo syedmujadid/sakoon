@@ -25,13 +25,7 @@ import com.mobiquel.udhampur.utils.Preferences;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class DamageListAdapter extends RecyclerView.Adapter<DamageListAdapter.OptionsViewHolder> {
-
-
 
     private Context context;
     private List<DamageDetailModel> collegeList;
@@ -77,35 +71,10 @@ public class DamageListAdapter extends RecyclerView.Adapter<DamageListAdapter.Op
         return collegeList != null ? collegeList.size() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.title)
-        TextView title;
-        @BindView(R.id.desLabel)
-        TextView desLabel;
-        @BindView(R.id.propertyType)
-        TextView propertyType;
-        @BindView(R.id.damageDescription)
-        TextView damageDescription;
-        @BindView(R.id.quantity)
-        TextView quantity;
-        @BindView(R.id.baseAmnt)
-        TextView baseAmnt;
-        @BindView(R.id.totalAmnt)
-        TextView totalAmnt;
-        @BindView(R.id.edit)
-        ImageView editDamage;
-
-        @BindView(R.id.delete)
-        ImageView deleteDamage;
-
-        @BindView(R.id.reliefLayout)
-        LinearLayout reliefLayout;
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-
             if(status.equals("ADD_ISSUE")){
                 editDamage.setVisibility(View.VISIBLE);
                 deleteDamage.setVisibility(View.VISIBLE);
@@ -118,8 +87,8 @@ public class DamageListAdapter extends RecyclerView.Adapter<DamageListAdapter.Op
             }
 
         }
-        @OnClick({R.id.edit,R.id.delete})
-        public void onViewClicked(View view) {
+        R.id.edit,R.id.delete
+        private void onViewClicked(View view) {
             switch (view.getId()) {
                 case R.id.edit:
                     if (clickListener != null)
@@ -132,8 +101,6 @@ public class DamageListAdapter extends RecyclerView.Adapter<DamageListAdapter.Op
 
             }
         }
-
-
 
     }
 

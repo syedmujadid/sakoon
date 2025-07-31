@@ -5,12 +5,10 @@ import android.content.Context;
 import com.mobiquel.udhampur.data.api.ApiManager;
 import com.mobiquel.udhampur.data.preferences.PreferenceManager;
 
-
 import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-
 
 /**
  * Created by Navjot Singh
@@ -23,12 +21,10 @@ public class DataManager {
     private ApiManager apiManager;
     private PreferenceManager preferenceManager;
 
-
     public DataManager(Context context) {
         apiManager = ApiManager.init();
         preferenceManager = PreferenceManager.init(context);
     }
-
 
     /**
      * method to initialize Data Manager
@@ -39,14 +35,12 @@ public class DataManager {
         }
     }
 
-
     /**
      * @return instance of {@link DataManager}
      */
     public static DataManager getInstance() {
         return instance;
     }
-
 
     /**
      * method to save value in preferences
@@ -90,16 +84,7 @@ public class DataManager {
         return preferenceManager.getBoolean(key);
     }
 
-
     // API
-
-
-
-
-
-
-
-
 
 }
 

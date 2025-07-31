@@ -4,7 +4,6 @@ import com.mobiquel.udhampur.base.BasePresenter;
 
 public class HomePresenter extends BasePresenter<HomeView> implements HomeModelListener{
 
-
     private HomeModel model;
     public HomePresenter(HomeView view) {
         super(view);
@@ -40,15 +39,11 @@ public class HomePresenter extends BasePresenter<HomeView> implements HomeModelL
         }
     }
 
-
     public void setUpBottomNavigationView() {
         if (getView()!=null){
             getView().setUpBottomNavigationView();
         }
     }
-
-
-
 
     @Override
     public void handleLogoutResult() {

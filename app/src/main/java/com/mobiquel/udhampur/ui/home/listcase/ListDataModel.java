@@ -19,9 +19,6 @@ public class ListDataModel extends BaseModel<ListDataModelListener> {
 
     public void getListData(String startIndex) {
 
-
-
-
     }
 
     public  List<String> getPrefData(){

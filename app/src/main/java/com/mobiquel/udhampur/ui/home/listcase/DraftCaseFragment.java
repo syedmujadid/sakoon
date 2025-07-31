@@ -34,27 +34,14 @@ import com.mobiquel.udhampur.ui.home.HomeActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 public class DraftCaseFragment extends BaseFragment implements ListDataView, Animation.AnimationListener {
 
-    @BindView(R.id.noResult)
-    TextView noResult;
-    @BindView(R.id.recyclerView)
-    RecyclerView listOfItem;
-    private Unbinder unbinder;
-
-    private ListDataPresenter mPresenter;
+    private private ListDataPresenter mPresenter;
     private ListOfCaseAdapter_Draft mAdapter;
     private List<String> savedData = new ArrayList<>();
     private LinearLayoutManager manager;
     private List<IssueListModel> draftedList;
     private DAO dao;
-    @BindView(R.id.pullToRefresh)
-    SwipeRefreshLayout pullToRefresh;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +49,6 @@ public class DraftCaseFragment extends BaseFragment implements ListDataView, Ani
         unbinder = ButterKnife.bind(this, view);
         mPresenter = new ListDataPresenter(this);
         dao = new DAO(getActivity());
-
 
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -93,7 +79,6 @@ public class DraftCaseFragment extends BaseFragment implements ListDataView, Ani
         draftedList = dao.getAllDraftIssues();
         if (draftedList.size() > 0)
             noResult.setVisibility(View.GONE);
-
 
         mAdapter = new ListOfCaseAdapter_Draft(draftedList, new RecyclerItemClickListener() {
             @Override
@@ -143,7 +128,6 @@ public class DraftCaseFragment extends BaseFragment implements ListDataView, Ani
         listOfItem.setLayoutManager(manager);
         listOfItem.setAdapter(mAdapter);
 
-
     }
 
     @Override
@@ -152,9 +136,7 @@ public class DraftCaseFragment extends BaseFragment implements ListDataView, Ani
 
         // mPresenter.getListOfUsers();
 
-
     }
-
 
     @Override
     public void initVariables() {
@@ -162,25 +144,20 @@ public class DraftCaseFragment extends BaseFragment implements ListDataView, Ani
 
     }
 
-
     @Override
     public void setListeners() {
 
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
-    }
-
+        }
 
     @Override
     public void getListOfUsers() {
         getDataFromDAO();
     }
-
 
     @Override
     public void onAnimationStart(Animation animation) {

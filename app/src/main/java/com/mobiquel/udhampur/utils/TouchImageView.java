@@ -1,6 +1,5 @@
 package com.mobiquel.udhampur.utils;
 
-
 import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.PointF;
@@ -217,7 +216,6 @@ public class TouchImageView extends AppCompatImageView {
             matrix.postTranslate(fixTransX, fixTransY);
 
     }
-
 
     float getFixTrans(float trans, float viewSize, float contentSize) {
 

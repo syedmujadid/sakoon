@@ -37,22 +37,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class FirstAidActivity extends AppCompatActivity {
 
-
-    @BindView(R.id.menu)
-    ImageView menu;
-    @BindView(R.id.tab_name)
-    TextView tabName;
-    @BindView(R.id.list)
-    RecyclerView list;
-    @BindView(R.id.noResult)
-    TextView noResult;
-    @BindView(R.id.progress_bar)
-    ProgressBar progress_bar;
     private EnterRemarksDialog enterRemarksDialog;
     private String clickSource = "", remarkValue = "";
     private String incidentId = "";
@@ -62,8 +48,6 @@ public class FirstAidActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        ButterKnife.bind(this);
-
         tabName.setText("Notification");
 
         Preferences.getInstance().loadPreferences(FirstAidActivity.this);

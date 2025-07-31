@@ -15,21 +15,8 @@ import android.widget.TextView;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.interfaces.DialogListener;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class EnterRemarksDialog extends Dialog {
 
-
-    @BindView(R.id.reportErrorLabel)
-    TextView reportErrorLabel;
-    @BindView(R.id.close)
-    ImageView close;
-    @BindView(R.id.submit)
-    Button submit;
-    @BindView(R.id.errorValue)
-    EditText solutionValue;
     private Context mContext;
     private DialogListener dialogListener;
 
@@ -44,7 +31,6 @@ public class EnterRemarksDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_write_remark);
-        ButterKnife.bind(this);
         getWindow().setDimAmount(0.5f);
         getWindow().setBackgroundDrawable(null);
         getWindow().getAttributes().windowAnimations = R.style.DialogBounceAnimation;
@@ -55,8 +41,8 @@ public class EnterRemarksDialog extends Dialog {
 
     }
 
-    @OnClick({R.id.submit, R.id.close})
-    public void onViewClicked(View view) {
+    R.id.submit, R.id.close
+    private void onViewClicked(View view) {
 
         switch (view.getId()) {
             case R.id.submit:
@@ -83,7 +69,5 @@ public class EnterRemarksDialog extends Dialog {
         solutionValue.setText("");
         return  a;
     }
-
-
 
 }

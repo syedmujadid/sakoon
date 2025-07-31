@@ -27,5 +27,4 @@ public class DummyPresenter extends BasePresenter<DummyView> implements DummyMod
 
     }
 
-
 }

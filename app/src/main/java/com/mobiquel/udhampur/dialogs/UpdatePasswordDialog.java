@@ -19,31 +19,8 @@ import com.mobiquel.udhampur.interfaces.DialogListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class UpdatePasswordDialog extends Dialog {
 
-
-    @BindView(R.id.close)
-    ImageView close;
-    @BindView(R.id.submit)
-    Button submit;
-
-    @BindView(R.id.et_user_password)
-    EditText et_user_password;
-    @BindView(R.id.et_new_password)
-    EditText etNewPassword;
-    @BindView(R.id.et_confirm_password)
-    EditText etConfirmPassword;
-
-    @BindView(R.id.showPwd1)
-    ImageView showPwd1;
-    @BindView(R.id.showPwd2)
-    ImageView showPwd2;
-    @BindView(R.id.showPwd3)
-    ImageView showPwd3;
     private Context mContext;
     private DialogListener dialogListener;
     private String currentPwd = "";
@@ -62,7 +39,6 @@ public class UpdatePasswordDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_update_pwd);
-        ButterKnife.bind(this);
         getWindow().setDimAmount(0.5f);
         getWindow().setBackgroundDrawable(null);
         getWindow().getAttributes().windowAnimations = R.style.DialogBounceAnimation;
@@ -76,8 +52,8 @@ public class UpdatePasswordDialog extends Dialog {
         showPwd1.setImageResource(R.drawable.showpassword_hide);
     }
 
-    @OnClick({R.id.submit, R.id.close,R.id.showPwd1, R.id.showPwd2,R.id.showPwd3})
-    public void onViewClicked(View view) {
+    R.id.submit, R.id.close,R.id.showPwd1, R.id.showPwd2,R.id.showPwd3
+    private void onViewClicked(View view) {
 
         switch (view.getId()) {
             case R.id.submit:

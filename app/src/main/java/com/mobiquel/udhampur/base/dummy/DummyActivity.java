@@ -10,7 +10,6 @@ public class DummyActivity extends BaseActivity implements DummyView{
 
     private DummyPresenter mPresenter;
 
-
     @Override
     protected int getResourceId() {
         return 0;

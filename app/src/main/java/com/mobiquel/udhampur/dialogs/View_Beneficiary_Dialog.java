@@ -17,52 +17,10 @@ import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.interfaces.DialogListener;
 import com.mobiquel.udhampur.pojo.BeneficiaryModel;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-
 public class View_Beneficiary_Dialog extends Dialog {
 
     private Context context;
     private Activity mActivity;
-    @BindView(R.id.back)
-    ImageView back;
-    @BindView(R.id.title)
-    TextView title;
-
-    @BindView(R.id.personName)
-    EditText personName;
-    @BindView(R.id.maleRg)
-    RadioButton maleRg;
-    @BindView(R.id.femaleRg)
-    RadioButton femaleRg;
-    @BindView(R.id.genderRadioGroup)
-    RadioGroup genderRadioGroup;
-    @BindView(R.id.adharNumber)
-    EditText adharNumber;
-    @BindView(R.id.adharAddress)
-    EditText adharAddress;
-    @BindView(R.id.contactNumber)
-    EditText contactNumber;
-    @BindView(R.id.pinCode)
-    EditText pinCode;
-    @BindView(R.id.percentageShare)
-    Spinner percentageShare;
-    @BindView(R.id.accountHolderName)
-    EditText accountHolderName;
-    @BindView(R.id.applicantRelation)
-    Spinner applicantRelation;
-    @BindView(R.id.accountNumber)
-    EditText accountNumber;
-    @BindView(R.id.bankame)
-    EditText bankame;
-    @BindView(R.id.branchName)
-    EditText branchName;
-    @BindView(R.id.ifscCode)
-    EditText ifscCode;
-    @BindView(R.id.update)
-    TextView update;
     private DialogListener dialogListener;
     private String[] perceArray = new String[4];
     private String[] relArray = new String[8];
@@ -79,8 +37,6 @@ public class View_Beneficiary_Dialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_view_benefeciary);
-        ButterKnife.bind(this);
-
         initViews();
 
     }
@@ -96,7 +52,6 @@ public class View_Beneficiary_Dialog extends Dialog {
     private void setListeners() {
 
     }
-
 
     public void setData(BeneficiaryModel model, String status, int pos) {
         title.setText("Beneficiary #" + pos);
@@ -171,8 +126,8 @@ public class View_Beneficiary_Dialog extends Dialog {
         return model;
     }
 
-    @OnClick({R.id.update, R.id.back})
-    public void onViewClicked(View view) {
+    R.id.update, R.id.back
+    private void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.update:
                 dialogListener.onPositiveButtonClick();

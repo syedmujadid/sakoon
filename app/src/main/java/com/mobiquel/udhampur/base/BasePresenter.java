@@ -1,6 +1,5 @@
 package com.mobiquel.udhampur.base;
 
-
 import com.mobiquel.udhampur.pojo.FailureResponse;
 
 import java.lang.ref.SoftReference;
@@ -39,7 +38,6 @@ public abstract class BasePresenter<T extends BaseView> implements BaseModelList
 
     protected abstract void initView();
 
-
     /**
      * Common place to receive noNetwork hook
      * this can be passed on to BaseFragment or BaseActivity to show common screen or error
@@ -52,7 +50,6 @@ public abstract class BasePresenter<T extends BaseView> implements BaseModelList
         }
     }
 
-
     /**
      * Common place to log errors to Analytics or custom file logging
      * Every Presenter can override this method to provide custom handling if required
@@ -64,6 +61,5 @@ public abstract class BasePresenter<T extends BaseView> implements BaseModelList
             getView().showSpecificError(baseResponse);
         }
     }
-
 
 }

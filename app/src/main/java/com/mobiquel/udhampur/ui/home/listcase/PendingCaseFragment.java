@@ -54,31 +54,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 public class PendingCaseFragment extends BaseFragment implements ListDataView, Animation.AnimationListener {
 
-    @BindView(R.id.noResult)
-    TextView noResult;
-    @BindView(R.id.totalLayout)
-    LinearLayout totalLayout;
-    @BindView(R.id.t1)
-    TextView t1;
-    @BindView(R.id.t2)
-    TextView t2;
-    @BindView(R.id.recyclerView)
-    RecyclerView listOfItem;
-    private Unbinder unbinder;
-
-    private ListDataPresenter mPresenter;
+    private private ListDataPresenter mPresenter;
     private ListOfCaseAdapter mAdapter;
     private LinearLayoutManager manager;
-    private List<IssueListModel_Online> issueListModel_onlines = new ArrayList<>();
+     private List<IssueListModel_Online> issueListModel_onlines = new ArrayList<>();
     private JSONArray issueArray, logArray;
-    @BindView(R.id.pullToRefresh)
-    SwipeRefreshLayout pullToRefresh;
     private List<IssueListModel> mCaseList = new ArrayList<>();
     private View_Logs_Dialog mLogDialog;
     private EnterRemarksDialog enterRemarksDialog;
@@ -175,7 +157,6 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
         listOfItem.setLayoutManager(manager);
         listOfItem.setAdapter(mAdapter);
 
-
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
@@ -193,14 +174,11 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
         return view;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-    }
-
+                                                                                                                                                                                                                                                      }
 
     @Override
     public void initVariables() {
@@ -228,19 +206,15 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
 
     }
 
-
     @Override
     public void setListeners() {
 
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
-    }
-
+        }
 
     @Override
     public void getListOfUsers() {
@@ -324,7 +298,6 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
 
             }
         }) {
@@ -425,7 +398,6 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
             }
         }) {
             @Override
@@ -500,7 +472,6 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
             }
         }) {
             @Override
@@ -563,7 +534,6 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
             }
         }) {
             @Override
@@ -581,7 +551,6 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
         queue.add(requestObject);
 
     }
-
 
     private void deleteCase(final String id, final int pos) {
         showProgressBar();
@@ -612,7 +581,6 @@ public class PendingCaseFragment extends BaseFragment implements ListDataView, A
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
 
             }
         }) {

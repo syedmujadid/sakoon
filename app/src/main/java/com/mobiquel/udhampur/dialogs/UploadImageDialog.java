@@ -21,17 +21,7 @@ import android.widget.TextView;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.interfaces.DialogListener;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class UploadImageDialog extends Dialog {
-
-
-    @BindView(R.id.fromCamera)
-    TextView fromCamera;
-    @BindView(R.id.fromGallery)
-    TextView fromGallery;
 
     private Context mContext;
     private DialogListener dialogListener;
@@ -48,9 +38,6 @@ public class UploadImageDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_upload_pic);
 
-
-
-        ButterKnife.bind(this);
         getWindow().setDimAmount(0.5f);
         getWindow().setBackgroundDrawable(null);
         getWindow().getAttributes().windowAnimations = R.style.DialogBounceAnimation;
@@ -59,8 +46,8 @@ public class UploadImageDialog extends Dialog {
         setCancelable(true);
     }
 
-    @OnClick({R.id.fromCamera, R.id.fromGallery})
-    public void onViewClicked(View view) {
+    R.id.fromCamera, R.id.fromGallery
+    private void onViewClicked(View view) {
         dismiss();
         switch (view.getId()) {
             case R.id.fromCamera:

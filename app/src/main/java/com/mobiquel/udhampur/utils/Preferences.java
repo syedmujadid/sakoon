@@ -10,7 +10,6 @@ public class Preferences {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
-
     private String KEY_RANDOM_NUMBER = "RANDOM_NUMBER";
     private String KEY_OFFICIAL_ID = "OFFICIAL_ID";
     private String KEY_TOKEN = "TOKEN";

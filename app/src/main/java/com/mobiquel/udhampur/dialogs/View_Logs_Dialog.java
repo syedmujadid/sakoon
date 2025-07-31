@@ -21,25 +21,9 @@ import com.mobiquel.udhampur.ui.home.listcase.ListOfOfficialsAdapter;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-
-
 public class View_Logs_Dialog extends Dialog implements View.OnClickListener {
 
     private final Context context;
-    @BindView(R.id.close)
-    ImageView close;
-    @BindView(R.id.back)
-    ImageView back;
-    @BindView(R.id.title)
-    TextView title;
-    @BindView(R.id.bottom)
-    RelativeLayout bottom;
-    @BindView(R.id.listOfLogs)
-    RecyclerView listOfLogs;
-
-
     public View_Logs_Dialog(Context context) {
         super(context, R.style.BottomSheetDialogStyle_Article);
         this.context = context;
@@ -63,7 +47,6 @@ public class View_Logs_Dialog extends Dialog implements View.OnClickListener {
         bottom.setOnClickListener(this);
         back.setOnClickListener(this);
     }
-
 
     public void setData(List<LogsListModel> list, String id) {
         title.setText("Logs for Case Id #" + id);
@@ -93,8 +76,8 @@ public class View_Logs_Dialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    @OnClick({R.id.back})
-    public void onViewClicked(View view) {
+    R.id.back
+    private void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back:
                 dismiss();

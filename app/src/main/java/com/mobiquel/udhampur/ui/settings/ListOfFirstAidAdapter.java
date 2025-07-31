@@ -24,12 +24,7 @@ import com.mobiquel.udhampur.interfaces.RecyclerItemClickListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class ListOfFirstAidAdapter extends RecyclerView.Adapter<ListOfFirstAidAdapter.OptionsViewHolder> {
-
 
     private Context context;
     private JSONArray collegeList;
@@ -81,43 +76,14 @@ public class ListOfFirstAidAdapter extends RecyclerView.Adapter<ListOfFirstAidAd
         return collegeList != null ? collegeList.length() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.id)
-        TextView id;
-        @BindView(R.id.status)
-        TextView status;
-        @BindView(R.id.name)
-        TextView name;
-        @BindView(R.id.mobile)
-        TextView mobile;
-        @BindView(R.id.firstAid)
-        TextView firstAid;
-        @BindView(R.id.name2)
-        TextView name2;
-        @BindView(R.id.mobile2)
-        TextView mobile2;
-        @BindView(R.id.date)
-        TextView date;
-        @BindView(R.id.village)
-        TextView village;
-        @BindView(R.id.createdOn)
-        TextView createdOn;
-        @BindView(R.id.approveRejectLayout)
-        LinearLayout approveRejectLayout;
-        @BindView(R.id.reject)
-        TextView reject;
-        @BindView(R.id.approve)
-        TextView approve;
 
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
+            }
 
-        @OnClick({R.id.approve, R.id.reject})
-        public void onViewClicked(View view) {
+        R.id.approve, R.id.reject
+        private void onViewClicked(View view) {
             switch (view.getId()) {
                 case R.id.approve:
                     if (clickListener != null)

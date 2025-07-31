@@ -37,12 +37,10 @@ public abstract class BaseModel<T extends BaseModelListener> implements CommonRe
         return DataManager.getInstance();
     }
 
-
     @Override
     public void onNetworkError() {
         if (getListener() != null)
             getListener().noNetworkError();
     }
-
 
 }

@@ -21,13 +21,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class ListOfCaseAdapter_Draft extends RecyclerView.Adapter<ListOfCaseAdapter_Draft.OptionsViewHolder> {
-
-
 
     private Context context;
     private List<IssueListModel> collegeList;
@@ -66,35 +60,17 @@ public class ListOfCaseAdapter_Draft extends RecyclerView.Adapter<ListOfCaseAdap
         return collegeList != null ? collegeList.size() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.caseId)
-        TextView caseId;
-        @BindView(R.id.name)
-        TextView name;
-        @BindView(R.id.incidentDate)
-        TextView incidentDate;
-        @BindView(R.id.createdOn)
-        TextView createdOn;
-        @BindView(R.id.rl_main)
-        RelativeLayout rlMain;
-        @BindView(R.id.seeLogs)
-        TextView seeLogs;
-        @BindView(R.id.delete)
-        ImageView delete;
-        @BindView(R.id.officialList)
-        TextView officialList;
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
             seeLogs.setVisibility(View.GONE);
             officialList.setVisibility(View.GONE);
             delete.setVisibility(View.VISIBLE);
         }
 
-        @OnClick({R.id.rl_main,R.id.delete})
-        public void onViewClicked(View view) {
+        R.id.rl_main,R.id.delete
+        private void onViewClicked(View view) {
             switch (view.getId()) {
                 case R.id.rl_main:
                     if (clickListener != null)

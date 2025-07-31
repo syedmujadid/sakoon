@@ -103,72 +103,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import droidninja.filepicker.utils.ContentUriUtils;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 public class AddIssue extends AppCompatActivity {
 
-
-    @BindView(R.id.menu)
-    ImageView menu;
-    @BindView(R.id.tab_name)
-    TextView tabName;
-
-    @BindView(R.id.your_state_progress_bar_id)
-    StateProgressBar stateProgBar;
-    @BindView(R.id.incidentDate)
-    EditText incidentDate;
-    @BindView(R.id.applicantName)
-    EditText applicantName;
-    @BindView(R.id.parentName)
-    EditText parentName;
-    @BindView(R.id.applicantMobile)
-    EditText applicantMobile;
-    @BindView(R.id.naturalCalamity)
-    Spinner naturalCalamity;
-    @BindView(R.id.firstAid)
-    EditText firstAid;
-    @BindView(R.id.villageName)
-    Spinner villageName;
-    @BindView(R.id.beneficiaryCount)
-    Spinner beneficiaryCount;
-
-    @BindView(R.id.incidentDescForm)
-    LinearLayout incidentDescForm;
-    @BindView(R.id.damageList)
-    RecyclerView damageList;
-
-    @BindView(R.id.addDamage)
-    TextView addDamage;
-    @BindView(R.id.totalCost)
-    TextView totalCost;
-    @BindView(R.id.beneficiaryForm)
-    NestedScrollView beneficiaryForm;
-    @BindView(R.id.damageForm)
-    RelativeLayout damageForm;
-    @BindView(R.id.docUploadForm)
-    LinearLayout docUploadForm;
-    @BindView(R.id.prev)
-    TextView prev;
-    @BindView(R.id.next)
-    TextView next;
-
-    @BindView(R.id.mohallaLabel)
-    TextView mohallaLabel;
-    @BindView(R.id.mohallaName)
-    EditText mohallaName;
-
-    @BindView(R.id.submit)
-    TextView submit;
-    @BindView(R.id.docList)
-    RecyclerView docRecylerView;
-    @BindView(R.id.beneficiaryList)
-    RecyclerView beneficiaryList;
-
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
     private BeneficiaryListAdapter beneficaryAapter;
 
     private String[] descriptionData = {"Details", "Damage", "Beneficiary", "Upload"};
@@ -221,12 +161,16 @@ public class AddIssue extends AppCompatActivity {
     private String lat = "", lon = "", address = "";
     private  File outputDirectory;
 
+    private ActivityResultLauncher<Intent> galleryLauncher;
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private ActivityResultLauncher<String> requestGalleryPermissionLauncher;
+    private ActivityResultLauncher<String> requestCameraPermissionLauncher;
+
     @SuppressLint("InflateParams")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_issue);
-        ButterKnife.bind(this);
         tabName.setText("Add Incident");
         stateProgBar.setStateDescriptionData(descriptionData);
         stateProgBar.setStateDescriptionTypeface("fonts/poppins_medium.ttf");
@@ -324,7 +268,6 @@ public class AddIssue extends AppCompatActivity {
         Drawable leftDrawable = AppCompatResources.getDrawable(this, R.drawable.ic_date);
         incidentDate.setCompoundDrawablesWithIntrinsicBounds(null, null, leftDrawable, null);
 
-
         beneficiaryList.setLayoutManager(new LinearLayoutManager(AddIssue.this));
         beneficiaryList.setAdapter(beneficaryAapter);
 
@@ -388,7 +331,6 @@ public class AddIssue extends AppCompatActivity {
             // updateToatlCost();
 
         }
-
 
         try {
             Preferences.getInstance().loadPreferences(AddIssue.this);
@@ -475,7 +417,6 @@ public class AddIssue extends AppCompatActivity {
                 }
                 mAdapter.notifyDataSetChanged();
 
-
                 beneficaryAapter.notifyDataSetChanged();
                 if (damageArray.length() > 1)
                     for (int i = 0; i < damageArray.length(); i++) {
@@ -545,14 +486,12 @@ public class AddIssue extends AppCompatActivity {
             }
         });
 
-
         if (Build.VERSION.SDK_INT >= 23) {
             if ((ContextCompat.checkSelfPermission(AddIssue.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     || ContextCompat.checkSelfPermission(AddIssue.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
                 ActivityCompat.requestPermissions(AddIssue.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
                         PERMISSION_REQUEST_GPS);
             } else {
-
 
             }
 
@@ -561,6 +500,47 @@ public class AddIssue extends AppCompatActivity {
         }
 
         check_folder();
+
+        // 3. Register launchers
+        galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Uri selectedImageUri = result.getData().getData();
+                    // Handle the image URI (e.g., display or upload)
+                    onSelectFromGalleryResult(selectedImageUri);
+                }
+            }
+        );
+        cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    // Handle the image URI (e.g., display or upload)
+                    onCaptureImageResult(imageUri);
+                }
+            }
+        );
+        requestGalleryPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    launchGalleryPicker();
+                } else {
+                    Utils.showToast(this, "Permission denied for gallery access");
+                }
+            }
+        );
+        requestCameraPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    launchCameraPicker();
+                } else {
+                    Utils.showToast(this, "Permission denied for camera access");
+                }
+            }
+        );
     }
 
     private void check_folder() {
@@ -588,7 +568,6 @@ public class AddIssue extends AppCompatActivity {
         }
         totalCost.setText("Total damage Cost: \u20B9" + totalAmnt);
     }
-
 
     private void saveAsDraft() {
         IssueListModel model = new IssueListModel();
@@ -641,7 +620,6 @@ public class AddIssue extends AppCompatActivity {
         }
 
     }
-
 
     public void showImage(String url, String title) {
         mDialog.show();
@@ -716,11 +694,10 @@ public class AddIssue extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @SuppressLint("RestrictedApi")
     @RequiresApi(api = Build.VERSION_CODES.M)
-    @OnClick({R.id.menu, R.id.addDamage, R.id.submit, R.id.prev, R.id.next})
-    public void onViewClicked(View view) {
+    R.id.menu, R.id.addDamage, R.id.submit, R.id.prev, R.id.next
+    private void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.addDamage:
                 modeOfDamage = "ADD";
@@ -798,7 +775,6 @@ public class AddIssue extends AppCompatActivity {
 
     }
 
-
     private void setBeneficiaryData() {
         //if()
         int count = Integer.parseInt(beneficiaryCount.getSelectedItem().toString());
@@ -856,7 +832,6 @@ public class AddIssue extends AppCompatActivity {
             mAdapter.notifyDataSetChanged();
         }
 
-
     }
 
     private void step1Checks(View view) {
@@ -913,7 +888,6 @@ public class AddIssue extends AppCompatActivity {
             } catch (NumberFormatException e) {
 
             }
-
 
             if (listOfBeneficiary.get(i).getName().equals("")) {
                 int j = i + 1;
@@ -1002,11 +976,9 @@ public class AddIssue extends AppCompatActivity {
         Utils.showToast(AddIssue.this, msg);
     }
 
-
     private void checkAllFileUpload() {
 
         for (int i = 0; i < documentList.size(); i++) {
-
 
             if (documentList.get(i).getFileURL().equals("")) {
                 if (documentList.get(i).isOptionalStatus() == true) {
@@ -1030,7 +1002,6 @@ public class AddIssue extends AppCompatActivity {
                     }
                 }
             }
-
 
         }
     }
@@ -1082,7 +1053,6 @@ public class AddIssue extends AppCompatActivity {
                     benArray.put(benArrayJSONObject);
                 }
 
-
                 beneficiaryDetails.put("data", benArray);
                 for (int i = 0; i < documentList.size(); i++) {
                     String extension = "";
@@ -1107,7 +1077,6 @@ public class AddIssue extends AppCompatActivity {
                         jsonObject.put("lon", lon);
                         docFileJSONArray.put(jsonObject);
                     }
-
 
                 }
                 documentDetails.put("data", docFileJSONArray);
@@ -1169,7 +1138,6 @@ public class AddIssue extends AppCompatActivity {
                 benArray.put(benArrayJSONObject);
             }
 
-
             beneficiaryDetails.put("data", benArray);
             for (int i = 0; i < documentList.size(); i++) {
                 String extension = "";
@@ -1189,7 +1157,6 @@ public class AddIssue extends AppCompatActivity {
                     jsonObject.put("status", documentList.get(i).isUploadStatus());
                     docFileJSONArray.put(jsonObject);
                 }
-
 
             }
             documentDetails.put("data", docFileJSONArray);
@@ -1361,7 +1328,6 @@ public class AddIssue extends AppCompatActivity {
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 
-
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
 
@@ -1388,34 +1354,63 @@ public class AddIssue extends AppCompatActivity {
 
     //File Upload Code
     private void galleryIntent() {
-        //   Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        //   photoPickerIntent.setType("*/*");
-        //   startActivityForResult(photoPickerIntent, IMAGE_PICK_REQUEST_CODE);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                requestGalleryPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES);
+                return;
+            }
+        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestGalleryPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+            return;
+        }
+        launchGalleryPicker();
+    }
+    private void launchGalleryPicker() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
-        //intent.addCategory(Intent.CATEGORY_OPENABLE)
-        try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"),
-                    IMAGE_PICK_REQUEST_CODE
-            );
-        } catch (ActivityNotFoundException e) {
-            // Potentially direct the user to the Market with a Dialog
-
-        }
+        galleryLauncher.launch(Intent.createChooser(intent, "Select Image"));
     }
 
     private void cameraIntent() {
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+            return;
+        }
+        launchCameraPicker();
+    }
+    private void launchCameraPicker() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Picture");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
+        imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, REQUEST_CAMERA);
+        cameraLauncher.launch(intent);
+    }
+
+    private void onSelectFromGalleryResult(Uri uri) {
+        try {
+            String path = ContentUriUtils.INSTANCE.getFilePath(AddIssue.this, uri);
+            if (Utils.isNetworkAvailable(AddIssue.this)) {
+               // uploadImage(path);
+                UCrop.of(uri, Uri.fromFile(outputDirectory))
+                        .withAspectRatio(16F, 9F)
+                        .start(this);
+
+            } else {
+                Utils.showToast(AddIssue.this, "No internet present! File is saved offline");
+                documentList.get(selePos).setFileURL(path);
+                documentList.get(selePos).setUploadStatus(false);
+                mAdapter.notifyDataSetChanged();
+            }
+
+        } catch (URISyntaxException e) {
+
+        }
 
     }
 
-
-    private void onCaptureImageResult(Intent data) {
+    private void onCaptureImageResult(Uri uri) {
         Bitmap thumbnail = null;
         Bitmap scaled = null;
         File storeFilename = null;
@@ -1423,7 +1418,7 @@ public class AddIssue extends AppCompatActivity {
         //imageUri = data.getData();
         //storeFilename = compressImage(imageUri.toString());
         try {
-            thumbnail = MediaStore.Images.Media.getBitmap(AddIssue.this.getContentResolver(), imageUri);
+            thumbnail = MediaStore.Images.Media.getBitmap(AddIssue.this.getContentResolver(), uri);
             int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
             scaled = Bitmap.createScaledBitmap(thumbnail, 512, nh, true);
             String partFilename = currentDateFormat();
@@ -1456,7 +1451,6 @@ public class AddIssue extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     @SuppressLint("SimpleDateFormat")
     private String currentDateFormat() {
@@ -1497,49 +1491,6 @@ public class AddIssue extends AppCompatActivity {
         return bitmap;
     }
 
-    private void onSelectFromGalleryResult(Intent data) {
-        try {
-            Uri uri = data.getData();
-            String path = ContentUriUtils.INSTANCE.getFilePath(AddIssue.this, uri);
-            if (Utils.isNetworkAvailable(AddIssue.this)) {
-               // uploadImage(path);
-                UCrop.of(uri, Uri.fromFile(outputDirectory))
-                        .withAspectRatio(16F, 9F)
-                        .start(this);
-
-
-            } else {
-                Utils.showToast(AddIssue.this, "No internet present! File is saved offline");
-                documentList.get(selePos).setFileURL(path);
-                documentList.get(selePos).setUploadStatus(false);
-                mAdapter.notifyDataSetChanged();
-            }
-
-        } catch (URISyntaxException e) {
-
-        }
-
-
-    }
-
-    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-            while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-
-
     private void uploadImage(String path) {
         progressBar.setVisibility(View.VISIBLE);
         com.loopj.android.http.RequestParams params = new com.loopj.android.http.RequestParams();
@@ -1573,7 +1524,6 @@ public class AddIssue extends AppCompatActivity {
                         Utils.showToast(AddIssue.this, "Error uploading doc");
                         progressBar.setVisibility(View.GONE);
                     }
-
 
                 });
     }
@@ -1612,7 +1562,6 @@ public class AddIssue extends AppCompatActivity {
                         Utils.showToast(AddIssue.this, "Error uploading doc");
                         progressBar.setVisibility(View.GONE);
                     }
-
 
                 });
     }

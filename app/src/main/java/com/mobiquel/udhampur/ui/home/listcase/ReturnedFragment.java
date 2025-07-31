@@ -45,25 +45,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 public class ReturnedFragment extends BaseFragment implements ListDataView, Animation.AnimationListener {
 
-    @BindView(R.id.noResult)
-    TextView noResult;
-    @BindView(R.id.recyclerView)
-    RecyclerView listOfItem;
-    private Unbinder unbinder;
-
-    private ListDataPresenter mPresenter;
+    private private ListDataPresenter mPresenter;
     private ListOfCaseAdapter mAdapter;
     private LinearLayoutManager manager;
     private List<IssueListModel_Online> issueListModel_onlines = new ArrayList<>();
     private JSONArray issueArray, logArray;
-    @BindView(R.id.pullToRefresh)
-    SwipeRefreshLayout pullToRefresh;
     private List<IssueListModel> mCaseList = new ArrayList<>();
     private View_Logs_Dialog mLogDialog;
 
@@ -118,7 +106,6 @@ public class ReturnedFragment extends BaseFragment implements ListDataView, Anim
         listOfItem.setLayoutManager(manager);
         listOfItem.setAdapter(mAdapter);
 
-
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
@@ -135,36 +122,26 @@ public class ReturnedFragment extends BaseFragment implements ListDataView, Anim
         return view;
     }
 
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
-
     }
-
 
     @Override
     public void initVariables() {
         mLogDialog = new View_Logs_Dialog(getActivity());
     }
 
-
     @Override
     public void setListeners() {
 
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
-    }
-
+        }
 
     @Override
     public void getListOfUsers() {
@@ -231,7 +208,6 @@ public class ReturnedFragment extends BaseFragment implements ListDataView, Anim
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
 
             }
         }) {
@@ -312,7 +288,6 @@ public class ReturnedFragment extends BaseFragment implements ListDataView, Anim
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
             }
         }) {
             @Override
@@ -384,7 +359,6 @@ public class ReturnedFragment extends BaseFragment implements ListDataView, Anim
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
             }
         }) {
             @Override
@@ -445,7 +419,6 @@ public class ReturnedFragment extends BaseFragment implements ListDataView, Anim
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
 
             }
         }) {

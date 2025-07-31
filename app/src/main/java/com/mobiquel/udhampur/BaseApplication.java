@@ -12,7 +12,6 @@ import com.android.volley.toolbox.Volley;
 
 import com.mobiquel.udhampur.data.DataManager;
 
-
 import static com.android.volley.VolleyLog.TAG;
 
 /**
@@ -48,7 +47,6 @@ public class BaseApplication extends Application {
 
         return mRequestQueue;
     }
-
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         // set the default tag if tag is empty

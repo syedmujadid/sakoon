@@ -1,6 +1,5 @@
 package com.mobiquel.udhampur.base;
 
-
 import com.mobiquel.udhampur.pojo.FailureResponse;
 
 /**

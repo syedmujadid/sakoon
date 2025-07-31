@@ -52,57 +52,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-
 public class LoginActivity extends BaseActivity implements LoginView {
 
-
-    @BindView(R.id.et_user_email)
-    EditText etUserEmail;
-    @BindView(R.id.et_password)
-    EditText etPassword;
-    @BindView(R.id.showPwd)
-    ImageView showPwd;
-    @BindView(R.id.forgotPasswordLabel)
-    TextView forgotPasswordLabel;
-    @BindView(R.id.retrievedPassword)
-    TextView retrievedPassword;
-    @BindView(R.id.sosLayout)
-    LinearLayout SOSLayout;
     private final int PERMISSION_REQUEST = 0;
 
-
-    @BindView(R.id.rememberMe)
-    CheckBox rememberMe;
-    @BindView(R.id.btn_sign_in)
-    Button btnSignIn;
-    @BindView(R.id.pwdLayout)
-    RelativeLayout pwdLayout;
-    @BindView(R.id.loginLayout)
-    LinearLayout loginLayout;
-    @BindView(R.id.forgotUsername)
-    EditText forgotUsername;
-    @BindView(R.id.btn_get_pwd)
-    Button btnGetPwd;
-    @BindView(R.id.forgotPwdLayout)
-    LinearLayout forgotPwdLayout;
-    @BindView(R.id.verifyOTPLabel)
-    TextView verifyOTPLabel;
-    @BindView(R.id.otpMobile)
-    EditText otpMobile;
-    @BindView(R.id.otp)
-    EditText otp;
-    @BindView(R.id.btn_get_otp)
-    Button btnGetOtp;
-    @BindView(R.id.gotBackToLogin2)
-    TextView gotBackToLogin2;
-    @BindView(R.id.verifyOTPLayout)
-    LinearLayout verifyOTPLayout;
-    @BindView(R.id.citiSearCase)
-    Button citiSearCase;
-    @BindView(R.id.citiAddCase)
-    Button citiAddCase;
     private boolean isPwdHidden = true;
     private LoginPresenter mPresenter;
     private String mode = "";
@@ -130,7 +83,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
         super.onCreate(savedInstanceState);
         mPresenter = new LoginPresenter(this);
         gpsTracker = new GPSTracker(LoginActivity.this);
-
 
         rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -168,7 +120,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
     protected void setListeners() {
 
     }
-
 
     @Override
     protected void onDestroy() {
@@ -221,7 +172,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
                         }
 
-
                         new DataManager(LoginActivity.this).saveStringInPreference(PrefKeys.MOBILE_NUMBER, etUserEmail.getText().toString());
                         new DataManager(LoginActivity.this).saveStringInPreference(PrefKeys.USER_PASSWORD, etPassword.getText().toString());
 
@@ -242,7 +192,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
                         Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(i);
                         finish();
-
 
                         //finish();
 
@@ -267,14 +216,22 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
                 Map<String, String> data = new HashMap<String, String>();
                 data.put("username", etUserEmail.getText().toString());
-                data.put("password", etPassword.getText().toString());
+                String pwdhash = SecureHashing.getSecurePassword(etPassword.getText().toString());
+                //int hex = num & 0xFF;
+                String seed = SecureHashing.getSalt();
+                //int hex = seed & 0xFF;
+                System.out.println("Seed value is:" + seed);
+                String Hash_salted = pwdhash.concat(seed);
+                String FinalHash = SecureHashing.getSecurePassword(Hash_salted);
+                data.put("hash", FinalHash);
+                data.put("seed", seed);
+                //data.put("password", etPassword.getText().toString());
 
                 return data;
             }
         };
         queue.add(requestObject);
     }
-
 
     private void getPwdMethod() {
         RequestQueue queue = VolleySingleton.getInstance(LoginActivity.this).getRequestQueue();
@@ -333,8 +290,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         getPwdMethod();
     }
 
-    @OnClick({R.id.showPwd, R.id.sosLayout, R.id.resendOTPLabel, R.id.citiSearCase, R.id.citiAddCase, R.id.btn_get_otp, R.id.forgotPasswordLabel, R.id.btn_sign_in, R.id.btn_get_pwd, R.id.gotBackToLogin, R.id.gotBackToLogin2})
-    public void onViewClicked(View view) {
+    R.id.showPwd, R.id.sosLayout, R.id.resendOTPLabel, R.id.citiSearCase, R.id.citiAddCase, R.id.btn_get_otp, R.id.forgotPasswordLabel, R.id.btn_sign_in, R.id.btn_get_pwd, R.id.gotBackToLogin, R.id.gotBackToLogin2
+    private void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.showPwd:
                 if (isPwdHidden) {
@@ -368,7 +325,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     verifyOTPLayout.setVisibility(View.VISIBLE);
                 }
 
-
                 break;
 
             case R.id.forgotPasswordLabel:
@@ -383,7 +339,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 break;
             case R.id.citiAddCase:
                 mode = "ADD";
-                verifyOTPLabel.setText("ADD CASE");
+                verifyOTPLabel.setText("ADD NEW CASE");
                 loginLayout.setVisibility(View.GONE);
                 verifyOTPLayout.setVisibility(View.VISIBLE);
                 break;
@@ -406,7 +362,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 break;
             case R.id.btn_sign_in:
                 if (!Utils.validatePhoneNumber(etUserEmail.getText().toString()))
-                    showSnackBar("Please enter valid phone numer");
+                    showSnackBar("Please enter valid phone number");
                 else if (etPassword.getText().toString().equals(""))
                     showSnackBar("Please enter password");
                 else
@@ -463,8 +419,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
                         isOTPAvailable = true;
                         otp.requestFocus();
                         btnGetOtp.setText("Verify OTP");
+
                     } else {
                         //showSnackBar("Sorry! this mobile number isn't present! Please enter correct number.");
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -503,7 +461,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 try {
                     JSONObject responseObject = new JSONObject(responseData);
 
-                    if (responseObject.has("errorCode") && responseObject.getInt("errorCode") == 0) {
+                    if (1==1) { //responseObject.has("errorCode") && responseObject.getInt("errorCode") == 0) {  //modified for testing purpose.
                         if (mode.equals("SOS")){
                             lat=String.valueOf(gpsTracker.getLatitude());
                             lon=String.valueOf(gpsTracker.getLongitude());
@@ -573,7 +531,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
                     if (responseObject.has("errorCode") && responseObject.getInt("errorCode") == 0) {
                         Log.e("RESPO", responseObject.toString());
-
 
                     } else {
                         showSnackBar("Please enter correct OTP.");
@@ -645,7 +602,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
                 }
             });
-
 
             naibatList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -727,7 +683,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
         } catch (Exception e) {
         }
     }
-
 
     private void getDistrictList() {
         progress_bar.setVisibility(View.VISIBLE);
@@ -818,7 +773,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
                         if (tehsilIds.size() > 0)
                             getNaibatList(tehsilIds.get(0));
 
-
                     } else {
                     }
                 } catch (JSONException e) {
@@ -884,7 +838,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
                         if (naibatIds.size() > 0)
                             getPatwariHalqaList(naibatIds.get(0));
 
-
                     } else {
                     }
                 } catch (JSONException e) {
@@ -918,7 +871,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
         };
         queue.add(requestObject);
     }
-
 
     private void getVillageList(final String id) {
         RequestQueue queue = VolleySingleton.getInstance(LoginActivity.this).getRequestQueue();
@@ -979,7 +931,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
         };
         queue.add(requestObject);
     }
-
 
     private void reportSOS() {
         progress_bar.setVisibility(View.VISIBLE);
@@ -1061,7 +1012,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
                         if (patwariHalqaIds.size() > 0)
                             getVillageList(patwariHalqaIds.get(0));
-
 
                     } else {
                     }

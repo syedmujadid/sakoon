@@ -19,8 +19,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
     }
 
     @Override
@@ -38,7 +36,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
     protected void setListeners() {
 
     }
-
 
     @Override
     public void showHomeScreen() {

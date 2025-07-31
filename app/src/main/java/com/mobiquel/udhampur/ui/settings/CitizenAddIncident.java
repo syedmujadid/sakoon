@@ -43,68 +43,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class CitizenAddIncident extends AppCompatActivity {
 
-
-    @BindView(R.id.menu)
-    ImageView menu;
-    @BindView(R.id.tab_name)
-    TextView tabName;
-    @BindView(R.id.list)
-    RecyclerView list;
-    @BindView(R.id.noResult)
-    TextView noResult;
-    @BindView(R.id.progress_bar)
-    ProgressBar progress_bar;
-
-    @BindView(R.id.addIncident)
-    Button addIncident;
-    @BindView(R.id.districtList)
-    Spinner districtList;
-    @BindView(R.id.tehsilList)
-    Spinner tehsilList;
-    @BindView(R.id.naibatList)
-    Spinner naibatList;
-    @BindView(R.id.patwariHalqaList)
-    Spinner patwariHalqaList;
-    @BindView(R.id.villageList)
-    Spinner villageList;
-    @BindView(R.id.details)
-    EditText details;
-    @BindView(R.id.addIssueLayout)
-    RelativeLayout addIssueLayout;
-    @BindView(R.id.im1)
-    ImageView im1;
-    @BindView(R.id.im2)
-    ImageView im2;
-    @BindView(R.id.l2)
-    RelativeLayout l2;
-    @BindView(R.id.l1)
-    LinearLayout l1;
-    @BindView(R.id.rl_toolbar)
-    RelativeLayout rlToolbar;
-    @BindView(R.id.english)
-    RadioButton english;
-    @BindView(R.id.hindi)
-    RadioButton hindi;
-    @BindView(R.id.lanGroup)
-    RadioGroup lanGroup;
-    @BindView(R.id.t1)
-    TextView t1;
-    @BindView(R.id.t2)
-    TextView t2;
-    @BindView(R.id.t3)
-    TextView t3;
-    @BindView(R.id.t4)
-    TextView t4;
-    @BindView(R.id.t5)
-    TextView t5;
-    @BindView(R.id.t6)
-    TextView t6;
     private UpdateAppDialog mFeedbackDialog;
     private ArrayList<String> districtIds = new ArrayList<>();
     private ArrayList<String> tehsilIds = new ArrayList<>();
@@ -118,8 +58,6 @@ public class CitizenAddIncident extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_citizen_add_issue);
-        ButterKnife.bind(this);
-
         tabName.setText("Register Incident");
 
         Preferences.getInstance().loadPreferences(CitizenAddIncident.this);
@@ -202,7 +140,6 @@ public class CitizenAddIncident extends AppCompatActivity {
 
             }
         });
-
 
         addIncident.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -398,7 +335,6 @@ public class CitizenAddIncident extends AppCompatActivity {
                         if (naibatIds.size() > 0)
                             getPatwariHalqaList(naibatIds.get(0));
 
-
                     } else {
                     }
                 } catch (JSONException e) {
@@ -465,7 +401,6 @@ public class CitizenAddIncident extends AppCompatActivity {
                         if (patwariHalqaIds.size() > 0)
                             getVillageList(patwariHalqaIds.get(0));
 
-
                     } else {
                     }
                 } catch (JSONException e) {
@@ -528,7 +463,6 @@ public class CitizenAddIncident extends AppCompatActivity {
                                 android.R.layout.simple_list_item_1, cityArray);
                         cityAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
                         villageList.setAdapter(cityAdapter);
-
 
                     } else {
                     }
@@ -652,7 +586,6 @@ public class CitizenAddIncident extends AppCompatActivity {
                 params.put("description", details.getText().toString());
                 params.put("mobile", getIntent().getExtras().getString("MOBILE"));
 
-
                 return params;
             }
         };
@@ -682,7 +615,6 @@ public class CitizenAddIncident extends AppCompatActivity {
                             noResult.setVisibility(View.GONE);
                         } else
                             noResult.setVisibility(View.VISIBLE);
-
 
                     } else {
                     }
@@ -714,8 +646,8 @@ public class CitizenAddIncident extends AppCompatActivity {
         queue.add(requestObject);
     }
 
-    @OnClick({R.id.im1, R.id.im2})
-    public void onViewClicked(View view) {
+    R.id.im1, R.id.im2
+    private void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.im1:
                 im2.setVisibility(View.VISIBLE);

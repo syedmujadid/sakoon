@@ -11,7 +11,9 @@ public class NetworkConstants {
     public static final int CODE_SUCCESS = 200;
     public static final String RESULT_SUCCESS = "Success";
 
-    public static final String BASE_URL ="http://matdaan360.in:8080/AnantnagDisasterRelief/rest/service/";
+    //public static final String BASE_URL ="http://matdaan360.in:8080/AnantnagDisasterRelief/rest/service/";
+    //public static final String BASE_URL ="http://localhost:8080/UdhampurDisasterRelief/rest/service/";
+    public static final String BASE_URL ="http://10.0.2.2:8091/UdhampurDisasterRelief/rest/service/";
 
     //    Network call end-points
     public static final String END_POINT_LOGIN = "officialLogin/";

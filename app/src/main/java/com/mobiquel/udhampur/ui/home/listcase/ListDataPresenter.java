@@ -32,7 +32,6 @@ public class ListDataPresenter extends BasePresenter<ListDataView> implements Li
 
     }
 
-
     public void getListData() {
         if (getView()!=null){
             if (getView().isNetworkAvailable()){
@@ -62,7 +61,6 @@ public class ListDataPresenter extends BasePresenter<ListDataView> implements Li
             }
         }
     }
-
 
     @Override
     public void handleListResult(JSONObject body) {

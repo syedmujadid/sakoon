@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.mobiquel.udhampur.pojo.FailureResponse;
 
 import java.net.SocketTimeoutException;
@@ -14,7 +13,6 @@ import java.net.UnknownHostException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 public abstract class NetworkResponse<T> implements Callback<T> {
     private CommonResponseHandler handler;
@@ -28,7 +26,6 @@ public abstract class NetworkResponse<T> implements Callback<T> {
     public abstract void onFailure(int code, FailureResponse failureResponse);
 
     public abstract void onError(Throwable t);
-
 
     @Override
     public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
@@ -48,7 +45,6 @@ public abstract class NetworkResponse<T> implements Callback<T> {
         }
         onError(t);
     }
-
 
     /**
      * Create your custom failure response out of server response

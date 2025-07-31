@@ -11,15 +11,9 @@ import android.view.ViewGroup;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.base.BaseFragment;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 public class DummyFragment extends BaseFragment implements DummyView {
 
-    private Unbinder unbinder;
-
-    private DummyPresenter mPresenter;
-
+    private private DummyPresenter mPresenter;
 
     @Nullable
     @Override
@@ -30,30 +24,25 @@ public class DummyFragment extends BaseFragment implements DummyView {
         return view;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
 
-
     @Override
     public void initVariables() {
 
     }
-
 
     @Override
     public void setListeners() {
 
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
-    }
+        }
 
 }

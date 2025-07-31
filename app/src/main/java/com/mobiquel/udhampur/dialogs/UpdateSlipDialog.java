@@ -22,31 +22,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class UpdateSlipDialog extends Dialog {
-
-
-    @BindView(R.id.partySpinner)
-    Spinner partySpinner;
-    @BindView(R.id.materialSpinner)
-    Spinner materialSpinner;
-    @BindView(R.id.quantity)
-    EditText quantity;
-    @BindView(R.id.rate)
-    EditText rate;
-    @BindView(R.id.unitSpinner)
-    Spinner unitSpinner;
-    @BindView(R.id.vehicleNumber)
-    EditText vehicleNumber;
-    @BindView(R.id.btnUpdate)
-    Button btnUpdate;
-    @BindView(R.id.btnCancel)
-    Button btnCancel;
-    @BindView(R.id.totalAmount)
-    TextView totalAmount;
 
     private Context mContext;
     private List<String> unitOptions, partyOptions, materialOptions;
@@ -64,7 +40,6 @@ public class UpdateSlipDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.popup_update_slip);
-        ButterKnife.bind(this);
         getWindow().setDimAmount(0.5f);
         getWindow().setBackgroundDrawable(null);
         getWindow().getAttributes().windowAnimations = R.style.DialogBounceAnimation;
@@ -148,8 +123,8 @@ public class UpdateSlipDialog extends Dialog {
         setCanceledOnTouchOutside(true);
     }
 
-    @OnClick({R.id.btnUpdate, R.id.btnCancel})
-    public void onViewClicked(View view) {
+    R.id.btnUpdate, R.id.btnCancel
+    private void onViewClicked(View view) {
 
         switch (view.getId()) {
             case R.id.btnUpdate:
@@ -213,6 +188,5 @@ public class UpdateSlipDialog extends Dialog {
         model.setTotalAmount(totalAmount.getText().toString().split("Rs")[1].trim());
         return model;
     }
-
 
 }

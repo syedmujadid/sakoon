@@ -48,31 +48,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 public class OtherPendingCaseFragment extends BaseFragment implements ListDataView, Animation.AnimationListener {
 
-    @BindView(R.id.noResult)
-    TextView noResult;
-    @BindView(R.id.recyclerView)
-    RecyclerView listOfItem;
-    @BindView(R.id.levelType)
-    Spinner levelType;
-    @BindView(R.id.totalCount)
-    TextView totalCount;
-    @BindView(R.id.levelLayout)
-    LinearLayout levelLayout;
-    private Unbinder unbinder;
-
-    private ListDataPresenter mPresenter;
+    private private ListDataPresenter mPresenter;
     private ListOfCaseAdapter mAdapter;
     private LinearLayoutManager manager;
     private List<IssueListModel_Online> issueListModel_onlines = new ArrayList<>();
     private JSONArray issueArray, logArray;
-    @BindView(R.id.pullToRefresh)
-    SwipeRefreshLayout pullToRefresh;
     private List<IssueListModel> mCaseList = new ArrayList<>();
     private View_Logs_Dialog mLogDialog;
     private String level;
@@ -129,7 +111,6 @@ public class OtherPendingCaseFragment extends BaseFragment implements ListDataVi
         listOfItem.setLayoutManager(manager);
         listOfItem.setAdapter(mAdapter);
 
-
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
@@ -157,33 +138,26 @@ public class OtherPendingCaseFragment extends BaseFragment implements ListDataVi
         return view;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
     }
-
 
     @Override
     public void initVariables() {
         mLogDialog = new View_Logs_Dialog(getActivity());
     }
 
-
     @Override
     public void setListeners() {
 
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
-    }
-
+        }
 
     @Override
     public void getListOfUsers() {
@@ -236,10 +210,8 @@ public class OtherPendingCaseFragment extends BaseFragment implements ListDataVi
                                     else
                                         noResult.setVisibility(View.VISIBLE);
 
-
                                     totalCount.setText("Total incident: " + issueListModel_onlines.size());
                                 }
-
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -258,7 +230,6 @@ public class OtherPendingCaseFragment extends BaseFragment implements ListDataVi
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
 
             }
         }) {
@@ -334,7 +305,6 @@ public class OtherPendingCaseFragment extends BaseFragment implements ListDataVi
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
             }
         }) {
             @Override
@@ -396,7 +366,6 @@ public class OtherPendingCaseFragment extends BaseFragment implements ListDataVi
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
 
             }
         }) {

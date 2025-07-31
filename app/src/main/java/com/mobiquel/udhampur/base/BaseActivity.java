@@ -25,9 +25,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.mobiquel.udhampur.R;
 import com.mobiquel.udhampur.pojo.FailureResponse;
 
-import butterknife.ButterKnife;
-
-
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
     private FrameLayout flBaseContainer;
@@ -40,13 +37,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
         flBaseContainer = findViewById(R.id.fl_base_container);
         setLayout();
-        ButterKnife.bind(this);
-
         initVariables();
         setListeners();
 
     }
-
 
     /**
      * Method to add child activity layout
@@ -57,7 +51,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
             getLayoutInflater().inflate(getResourceId(), flBaseContainer, true);
         }
     }
-
 
     /**
      * Method to remove layouts
@@ -73,7 +66,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected abstract void initVariables();
 
     protected abstract void setListeners();
-
 
     /**
      * method ot make activity full screen
@@ -103,7 +95,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         }
     }
 
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         View view = getCurrentFocus();
@@ -122,7 +113,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         return super.dispatchTouchEvent(ev);
     }
 
-
     @Override
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -132,7 +122,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         }
         return false;
     }
-
 
     @Override
     public void showSnackBar(String message) {
@@ -144,7 +133,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
             snackbar.show();
         }
     }
-
 
     @Override
     public void showProgressBar() {
@@ -175,14 +163,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         }
     }
 
-
     @Override
     public void showNoNetworkError() {
         if (!isFinishing()) {
             showSnackBar(getString(R.string.msg_check_internet_connection));
         }
     }
-
 
     @Override
     public void showSpecificError(FailureResponse failureResponse) {

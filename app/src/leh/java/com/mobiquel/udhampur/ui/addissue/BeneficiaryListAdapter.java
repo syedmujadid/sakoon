@@ -16,13 +16,7 @@ import com.mobiquel.udhampur.pojo.BeneficiaryModel;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class BeneficiaryListAdapter extends RecyclerView.Adapter<BeneficiaryListAdapter.OptionsViewHolder> {
-
-
 
     private Context context;
     private List<BeneficiaryModel> collegeList;
@@ -61,8 +55,6 @@ public class BeneficiaryListAdapter extends RecyclerView.Adapter<BeneficiaryList
                 holder.delete.setVisibility(View.VISIBLE);
         }
 
-
-
     }
 
     @Override
@@ -70,30 +62,9 @@ public class BeneficiaryListAdapter extends RecyclerView.Adapter<BeneficiaryList
         return collegeList != null ? collegeList.size() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.delete)
-        ImageView delete;
-        @BindView(R.id.edit)
-        ImageView edit;
-        @BindView(R.id.title)
-        TextView title;
-        @BindView(R.id.name)
-        TextView name;
-        @BindView(R.id.adharNumber)
-        TextView adharNumber;
-        @BindView(R.id.adharAddress)
-        TextView adharAddress;
-        @BindView(R.id.contactNumber)
-        TextView contactNumber;
-        @BindView(R.id.scanQRCode)
-        TextView scanQRCode;
-        @BindView(R.id.view)
-        TextView view;
-
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
             if(status.equals("VIEW")){
                 edit.setVisibility(View.GONE);
                 delete.setVisibility(View.GONE);
@@ -108,8 +79,8 @@ public class BeneficiaryListAdapter extends RecyclerView.Adapter<BeneficiaryList
             }
         }
 
-        @OnClick({R.id.scanQRCode,R.id.edit,R.id.view,R.id.delete})
-        public void onViewClicked(View view) {
+        R.id.scanQRCode,R.id.edit,R.id.view,R.id.delete
+        private void onViewClicked(View view) {
             switch (view.getId()) {
                 case R.id.scanQRCode:
                     if (clickListener != null)

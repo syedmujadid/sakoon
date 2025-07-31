@@ -16,7 +16,7 @@ public class AppConstants {
     public static final String KEY_ABOUT = "about";
     public static final String KEY_CATEGORY = "category";
     //public static final String BASE_URL = "http://matdaan360.in:8080/UdhampurDisasterRelief/rest/service/";
-    public static final String BASE_URL = "http://matdaan360.in:8080/UdhampurDisasterRelief/rest/service/";
+    public static final String BASE_URL = "http://10.0.2.2:8091/UdhampurDisasterRelief/rest/service/";
     public static final String IMAGE_FOLDER = "SAKOON_LEH_IMAGES";
 
     public static final int PASSWORD_MIN_LENGTH = 6;

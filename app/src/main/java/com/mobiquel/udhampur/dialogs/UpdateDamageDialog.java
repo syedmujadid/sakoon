@@ -34,27 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class UpdateDamageDialog extends Dialog {
-
-
-    @BindView(R.id.title)
-    TextView title;
-    @BindView(R.id.updateDamage)
-    Button updateDamage;
-    @BindView(R.id.close)
-    ImageView close;
-    @BindView(R.id.propertyType)
-    Spinner propertyType;
-    @BindView(R.id.categoryType)
-    Spinner categoryType;
-    @BindView(R.id.damageDescription)
-    EditText damageDescription;
-    @BindView(R.id.quantity)
-    Spinner quantity;
 
     private Context mContext;
     private DialogListener dialogListener;
@@ -80,7 +60,6 @@ public class UpdateDamageDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.form_damage);
-        ButterKnife.bind(this);
         getWindow().setDimAmount(0.5f);
         getWindow().setBackgroundDrawable(null);
         getWindow().getAttributes().windowAnimations = R.style.DialogBounceAnimation;
@@ -123,7 +102,6 @@ public class UpdateDamageDialog extends Dialog {
                     }
                     //if()
 
-
                 }
             }
             else if(activity instanceof AddIssue_Pend){
@@ -156,14 +134,12 @@ public class UpdateDamageDialog extends Dialog {
                         damaCategoryJSONArray = damaCategoryJSON.getJSONArray("data");
                     }
 
-
                 }
             }
 
             for (int i = 0; i < damaCategoryJSONArray.length(); i++) {
                 damageCatArray.add(damaCategoryJSONArray.getJSONObject(i).getString("name"));
             }
-
 
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
@@ -173,8 +149,8 @@ public class UpdateDamageDialog extends Dialog {
         setCanceledOnTouchOutside(true);
     }
 
-    @OnClick({R.id.updateDamage, R.id.close})
-    public void onViewClicked(View view) {
+    R.id.updateDamage, R.id.close
+    private void onViewClicked(View view) {
 
         switch (view.getId()) {
             case R.id.updateDamage:
@@ -258,14 +234,10 @@ public class UpdateDamageDialog extends Dialog {
                 }
             }
 
-
-
-
             ArrayAdapter cityAdapter = new ArrayAdapter<String>(mContext,
                     android.R.layout.simple_list_item_1, damageCatArray);
             cityAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
             categoryType.setAdapter(cityAdapter);
-
 
             final CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(mContext, damage, damageAmount);
             propertyType.setAdapter(adapter);
@@ -285,7 +257,6 @@ public class UpdateDamageDialog extends Dialog {
                 unitAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
                 quantity.setAdapter(unitAdapter);
             }
-
 
             categoryType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -347,7 +318,6 @@ public class UpdateDamageDialog extends Dialog {
             e.printStackTrace();
         }
     }
-
 
     public DamageDetailModel getData() {
         model.setDamageDetail(damageDescription.getText().toString());

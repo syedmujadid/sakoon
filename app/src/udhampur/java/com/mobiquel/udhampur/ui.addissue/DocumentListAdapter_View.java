@@ -22,11 +22,7 @@ import com.mobiquel.udhampur.utils.Preferences;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class DocumentListAdapter_View extends RecyclerView.Adapter<DocumentListAdapter_View.OptionsViewHolder> {
-
 
     private Context context;
     private List<DocListModel> collegeList;
@@ -45,7 +41,6 @@ public class DocumentListAdapter_View extends RecyclerView.Adapter<DocumentListA
 
     @Override
     public void onBindViewHolder(@NonNull OptionsViewHolder holder, final int position) {
-
 
         holder.fileName.setText(collegeList.get(position).getName());
         if (collegeList.get(position).isOptionalStatus())
@@ -133,7 +128,6 @@ public class DocumentListAdapter_View extends RecyclerView.Adapter<DocumentListA
             }
         });
 
-
     }
 
     @Override
@@ -141,27 +135,10 @@ public class DocumentListAdapter_View extends RecyclerView.Adapter<DocumentListA
         return collegeList != null ? collegeList.size() : 0;
     }
 
-
     class OptionsViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.fileName)
-        TextView fileName;
-        @BindView(R.id.na)
-        TextView na;
-        @BindView(R.id.optionalStatus)
-        TextView optionalStatus;
-        @BindView(R.id.upload)
-        TextView upload;
-        @BindView(R.id.view)
-        TextView view;
-        @BindView(R.id.edit)
-        TextView edit;
 
         OptionsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-
-
             if (Preferences.getInstance().level.equals("1") || Preferences.getInstance().level.equals("4") || Preferences.getInstance().level.equals("5")) {
                 upload.setVisibility(View.VISIBLE);
                 edit.setVisibility(View.VISIBLE);
@@ -174,7 +151,6 @@ public class DocumentListAdapter_View extends RecyclerView.Adapter<DocumentListA
                 optionalStatus.setVisibility(View.GONE);
             }
         }
-
 
     }
 

@@ -2,27 +2,20 @@
 package com.mobiquel.udhampur.ui.addissue;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Looper;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
@@ -39,6 +32,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,21 +50,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-import com.kofigyan.stateprogressbar.StateProgressBar;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.mobiquel.udhampur.R;
+import com.mobiquel.udhampur.adapters.BeneficiaryListAdapter;
+import com.mobiquel.udhampur.adapters.DamageListAdapter;
+import com.mobiquel.udhampur.adapters.DocumentListAdapter;
+import com.mobiquel.udhampur.base.BaseActivity;
 import com.mobiquel.udhampur.dao.DAO;
+import com.mobiquel.udhampur.databinding.ActivityAddIssueBinding;
 import com.mobiquel.udhampur.dialogs.ConfirmationDialogBackPressed;
 import com.mobiquel.udhampur.dialogs.UpdateDamageDialog;
-import com.mobiquel.udhampur.dialogs.UploadImageDialog;
 import com.mobiquel.udhampur.dialogs.View_Beneficiary_Dialog;
 import com.mobiquel.udhampur.dialogs.View_Image_Dialog;
-import com.mobiquel.udhampur.interfaces.DialogListener;
-import com.mobiquel.udhampur.interfaces.DialogListenerBackPressed;
-import com.mobiquel.udhampur.interfaces.RecyclerItemClickListener;
+import com.mobiquel.udhampur.dialogs.UploadImageDialog;
 import com.mobiquel.udhampur.pojo.BeneficiaryModel;
 import com.mobiquel.udhampur.pojo.DamageDetailModel;
 import com.mobiquel.udhampur.pojo.DocListModel;
@@ -80,20 +72,16 @@ import com.mobiquel.udhampur.utils.Preferences;
 import com.mobiquel.udhampur.utils.Utils;
 import com.mobiquel.udhampur.utils.VolleySingleton;
 import com.yalantis.ucrop.UCrop;
+import com.kofigyan.stateprogressbar.StateProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -103,66 +91,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import droidninja.filepicker.utils.ContentUriUtils;
+import com.mobiquel.udhampur.interfaces.DialogListener;
+import com.mobiquel.udhampur.interfaces.DialogListenerBackPressed;
+import com.mobiquel.udhampur.interfaces.RecyclerItemClickListener;
 
 public class AddIssue extends AppCompatActivity {
 
-
-    @BindView(R.id.menu)
-    ImageView menu;
-    @BindView(R.id.tab_name)
-    TextView tabName;
-
-    @BindView(R.id.your_state_progress_bar_id)
-    StateProgressBar stateProgBar;
-    @BindView(R.id.incidentDate)
-    EditText incidentDate;
-    @BindView(R.id.applicantName)
-    EditText applicantName;
-    @BindView(R.id.parentName)
-    EditText parentName;
-    @BindView(R.id.applicantMobile)
-    EditText applicantMobile;
-    @BindView(R.id.naturalCalamity)
-    Spinner naturalCalamity;
-    @BindView(R.id.firstAid)
-    EditText firstAid;
-    @BindView(R.id.villageName)
-    Spinner villageName;
-    @BindView(R.id.beneficiaryCount)
-    Spinner beneficiaryCount;
-
-    @BindView(R.id.incidentDescForm)
-    LinearLayout incidentDescForm;
-    @BindView(R.id.damageList)
-    RecyclerView damageList;
-
-    @BindView(R.id.addDamage)
-    TextView addDamage;
-    @BindView(R.id.totalCost)
-    TextView totalCost;
-    @BindView(R.id.beneficiaryForm)
-    NestedScrollView beneficiaryForm;
-    @BindView(R.id.damageForm)
-    RelativeLayout damageForm;
-    @BindView(R.id.docUploadForm)
-    LinearLayout docUploadForm;
-    @BindView(R.id.prev)
-    TextView prev;
-    @BindView(R.id.next)
-    TextView next;
-    @BindView(R.id.submit)
-    TextView submit;
-    @BindView(R.id.docList)
-    RecyclerView docRecylerView;
-    @BindView(R.id.beneficiaryList)
-    RecyclerView beneficiaryList;
-
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
+    // View Binding
+    private ActivityAddIssueBinding binding;
+    
+    // Add missing fields
     private BeneficiaryListAdapter beneficaryAapter;
 
     private String[] descriptionData = {"Details", "Damage", "Beneficiary", "Upload"};
@@ -216,16 +155,28 @@ public class AddIssue extends AppCompatActivity {
     private  File outputDirectory;
     public String incDate="";
 
-    @SuppressLint("InflateParams")
+    private ActivityResultLauncher<Intent> galleryLauncher;
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private ActivityResultLauncher<String> requestGalleryPermissionLauncher;
+    private ActivityResultLauncher<String> requestCameraPermissionLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_issue);
-        ButterKnife.bind(this);
-        tabName.setText("Add Incident");
-        stateProgBar.setStateDescriptionData(descriptionData);
-        stateProgBar.setStateDescriptionTypeface("fonts/poppins_medium.ttf");
-        stateProgBar.setStateNumberTypeface("fonts/poppins_medium.ttf");
+        binding = ActivityAddIssueBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        
+        // Initialize views using View Binding instead of Butterknife
+        // binding.menu, binding.tabName, etc.
+
+        binding.tabName.setText("Add Incident");
+        binding.yourStateProgressBarId.setStateDescriptionData(descriptionData);
+        binding.yourStateProgressBarId.setStateDescriptionTypeface("fonts/poppins_medium.ttf");
+        binding.yourStateProgressBarId.setStateNumberTypeface("fonts/poppins_medium.ttf");
+        
+        // Setup click listeners to replace Butterknife @OnClick
+        setupClickListeners();
+        
         mAdapter = new DocumentListAdapter(documentList, new RecyclerItemClickListener() {
             @Override
             public void onRecyclerItemClicked(int position) {
@@ -243,8 +194,8 @@ public class AddIssue extends AppCompatActivity {
             }
         });
         gpsTracker = new GPSTracker(AddIssue.this);
-        docRecylerView.setLayoutManager(new LinearLayoutManager(AddIssue.this));
-        docRecylerView.setAdapter(mAdapter);
+        binding.docRecylerView.setLayoutManager(new LinearLayoutManager(AddIssue.this));
+        binding.docRecylerView.setAdapter(mAdapter);
         mDialog = new View_Image_Dialog(AddIssue.this);
         beneficaryAapter = new BeneficiaryListAdapter(listOfBeneficiary, "ADD", new RecyclerItemClickListener() {
             @Override
@@ -282,7 +233,7 @@ public class AddIssue extends AppCompatActivity {
 
             }
         });
-        damageList.setVisibility(View.VISIBLE);
+        binding.damageList.setVisibility(View.VISIBLE);
         perceArray[0] = "100";
         perceArray[1] = "75";
         perceArray[2] = "50";
@@ -304,22 +255,21 @@ public class AddIssue extends AppCompatActivity {
                 damageListAapter.notifyDataSetChanged();
                 updateToatlCost();
                 if (damageDetailModelList.size() > 0)
-                    totalCost.setVisibility(View.VISIBLE);
+                    binding.totalCost.setVisibility(View.VISIBLE);
                 else
-                    totalCost.setVisibility(View.GONE);
+                    binding.totalCost.setVisibility(View.GONE);
 
             }
         });
 
         Drawable leftDrawable = AppCompatResources.getDrawable(this, R.drawable.ic_date);
-        incidentDate.setCompoundDrawablesWithIntrinsicBounds(null, null, leftDrawable, null);
+        binding.incidentDate.setCompoundDrawablesWithIntrinsicBounds(null, null, leftDrawable, null);
 
+        binding.beneficiaryList.setLayoutManager(new LinearLayoutManager(AddIssue.this));
+        binding.beneficiaryList.setAdapter(beneficaryAapter);
 
-        beneficiaryList.setLayoutManager(new LinearLayoutManager(AddIssue.this));
-        beneficiaryList.setAdapter(beneficaryAapter);
-
-        damageList.setLayoutManager(new LinearLayoutManager(AddIssue.this));
-        damageList.setAdapter(damageListAapter);
+        binding.damageList.setLayoutManager(new LinearLayoutManager(AddIssue.this));
+        binding.damageList.setAdapter(damageListAapter);
 
         confirmationDialogOnBackPresssed = new ConfirmationDialogBackPressed(AddIssue.this, new DialogListenerBackPressed() {
             @Override
@@ -367,10 +317,10 @@ public class AddIssue extends AppCompatActivity {
             }
         });
         prepareDocData();
-        incidentDate.setOnClickListener(new View.OnClickListener() {
+        binding.incidentDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                datepick(incidentDate);
+                datepick(binding.incidentDate);
             }
         });
         if (!getIntent().getExtras().getString("SOURCE").equals("UPDATE")) {
@@ -378,7 +328,6 @@ public class AddIssue extends AppCompatActivity {
             // updateToatlCost();
 
         }
-
 
         try {
             Preferences.getInstance().loadPreferences(AddIssue.this);
@@ -396,7 +345,7 @@ public class AddIssue extends AppCompatActivity {
                 ArrayAdapter cityAdapter = new ArrayAdapter<String>(AddIssue.this,
                         android.R.layout.simple_list_item_1, cityArray);
                 cityAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-                villageName.setAdapter(cityAdapter);
+                binding.villageName.setAdapter(cityAdapter);
             }
 
         } catch (JSONException e) {
@@ -410,27 +359,27 @@ public class AddIssue extends AppCompatActivity {
                 JSONObject beneficDetail = new JSONObject(getIssuesListModel.getBenefeciaryDetails());
                 JSONObject docDetail = new JSONObject(getIssuesListModel.getDocDetails());
                 incDate=issueDetail.getString("incidentDate");
-                incidentDate.setText(issueDetail.getString("incidentDate"));
-                applicantName.setText(issueDetail.getString("applicantName"));
-                parentName.setText(issueDetail.getString("parentName"));
+                binding.incidentDate.setText(issueDetail.getString("incidentDate"));
+                binding.applicantName.setText(issueDetail.getString("applicantName"));
+                binding.parentName.setText(issueDetail.getString("parentName"));
                 String[] naturalCalamityArray = getResources().getStringArray(R.array.calamityType);
                 String[] countArray = getResources().getStringArray(R.array.noArray);
                 for (int i = 0; i < naturalCalamityArray.length; i++) {
                     if (naturalCalamityArray[i].equals(issueDetail.getString("calamityType"))) {
-                        naturalCalamity.setSelection(i);
+                        binding.naturalCalamity.setSelection(i);
                         break;
                     }
                 }
                 for (int i = 0; i < countArray.length; i++) {
                     if (countArray[i].equals(issueDetail.getString("beneficiaryCount"))) {
-                        beneficiaryCount.setSelection(i);
+                        binding.beneficiaryCount.setSelection(i);
                         break;
                     }
                 }
 
-                applicantMobile.setText(issueDetail.getString("mobile"));
-                firstAid.setText(issueDetail.getString("firstAid"));
-                villageName.setSelection(0);
+                binding.applicantMobile.setText(issueDetail.getString("mobile"));
+                binding.firstAid.setText(issueDetail.getString("firstAid"));
+                binding.villageName.setSelection(0);
 
                 JSONArray damageArray = damageDetail.getJSONArray("data");
                 JSONArray docArray = docDetail.getJSONArray("data");
@@ -463,7 +412,6 @@ public class AddIssue extends AppCompatActivity {
                     documentList.add(docModel);
                 }
                 mAdapter.notifyDataSetChanged();
-
 
                 beneficaryAapter.notifyDataSetChanged();
                 if (damageArray.length() > 1)
@@ -519,9 +467,9 @@ public class AddIssue extends AppCompatActivity {
                 damageListAapter.notifyDataSetChanged();
                 updateToatlCost();
                 if (damageDetailModelList.size() > 0)
-                    totalCost.setVisibility(View.VISIBLE);
+                    binding.totalCost.setVisibility(View.VISIBLE);
                 else
-                    totalCost.setVisibility(View.GONE);
+                    binding.totalCost.setVisibility(View.GONE);
                 mUpdateDamageDialog.setDataEmpty();
                 mUpdateDamageDialog.cancel();
 
@@ -534,14 +482,12 @@ public class AddIssue extends AppCompatActivity {
             }
         });
 
-
         if (Build.VERSION.SDK_INT >= 23) {
             if ((ContextCompat.checkSelfPermission(AddIssue.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     || ContextCompat.checkSelfPermission(AddIssue.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
                 ActivityCompat.requestPermissions(AddIssue.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION},
                         PERMISSION_REQUEST_GPS);
             } else {
-
 
             }
 
@@ -550,6 +496,47 @@ public class AddIssue extends AppCompatActivity {
         }
 
         check_folder();
+
+        // 3. Register launchers
+        galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Uri selectedImageUri = result.getData().getData();
+                    // Handle the image URI (e.g., display or upload)
+                    onSelectFromGalleryResult(selectedImageUri);
+                }
+            }
+        );
+        cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    // Handle the image URI (e.g., display or upload)
+                    onCaptureImageResult(imageUri);
+                }
+            }
+        );
+        requestGalleryPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    launchGalleryPicker();
+                } else {
+                    Utils.showToast(this, "Permission denied for gallery access");
+                }
+            }
+        );
+        requestCameraPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    launchCameraPicker();
+                } else {
+                    Utils.showToast(this, "Permission denied for camera access");
+                }
+            }
+        );
     }
 
     private void check_folder() {
@@ -573,9 +560,8 @@ public class AddIssue extends AppCompatActivity {
             totalAmnt = totalAmnt + Integer.parseInt(damageDetailModelList.get(i).getTotalAmnt().trim());
 
         }
-        totalCost.setText("Total damage Cost: \u20B9" + totalAmnt);
+        binding.totalCost.setText("Total damage Cost: \u20B9" + totalAmnt);
     }
-
 
     private void saveAsDraft() {
         IssueListModel model = new IssueListModel();
@@ -593,7 +579,7 @@ public class AddIssue extends AppCompatActivity {
         model.setDamageDetails(damageDetails.toString());
         model.setBenefeciaryDetails(beneficiaryDetails.toString());
         model.setDocDetails(documentDetails.toString());
-        model.setName(applicantName.getText().toString());
+        model.setName(binding.applicantName.getText().toString());
         model.setServerStatus("F");
         DAO dao = new DAO(AddIssue.this);
         if (getIntent().getExtras().getString("SOURCE").equals("UPDATE"))
@@ -628,7 +614,6 @@ public class AddIssue extends AppCompatActivity {
         }
 
     }
-
 
     public void showImage(String url, String title) {
         mDialog.show();
@@ -703,11 +688,18 @@ public class AddIssue extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Setup click listeners to replace Butterknife @OnClick
+    private void setupClickListeners() {
+        binding.menu.setOnClickListener(this::onViewClicked);
+        binding.addDamage.setOnClickListener(this::onViewClicked);
+        binding.submit.setOnClickListener(this::onViewClicked);
+        binding.prev.setOnClickListener(this::onViewClicked);
+        binding.next.setOnClickListener(this::onViewClicked);
+    }
 
     @SuppressLint("RestrictedApi")
     @RequiresApi(api = Build.VERSION_CODES.M)
-    @OnClick({R.id.menu, R.id.addDamage, R.id.submit, R.id.prev, R.id.next})
-    public void onViewClicked(View view) {
+    private void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.addDamage:
                 modeOfDamage = "ADD";
@@ -726,27 +718,27 @@ public class AddIssue extends AppCompatActivity {
 
             case R.id.prev:
                 if (i == 3) {
-                    docUploadForm.setVisibility(View.GONE);
-                    beneficiaryForm.setVisibility(View.VISIBLE);
+                    binding.docUploadForm.setVisibility(View.GONE);
+                    binding.beneficiaryForm.setVisibility(View.VISIBLE);
                     i = 2;
-                    next.setVisibility(View.VISIBLE);
-                    submit.setVisibility(View.GONE);
-                    stateProgBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                    binding.next.setVisibility(View.VISIBLE);
+                    binding.submit.setVisibility(View.GONE);
+                    binding.yourStateProgressBarId.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                 } else if (i == 2) {
-                    beneficiaryForm.setVisibility(View.GONE);
-                    damageForm.setVisibility(View.VISIBLE);
-                    totalCost.setVisibility(View.VISIBLE);
+                    binding.beneficiaryForm.setVisibility(View.GONE);
+                    binding.damageForm.setVisibility(View.VISIBLE);
+                    binding.totalCost.setVisibility(View.VISIBLE);
                     i = 1;
-                    stateProgBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                    binding.yourStateProgressBarId.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 } else if (i == 1) {
-                    damageForm.setVisibility(View.GONE);
-                    incidentDescForm.setVisibility(View.VISIBLE);
-                    totalCost.setVisibility(View.GONE);
+                    binding.damageForm.setVisibility(View.GONE);
+                    binding.incidentDescForm.setVisibility(View.VISIBLE);
+                    binding.totalCost.setVisibility(View.GONE);
                     i = 0;
-                    prev.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorGrayBorder)));
+                    binding.prev.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorGrayBorder)));
                     //#D9D9D9
-                    prev.setEnabled(false);
-                    stateProgBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
+                    binding.prev.setEnabled(false);
+                    binding.yourStateProgressBarId.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
                 }
                 break;
             case R.id.next:
@@ -757,12 +749,12 @@ public class AddIssue extends AppCompatActivity {
                     step2Checks(view);
 
                 } else if (i == 2) {
-                    beneficiaryForm.setVisibility(View.GONE);
-                    docUploadForm.setVisibility(View.VISIBLE);
+                    binding.beneficiaryForm.setVisibility(View.GONE);
+                    binding.docUploadForm.setVisibility(View.VISIBLE);
                     i = 3;
-                    submit.setVisibility(View.VISIBLE);
-                    next.setVisibility(View.GONE);
-                    stateProgBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                    binding.submit.setVisibility(View.VISIBLE);
+                    binding.next.setVisibility(View.GONE);
+                    binding.yourStateProgressBarId.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
 
                 }
                 break;
@@ -778,17 +770,16 @@ public class AddIssue extends AppCompatActivity {
         i = 2;
 
         setBeneficiaryData();
-        damageForm.setVisibility(View.GONE);
-        totalCost.setVisibility(View.GONE);
-        beneficiaryForm.setVisibility(View.VISIBLE);
-        stateProgBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+        binding.damageForm.setVisibility(View.GONE);
+        binding.totalCost.setVisibility(View.GONE);
+        binding.beneficiaryForm.setVisibility(View.VISIBLE);
+        binding.yourStateProgressBarId.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
 
     }
 
-
     private void setBeneficiaryData() {
         //if()
-        int count = Integer.parseInt(beneficiaryCount.getSelectedItem().toString());
+        int count = Integer.parseInt(binding.beneficiaryCount.getSelectedItem().toString());
         if (listOfBeneficiary.size() > 0) {
             if (count != listOfBeneficiary.size()) {
 
@@ -843,32 +834,31 @@ public class AddIssue extends AppCompatActivity {
             mAdapter.notifyDataSetChanged();
         }
 
-
     }
 
     private void step1Checks(View view) {
-        if (incidentDate.getText().toString().equals("")) {
+        if (binding.incidentDate.getText().toString().equals("")) {
             Utils.showSnackBar(view, "Please enter incident date");
-        } else if (applicantName.getText().toString().equals("")) {
+        } else if (binding.applicantName.getText().toString().equals("")) {
             Utils.showSnackBar(view, "Please enter relief claimant");
-            applicantName.requestFocus();
+            binding.applicantName.requestFocus();
         }
-        else if (!Utils.validatePhoneNumber(applicantMobile.getText().toString())) {
+        else if (!Utils.validatePhoneNumber(binding.applicantMobile.getText().toString())) {
             Utils.showSnackBar(view, "Please enter valid relief claimant mobile number");
-            applicantName.requestFocus();
+            binding.applicantName.requestFocus();
         }
-        else if (parentName.getText().toString().equals("")) {
+        else if (binding.parentName.getText().toString().equals("")) {
             Utils.showSnackBar(view, "Please enter claimant's parent name");
-            parentName.requestFocus();
+            binding.parentName.requestFocus();
         } else {
-            incDate=incidentDate.getText().toString();
-            incidentDescForm.setVisibility(View.GONE);
-            damageForm.setVisibility(View.VISIBLE);
-            totalCost.setVisibility(View.VISIBLE);
+            incDate=binding.incidentDate.getText().toString();
+            binding.incidentDescForm.setVisibility(View.GONE);
+            binding.damageForm.setVisibility(View.VISIBLE);
+            binding.totalCost.setVisibility(View.VISIBLE);
             i = 1;
-            prev.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.orange_dark)));
-            prev.setEnabled(true);
-            stateProgBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+            binding.prev.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.orange_dark)));
+            binding.prev.setEnabled(true);
+            binding.yourStateProgressBarId.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
         }
 
     }
@@ -900,7 +890,6 @@ public class AddIssue extends AppCompatActivity {
             } catch (NumberFormatException e) {
 
             }
-
 
             if (listOfBeneficiary.get(i).getName().equals("")) {
                 int j = i + 1;
@@ -988,11 +977,9 @@ public class AddIssue extends AppCompatActivity {
         Utils.showToast(AddIssue.this, msg);
     }
 
-
     private void checkAllFileUpload() {
 
         for (int i = 0; i < documentList.size(); i++) {
-
 
             if (documentList.get(i).getFileURL().equals("")) {
                 if (documentList.get(i).isOptionalStatus() == true) {
@@ -1017,7 +1004,6 @@ public class AddIssue extends AppCompatActivity {
                 }
             }
 
-
         }
     }
 
@@ -1025,14 +1011,14 @@ public class AddIssue extends AppCompatActivity {
         if (Utils.isNetworkAvailable(AddIssue.this)) {
 
             try {
-                primaryDetails.put("incidentDate", incidentDate.getText().toString());
-                primaryDetails.put("applicantName", applicantName.getText().toString());
-                primaryDetails.put("parentName", parentName.getText().toString());
-                primaryDetails.put("calamityType", naturalCalamity.getSelectedItem().toString());
-                primaryDetails.put("beneficiaryCount", beneficiaryCount.getSelectedItem().toString());
-                primaryDetails.put("mobile", applicantMobile.getText().toString());
-                primaryDetails.put("firstAid", firstAid.getText().toString());
-                primaryDetails.put("villageId", villageIds.get(villageName.getSelectedItemPosition()));
+                primaryDetails.put("incidentDate", binding.incidentDate.getText().toString());
+                primaryDetails.put("applicantName", binding.applicantName.getText().toString());
+                primaryDetails.put("parentName", binding.parentName.getText().toString());
+                primaryDetails.put("calamityType", binding.naturalCalamity.getSelectedItem().toString());
+                primaryDetails.put("beneficiaryCount", binding.beneficiaryCount.getSelectedItem().toString());
+                primaryDetails.put("mobile", binding.applicantMobile.getText().toString());
+                primaryDetails.put("firstAid", binding.firstAid.getText().toString());
+                primaryDetails.put("villageId", villageIds.get(binding.villageName.getSelectedItemPosition()));
 
                 JSONArray damageArray = new JSONArray();
 
@@ -1067,7 +1053,6 @@ public class AddIssue extends AppCompatActivity {
                     benArray.put(benArrayJSONObject);
                 }
 
-
                 beneficiaryDetails.put("data", benArray);
                 for (int i = 0; i < documentList.size(); i++) {
                     String extension = "";
@@ -1093,7 +1078,6 @@ public class AddIssue extends AppCompatActivity {
                         docFileJSONArray.put(jsonObject);
                     }
 
-
                 }
                 documentDetails.put("data", docFileJSONArray);
                 submitIssueAPI();
@@ -1112,14 +1096,14 @@ public class AddIssue extends AppCompatActivity {
     private void generateData() {
         try {
 
-            primaryDetails.put("incidentDate", incidentDate.getText().toString());
-            primaryDetails.put("applicantName", applicantName.getText().toString());
-            primaryDetails.put("parentName", parentName.getText().toString());
-            primaryDetails.put("calamityType", naturalCalamity.getSelectedItem().toString());
-            primaryDetails.put("beneficiaryCount", beneficiaryCount.getSelectedItem().toString());
-            primaryDetails.put("mobile", applicantMobile.getText().toString());
-            primaryDetails.put("firstAid", firstAid.getText().toString());
-            primaryDetails.put("villageId", villageIds.get(villageName.getSelectedItemPosition()));
+            primaryDetails.put("incidentDate", binding.incidentDate.getText().toString());
+            primaryDetails.put("applicantName", binding.applicantName.getText().toString());
+            primaryDetails.put("parentName", binding.parentName.getText().toString());
+            primaryDetails.put("calamityType", binding.naturalCalamity.getSelectedItem().toString());
+            primaryDetails.put("beneficiaryCount", binding.beneficiaryCount.getSelectedItem().toString());
+            primaryDetails.put("mobile", binding.applicantMobile.getText().toString());
+            primaryDetails.put("firstAid", binding.firstAid.getText().toString());
+            primaryDetails.put("villageId", villageIds.get(binding.villageName.getSelectedItemPosition()));
 
             JSONArray damageArray = new JSONArray();
 
@@ -1154,7 +1138,6 @@ public class AddIssue extends AppCompatActivity {
                 benArray.put(benArrayJSONObject);
             }
 
-
             beneficiaryDetails.put("data", benArray);
             for (int i = 0; i < documentList.size(); i++) {
                 String extension = "";
@@ -1174,7 +1157,6 @@ public class AddIssue extends AppCompatActivity {
                     jsonObject.put("status", documentList.get(i).isUploadStatus());
                     docFileJSONArray.put(jsonObject);
                 }
-
 
             }
             documentDetails.put("data", docFileJSONArray);
@@ -1346,7 +1328,6 @@ public class AddIssue extends AppCompatActivity {
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 
-
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
 
@@ -1373,34 +1354,68 @@ public class AddIssue extends AppCompatActivity {
 
     //File Upload Code
     private void galleryIntent() {
-        //   Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        //   photoPickerIntent.setType("*/*");
-        //   startActivityForResult(photoPickerIntent, IMAGE_PICK_REQUEST_CODE);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                requestGalleryPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES);
+                return;
+            }
+        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestGalleryPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+            return;
+        }
+        launchGalleryPicker();
+    }
+    private void launchGalleryPicker() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
-        //intent.addCategory(Intent.CATEGORY_OPENABLE)
-        try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"),
-                    IMAGE_PICK_REQUEST_CODE
-            );
-        } catch (ActivityNotFoundException e) {
-            // Potentially direct the user to the Market with a Dialog
-
-        }
+        galleryLauncher.launch(Intent.createChooser(intent, "Select Image"));
     }
 
     private void cameraIntent() {
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+            return;
+        }
+        launchCameraPicker();
+    }
+    private void launchCameraPicker() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Picture");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
+        imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, REQUEST_CAMERA);
+        cameraLauncher.launch(intent);
+    }
+
+    private void onSelectFromGalleryResult(Uri uri) {
+        try {
+            String path = ContentUriUtils.INSTANCE.getFilePath(AddIssue.this, uri);
+            if (Utils.isNetworkAvailable(AddIssue.this)) {
+                // uploadImage(path);
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionQuality(100);
+                options.setMaxBitmapSize(10000);
+
+                UCrop.of(uri, Uri.fromFile(outputDirectory))
+                        .withMaxResultSize(1000, 1000)
+                        .withOptions(options)
+                        .start(this);
+
+            } else {
+                Utils.showToast(AddIssue.this, "No internet present! File is saved offline");
+                documentList.get(selePos).setFileURL(path);
+                documentList.get(selePos).setUploadStatus(false);
+                mAdapter.notifyDataSetChanged();
+            }
+
+        } catch (URISyntaxException e) {
+
+        }
 
     }
 
-
-    private void onCaptureImageResult(Intent data) {
+    private void onCaptureImageResult(Uri uri) {
         Bitmap thumbnail = null;
         Bitmap scaled = null;
         File storeFilename = null;
@@ -1408,7 +1423,7 @@ public class AddIssue extends AppCompatActivity {
         //imageUri = data.getData();
         //storeFilename = compressImage(imageUri.toString());
         try {
-            thumbnail = MediaStore.Images.Media.getBitmap(AddIssue.this.getContentResolver(), imageUri);
+            thumbnail = MediaStore.Images.Media.getBitmap(AddIssue.this.getContentResolver(), uri);
             int nh = (int) (thumbnail.getHeight() * (512.0 / thumbnail.getWidth()));
             scaled = Bitmap.createScaledBitmap(thumbnail, 512, nh, true);
             String partFilename = currentDateFormat();
@@ -1441,7 +1456,6 @@ public class AddIssue extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     @SuppressLint("SimpleDateFormat")
     private String currentDateFormat() {
@@ -1482,55 +1496,8 @@ public class AddIssue extends AppCompatActivity {
         return bitmap;
     }
 
-    private void onSelectFromGalleryResult(Intent data) {
-        try {
-            Uri uri = data.getData();
-            String path = ContentUriUtils.INSTANCE.getFilePath(AddIssue.this, uri);
-            if (Utils.isNetworkAvailable(AddIssue.this)) {
-                // uploadImage(path);
-                UCrop.Options options = new UCrop.Options();
-                options.setCompressionQuality(100);
-                options.setMaxBitmapSize(10000);
-
-                UCrop.of(uri, Uri.fromFile(outputDirectory))
-                        .withMaxResultSize(1000, 1000)
-                        .withOptions(options)
-                        .start(this);
-
-
-            } else {
-                Utils.showToast(AddIssue.this, "No internet present! File is saved offline");
-                documentList.get(selePos).setFileURL(path);
-                documentList.get(selePos).setUploadStatus(false);
-                mAdapter.notifyDataSetChanged();
-            }
-
-        } catch (URISyntaxException e) {
-
-        }
-
-    }
-
-    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-            while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-
-
     private void uploadImage(String path) {
-        progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         com.loopj.android.http.RequestParams params = new com.loopj.android.http.RequestParams();
         try {
             Log.e("FILE", "FILE====" + path);
@@ -1546,8 +1513,8 @@ public class AddIssue extends AppCompatActivity {
                     @Override
                     public void onSuccess(int i, org.apache.http.Header[] headers, byte[] bytes) {
                         System.out.println("abc");
-                        if (progressBar != null && progressBar.isShown())
-                            progressBar.setVisibility(View.INVISIBLE);
+                        if (binding.progressBar.isShown())
+                            binding.progressBar.setVisibility(View.INVISIBLE);
 
                         Utils.showToast(AddIssue.this, "Image uploaded successfully!");
                         uploadedFilePath = new String(bytes);
@@ -1560,15 +1527,14 @@ public class AddIssue extends AppCompatActivity {
                     @Override
                     public void onFailure(int i, org.apache.http.Header[] headers, byte[] bytes, Throwable throwable) {
                         Utils.showToast(AddIssue.this, "Error uploading doc");
-                        progressBar.setVisibility(View.GONE);
+                        binding.progressBar.setVisibility(View.GONE);
                     }
-
 
                 });
     }
 
     private void uploadImageCheckFileUpload(String path) {
-        progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         com.loopj.android.http.RequestParams params = new com.loopj.android.http.RequestParams();
         try {
             Log.e("FILE", "FILE====" + path);
@@ -1584,8 +1550,8 @@ public class AddIssue extends AppCompatActivity {
                     @Override
                     public void onSuccess(int i, org.apache.http.Header[] headers, byte[] bytes) {
                         System.out.println("abc");
-                        if (progressBar != null && progressBar.isShown())
-                            progressBar.setVisibility(View.INVISIBLE);
+                        if (binding.progressBar.isShown())
+                            binding.progressBar.setVisibility(View.INVISIBLE);
 
                         Utils.showToast(AddIssue.this, "Image uploaded successfully!");
                         uploadedFilePath = new String(bytes);
@@ -1599,15 +1565,14 @@ public class AddIssue extends AppCompatActivity {
                     @Override
                     public void onFailure(int i, org.apache.http.Header[] headers, byte[] bytes, Throwable throwable) {
                         Utils.showToast(AddIssue.this, "Error uploading doc");
-                        progressBar.setVisibility(View.GONE);
+                        binding.progressBar.setVisibility(View.GONE);
                     }
-
 
                 });
     }
 
     private void submitIssueAPI() {
-        progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = VolleySingleton.getInstance(AddIssue.this).getRequestQueue();
         String url = AppConstants.BASE_URL + "reportIncident";
         StringRequest requestObject = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -1630,16 +1595,16 @@ public class AddIssue extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                if (progressBar.isShown()) {
-                    progressBar.setVisibility(View.GONE);
+                if (binding.progressBar.isShown()) {
+                    binding.progressBar.setVisibility(View.GONE);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(AddIssue.this, "Could not connect to server", Toast.LENGTH_SHORT).show();
-                if (progressBar.isShown()) {
-                    progressBar.setVisibility(View.GONE);
+                if (binding.progressBar.isShown()) {
+                    binding.progressBar.setVisibility(View.GONE);
                 }
             }
         }) {
@@ -1663,8 +1628,8 @@ public class AddIssue extends AppCompatActivity {
         if (Utils.isNetworkAvailable(AddIssue.this)) {
             queue.add(requestObject);
         } else {
-            if (progressBar != null && progressBar.isShown()) {
-                progressBar.setVisibility(View.GONE);
+            if (binding.progressBar != null && binding.progressBar.isShown()) {
+                binding.progressBar.setVisibility(View.GONE);
             }
             Utils.showToast(AddIssue.this, AppConstants.ENABLE_INTERNET_SETTING_MESSAGE);
         }

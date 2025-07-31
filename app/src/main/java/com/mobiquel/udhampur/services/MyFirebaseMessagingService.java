@@ -54,14 +54,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 Intent intent = new Intent(getApplicationContext(), FirstAidActivity.class);
                 intent.putExtra("POS", "1");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                contentIntent = PendingIntent.getActivity(this, requestID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                contentIntent = PendingIntent.getActivity(this, requestID, intent, PendingIntent.FLAG_IMMUTABLE);
 
             }
             else{
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("POS", "1");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                contentIntent = PendingIntent.getActivity(this, requestID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                contentIntent = PendingIntent.getActivity(this, requestID, intent, PendingIntent.FLAG_IMMUTABLE);
             }
 
             title = object.getString("title");
@@ -71,13 +71,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             e.printStackTrace();
         }
 
-
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         if (message != null) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
 
                 int notifyID = 1;
                 String CHANNEL_ID = "my_channel_01";// The id of the channel.
@@ -119,9 +117,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
             }
 
-
         }
-
 
     }
 }
