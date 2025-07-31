@@ -19,6 +19,7 @@ public class ConfirmationDialogBackPressed extends Dialog {
 
     private Context mContext;
     private DialogListenerBackPressed dialogListener;
+    private TextView tvMessage;
 
     public ConfirmationDialogBackPressed(Context context, DialogListenerBackPressed dialogListener) {
         super(context);
@@ -37,9 +38,14 @@ public class ConfirmationDialogBackPressed extends Dialog {
         getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         getWindow().setGravity(Gravity.CENTER);
         setCancelable(true);
+        
+        // Initialize views
+        tvMessage = findViewById(R.id.tv_message);
+        findViewById(R.id.tv_positive).setOnClickListener(this::onViewClicked);
+        findViewById(R.id.tv_neutral).setOnClickListener(this::onViewClicked);
+        findViewById(R.id.tv_negative).setOnClickListener(this::onViewClicked);
     }
 
-    R.id.tv_positive,R.id.tv_neutral, R.id.tv_negative
     private void onViewClicked(View view) {
         dismiss();
         switch (view.getId()) {

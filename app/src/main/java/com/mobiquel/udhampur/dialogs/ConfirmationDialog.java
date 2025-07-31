@@ -16,6 +16,7 @@ public class ConfirmationDialog extends Dialog {
 
     private Context mContext;
     private DialogListener dialogListener;
+    private TextView tvMessage;
 
     public ConfirmationDialog(Context context, DialogListener dialogListener) {
         super(context);
@@ -34,9 +35,13 @@ public class ConfirmationDialog extends Dialog {
         getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         getWindow().setGravity(Gravity.CENTER);
         setCancelable(false);
+        
+        // Initialize views
+        tvMessage = findViewById(R.id.tv_message);
+        findViewById(R.id.tv_positive).setOnClickListener(this::onViewClicked);
+        findViewById(R.id.tv_negative).setOnClickListener(this::onViewClicked);
     }
 
-    R.id.tv_positive, R.id.tv_negative
     private void onViewClicked(View view) {
         dismiss();
         switch (view.getId()) {
